@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+
+<head>
+    <title>signup - Yet Another Site - T1G05 - LTW 2018/2019 - MIEIC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="scripts/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <p>Yet Another Site</p>
+        <p>Login</p>
+        <p>Register</p>
+        <p>Logout</p>
+    </header>
+
+    <div id="signup">
+        <form class="form" action="signup.php" method="post">
+            <label class="label1">desired username:  </label>
+                <input id="SignupUsername" type="text" placeholder="desired username" required="required" />
+          
+            <label class="label2">password: </label>
+                <input id="SignupPwd" type="password" placeholder="password" />
+           
+            <label class="label3"> repeat password:   </label>
+                <input id="SignupRepeatPwd" type="password" placeholder="password" />
+         
+
+            <!-- <input id="submitButton" type="submit" value="login"> -->
+            <label id="LblBtn"> </label>
+                <button class="button" formaction="signup.php" formmethod="post"><img src="images/signup.png" height=33
+                        alt="signup"></button>
+           
+        </form>
+    </div>
+
+
+    <footer>
+        <p>(c)MIEIC - LTW 2018/2019 T1G05</p>
+        <p>Luis Oliveira; Ricardo Silva; Fábio Gaspar</p>
+    </footer>
+</body>
+
+</html>
