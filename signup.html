@@ -12,22 +12,25 @@
 <body>
     <header>
         <p>Yet Another Site</p>
-        <p>Login</p>
-        <p>Register</p>
+        <a id="loginhref" href="login.html">Login</a>
+        <a id="signuphref" href="signup.html">Signup</a>
         <p>Logout</p>
     </header>
 
     <div id="signup">
         <form class="form" action="signup.php" method="post">
-            <label class="label1">desired username: </label>
-            <input id="SignupUsername" type="text" placeholder="desired username" required="required" />
-
-            <label class="label2">password: </label>
-            <input id="SignupPwd" type="password" placeholder="password" />
-
-            <label class="label3"> repeat password: </label>
-            <input id="SignupRepeatPwd" type="password" placeholder="password" />
-
+            <div id="userinput" class="inputs">
+                <label class="label1">desired username: </label>
+                <input id="SignupUsername" type="text" placeholder="desired username" required="required" />
+            </div>
+            <div id="pwdinput" class="inputs">
+                <label class="label2">password: </label>
+                <input id="SignupPwd" type="password" placeholder="password" />
+            </div>
+            <div id="repwdinput" class="inputs">
+                <label class="label3"> repeat password: </label>
+                <input id="SignupRepeatPwd" type="password" placeholder="password" />
+            </div>
             <div id="buttons">
                 <!-- <input id="submitButton" type="submit" value="login"> -->
                 <label id="LblBtn"> </label>
