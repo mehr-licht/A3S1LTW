@@ -1,51 +1,41 @@
-<?php 
-
+<?php function draw_login() { 
 /**
- * Draws the header for all pages. Receives an username
- * if the user is logged in in order to draw the logout
- * link.
- */
-function draw_header($username){
-?>
-<!DOCTYPE html>
-<html lang="en-US">
-<html>
+ * Draws the login section.
+ */ ?>
+  <section id="login">
+    
+    <header><h2>Welcome Back</h2></header>
 
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
+    <form method="post" action="../actions/action_login.php">
+      <input type="text" name="username" placeholder="username" required>
+      <input type="password" name="password" placeholder="password" required>
+      <input type="submit" value="Login">
+    </form>
 
-<body>
-    <header>
-        <p>Yet Another Site</p>
-        <?php if ($username == NULL) { ?>
-        <a id="loginhref" href="login.html">Login</a>
-            <a id="signuphref" href="signup.html">Signup</a>
-                <?php }?>
-                <?php if ($username != NULL) { ?>
-                <nav>
-                    <ul>
-                        <li>
-                            <?=$username?>
-                        </li>
-                        <li>Logout</li>
-                    </ul>
-                </nav>
-                <?php }?>
-    </header>
+    <footer>
+      <p>Don't have an account? <a href="signup.php">Signup!</a></p>
+    </footer>
+
+  </section>
 <?php } ?>
 
-
-<?php 
+<?php function draw_signup() { 
 /**
- * Draws the footer for all pages.
- */
-function draw_footer() { ?>
-        <footer>
-            <p>(c)MIEIC - LTW 2018/2019 T3G05</p>
-            <p>Luis Oliveira; Ricardo Silva; Fábio Gaspar</p>
-        </footer>
-    </body>
-</html>
+ * Draws the signup section.
+ */ ?>
+  <section id="signup">
+
+    <header><h2>New Account</h2></header>
+
+    <form method="post" action="../actions/action_signup.php">
+      <input type="text" name="username" placeholder="username" required>
+      <input type="password" name="password" placeholder="password" required>
+      <input type="submit" value="Signup">
+    </form>
+
+    <footer>
+      <p>Already have an account? <a href="login.php">Login!</a></p>
+    </footer>
+
+  </section>
 <?php } ?>
