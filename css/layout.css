@@ -1,0 +1,75 @@
+body {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas: "header header" "menu aside" "section aside" "footer aside";
+    width: 60em;
+    background-color: #EDEFF0;
+}
+
+menu {
+    grid-area: menu;
+}
+
+body footer {
+    grid-area: footer;
+}
+
+aside article p,
+h1 {
+    margin: 1em;
+}
+
+aside article a {
+    display: block;
+}
+
+body header h1 {
+    margin: 0em;
+    margin-top: 0.5em;
+}
+
+aside {
+    grid-area: aside;
+    margin-bottom: 1em;
+}
+
+section {
+    grid-area: section;
+}
+
+header {
+    display: grid;
+    grid-area: header;
+    grid-template-areas: "h1 none" "h2 signup";
+}
+
+#signup {
+    grid-area: signup;
+    text-align: right;
+}
+
+header h2 {
+    grid-area: h2;
+    text-align: left;
+}
+
+header h1 {
+    grid-area: h1;
+    text-align: left;
+}
+
+#menu ul {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+li {
+    margin: 0em;
+    flex-grow: 1;
+}
+
+nav {
+    background-color: white;
+    margin-bottom: 1em;
+}
