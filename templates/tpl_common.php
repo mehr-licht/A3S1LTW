@@ -20,8 +20,8 @@ function draw_header($username){
     <header>
         <p>Yet Another Site</p>
         <?php if ($username == NULL) { ?>
-        <a id="loginhref" href="login.html">Login</p>
-            <a id="signuphref" href="signup.html">Signup</p>
+        <a id="loginhref" href="login.html">Login</a>
+            <a id="signuphref" href="signup.html">Signup</a>
                 <?php }?>
                 <?php if ($username != NULL) { ?>
                 <nav>
