@@ -18,9 +18,26 @@
 <body>
     <header>
         <p>Yet Another Site</p>
+<<<<<<< HEAD
         <a id="loginhref" href="../pages/login.php">Login</a>
         <a id="signuphref" href="../pages/signup.php">Signup</a>
         <p>Logout</p>
+=======
+        <?php if ($username == NULL) { ?>
+        <a id="loginhref" href="login.html">Login</a>
+            <a id="signuphref" href="signup.html">Signup</a>
+                <?php }?>
+                <?php if ($username != NULL) { ?>
+                <nav>
+                    <ul>
+                        <li>
+                            <?=$username?>
+                        </li>
+                        <li>Logout</li>
+                    </ul>
+                </nav>
+                <?php }?>
+>>>>>>> 19f74840529628105fd9e9356d5fb7d78df3c60a
     </header>
     <?php } ?>
 
