@@ -1,18 +1,26 @@
 <?php
   include_once('../includes/database.php');
   /**
-   * Verifies if a certain username, password combination
-   * exists in the database. Use the sha1 hashing function.
+   * @brief Verifies if a certain username, AND  password combination
+   *  exists in the database. Use the sha1 hashing function.
+   *  UPDATED 
+   * TODO - not sure about the sha1 - NEEDS VERIFICATION ON RUNNING WEBSITE 
    */
   function checkUserPassword($username, $password) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT * FROM user WHERE username = ? AND password = ?');
+    $stmt = $db->prepare('SELECT * FROM User WHERE username = ? AND password = ?');
     $stmt->execute(array($username, sha1($password)));
     return $stmt->fetch()?true:false; // return true if a line exists
   }
-  function insertUser($username, $password) {
+
+  
+  /**
+   * @brief Inserts new user in table User -Updated and running
+   * 
+   */
+  function insertUser($username, $password, $email) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO user VALUES(?, ?)');
-    $stmt->execute(array($username, sha1($password)));
+    $stmt = $db->prepare('INSERT INTO User VALUES(?, ?, ?)');
+    $stmt->execute(array($username, sha1($password), $email));
   }
 ?>
