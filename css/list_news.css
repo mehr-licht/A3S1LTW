@@ -1,0 +1,12 @@
+#stories > article {
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+#stories > article >  div > img {
+    margin: 5px 5px;
+}
+
+#stories > article > div {
+    display: flex;
+    align-items: flex-start;
+}
