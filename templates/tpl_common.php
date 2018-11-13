@@ -10,30 +10,27 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/style.css">
+    <!--<link rel="stylesheet" href="../css/style.css">-->
 </head>
 
 <body>
     <header>
         <p>Yet Another Site</p>
         <?php if ($username == NULL) { ?>
-        <a id="loginl" href="../pages/login.php">Login</p>
-            <a id="signupl" href="../pages/signup.php">Signup</p>
-                <?php }?>
-                <?php if ($username != NULL) { ?>
-                <nav>
-                    <ul>
-                        <li>
-                            <?=$username?>
-                        </li>
-                        <li>Logout</li>
-                    </ul>
-                </nav>
-                <?php }?>
+            <a id="loginl" href="../pages/login.php">Login</a>
+            <a id="signupl" href="../pages/signup.php">Signup</a>
+        <?php } else { ?>
+            <nav>
+                <ul>
+                    <li><?=$username?></li>
+                    <li>Logout</li>
+                </ul>
+            </nav>
+        <?php }?>
     </header>
-    <?php } ?>
+<?php } ?>
 
-    <?php function draw_footer() { 
+<?php function draw_footer() { 
 /**
  * Draws the footer for all pages.
  */ ?>
