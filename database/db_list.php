@@ -7,7 +7,7 @@
    * @param username
    * @return username, sha1 and email
    */
-  function getUserLists($username) {
+  function getUserInformation($username) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT * FROM User WHERE username = ?');
     $stmt->execute(array($username));
@@ -18,21 +18,35 @@
      * @param  username
      * @return TRUE OR FALSE if the user has posts
      */
-  function checkIsListOwner($username, $idPost) {
+  function getUserPost($username, $idPost) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
     $stmt->execute(array($username));
     return $stmt->fetch()?true:false; // return true if a line exists
   }
 
+  /**
+   * @brief Returns All POSTS in db order by date
+   * @param
+   * @return all table information from Posts
+   */
+  function getAllPostsByDate() {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll();
+  }
+
+
+
   /**---------------------------------------------------------------------------------- Comment
      * @brief Returns all POSTs information froma certain USER -UPDATED
      * @param  username
      * @return all POSTS belonging to $username
      */
-    function checkIsPostOwner($username) {
+    function getAllPostsUSER($username) {
       $db = Database::instance()->db();
-      $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
+      $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post ORDER BY data DESC');
       $stmt->execute(array($username));
       return $stmt->fetchAll();
     }
@@ -43,7 +57,7 @@
    * @param id post que tem comentarios que desejamos ver
    * @return all coments
    */
-  function getListComents($idPost) {
+  function getAllComentsBelogingToPOST($idPost) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT * FROM Coment WHERE idParentComent = ?');
     $stmt->execute(array($idPost));
