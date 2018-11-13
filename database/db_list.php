@@ -2,9 +2,10 @@
   include_once('../includes/database.php');
   
   
-  /** --------------------------------------------------------------Tabel USER
+  /** --------------------------------------------------------------------------- USER
    * @brief Returns all User's information of a certain user. - UPDATED
-   * @ UPDATED and TESTED
+   * @param username
+   * @return username, sha1 and email
    */
   function getUserLists($username) {
     $db = Database::instance()->db();
@@ -13,46 +14,84 @@
     return $stmt->fetchAll(); 
   }
     /**
-     * @brief Returns all Post's information  from a certain User. -UPDATED
-     * @ UPDATED and TESTED
+     * @brief Returns information if user posted something. -UPDATED
+     * @param  username
+     * @return TRUE OR FALSE if the user has posts
      */
-  function checkIsListOwner($username, $list_id) {
+  function checkIsListOwner($username, $idPost) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT Post.id_Post, Post.iduser, Post.data, Post.conteudo, Post.votesUp, Post.votesDown FROM User, Post WHERE User.username = ? AND Post.iduser = User.id_user AND Post.id_Post = ?');
-    $stmt->execute(array($username, $list_id));
+    $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
+    $stmt->execute(array($username));
     return $stmt->fetch()?true:false; // return true if a line exists
   }
 
+  /**---------------------------------------------------------------------------------- Comment
+     * @brief Returns all POSTs information froma certain USER -UPDATED
+     * @param  username
+     * @return all POSTS belonging to $username
+     */
+    function checkIsPostOwner($username) {
+      $db = Database::instance()->db();
+      $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
+      $stmt->execute(array($username));
+      return $stmt->fetchAll();
+    }
 
 
-  /** --------------------------------------------------------------
+  /**
    * @brief Returns all Comment's Information belonging to a certain Post.
-   * @ UPDATED and TESTED
+   * @param id post que tem comentarios que desejamos ver
+   * @return all coments
    */
-  function getListItems($list_id) {
+  function getListComents($idPost) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT * FROM Coment WHERE idParentComent = ?');
-    $stmt->execute(array($list_id));
+    $stmt->execute(array($idPost));
     return $stmt->fetchAll(); 
   }
 
-  /**
-   * Inserts a new list into the database.
+
+  /** --------------------------------------------------------------------------------  POST
+   * Inserts a new Post into the database.
+   * @param iduser, data, conteudo
+   * @param data,
+   * @param conteudo  - needs confirmation
    */
-  function insertList($list_name, $username) {
+  function insertPost($iduser, $data, $conteudo) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO list VALUES(NULL, ?, ?)');
-    $stmt->execute(array($list_name, $username));
+    $stmt = $db->prepare('INSERT INTO Post VALUES(?, ?, ?,0,0,0)');
+    $stmt->execute(array($iduser, $data, $conteudo,));
   }
   
   /**
-   * Inserts a new item into a list.
+   * Inserts a new Coment into a POST.
+   * @param iduser,    
+   * @param data,
+   * @param comentConteudo,
+   * @param idPost,
+   * @param idParentComent
    */
-  function insertItem($item_text, $list_id) {
+  function insertComent($iduser, $data, $comentConteudo, $idPost) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO item VALUES(NULL, ?, 0, ?)');
-    $stmt->execute(array($item_text, $list_id));
+    $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, NULL)');
+    $stmt->execute(array($iduser, $data, $comentConteudo, $idPost));
   }
+
+  /**
+   * Inserts a new Coment into a COMENT.
+   * @param iduser,    
+   * @param data,
+   * @param comentConteudo,
+   * @param idPost,
+   * @param idParentComent
+   */
+  function insertComentIntoComent($iduser, $data, $comentConteudo, $idPost,$idParentComent ) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, ?)');
+    $stmt->execute(array($iduser, $data, $comentConteudo, $idPost,$idParentComent));
+  }
+
+
   /**
    * Returns a certain item from the database.
    */
