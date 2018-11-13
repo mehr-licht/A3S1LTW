@@ -30,7 +30,7 @@
    * @param
    * @return all table information from Posts
    */
-  function getAllPostsByDate() {
+  function getAllPostsUSER($username) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
     $stmt->execute(array($username));
@@ -44,10 +44,10 @@
      * @param  username
      * @return all POSTS belonging to $username
      */
-    function getAllPostsUSER($username) {
+    function getAllPostsOrderByDate() {
       $db = Database::instance()->db();
-      $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post ORDER BY data DESC');
-      $stmt->execute(array($username));
+      $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post ORDER BY data');
+      $stmt->execute();
       return $stmt->fetchAll();
     }
 
@@ -57,7 +57,7 @@
    * @param id post que tem comentarios que desejamos ver
    * @return all coments
    */
-  function getAllComentsBelogingToPOST($idPost) {
+  function getComents($idPost) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT * FROM Coment WHERE idParentComent = ?');
     $stmt->execute(array($idPost));
