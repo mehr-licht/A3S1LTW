@@ -1,5 +1,5 @@
 <?php
-$db = new PDO('sqlite:database\yetAnotherSite.db');
+$db = new PDO('sqlite:database'.DIRECTORY_SEPARATOR.'yetAnotherSite.db');
 
 /** --------------------------------------------------------------------------- USER
  * @brief Returns all User's information of a certain user. - UPDATED
