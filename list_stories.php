@@ -10,7 +10,7 @@
                 echo 
                 "<article>
                     <h1>No titles yet</h1>
-                    <div name=\"post_content\">
+                    <div class=\"post_content\">
                         <div class=\"post_votes\">
                             <div>Up: $post[votesUp]</div>
                             <div>Down: $post[votesDown]</div>
