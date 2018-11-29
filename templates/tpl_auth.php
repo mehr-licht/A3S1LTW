@@ -17,7 +17,7 @@
     <div id="buttons">
         <label class="LblBtn"></label>
         <button class="button" formaction="login.php" formmethod="post">login</button>
-        <label id="please">if you still have no account please register first</label><button class="button" onclick="location.href='signup.html'" type="button">
+        <label id="please">if you still have no account please register first</label><button class="button" onclick="location.href='signup.php'" type="button">
     signup</button>
     </div>
 </form>
@@ -48,7 +48,7 @@
                 <!-- <input id="submitButton" type="submit" value="login"> -->
                 <label id="LblBtn"> </label>
                 <button class="button" formaction="signup.php" formmethod="post">signup</button>
-                <label id="please">already have an account? please login</label><button class="button" onclick="location.href='login.html'" type="button">login</button>
+                <label id="please">already have an account? please login</label><button class="button" onclick="location.href='login.php'" type="button">login</button>
             </div>
         </form>
     </div>

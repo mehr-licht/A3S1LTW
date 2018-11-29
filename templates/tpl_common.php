@@ -10,14 +10,23 @@
 
 <head>
     <meta charset="utf-8">
-    <!--<link rel="stylesheet" href="../css/style.css">-->
+    <!-- <link rel="stylesheet" href="../css/style.css">-->
 </head>
 
 <body>
     <header>
         <p>Yet Another Site</p>
         <?php if ($username == NULL) { ?>
+          <!-- TODO: SE JA ESTIVER LOGGADO APARECE LOGOUT E PROFILE EM VEZ DE LOGIN E SIGNUP-->
             <a id="loginl" href="../pages/login.php">Login</a>
+            <?php if ($username != NULL) { ?>
+          <nav>
+            <ul>
+              <li><?=$username?></li>
+              <li><a href="../actions/action_logout.php">Logout</a></li>
+            </ul>
+          </nav>
+          <?php } ?>
             <a id="signupl" href="../pages/signup.php">Signup</a>
         <?php } else { ?>
             <nav>
