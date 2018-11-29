@@ -9,7 +9,7 @@
             foreach(getAllPostsOrderByDate() as $post) {
                 echo 
                 "<article>
-                    <h1>No titles yet</h1>
+                    <h1>$post[titulo]</h1>
                     <div class=\"post_content\">
                         <div class=\"post_votes\">
                             <div>Up: $post[votesUp]</div>
