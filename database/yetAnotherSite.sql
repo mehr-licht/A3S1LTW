@@ -24,17 +24,16 @@ CREATE TABLE Post (
     titulo VARCHAR NOT NULL,
     conteudo VARCHAR NOT NULL,
     votesUp INTEGER NOT NULL DEFAULT 0,
-    votesDown INTEGER NOT NULL DEFAULT 0,
-    totalVotes INTEGER
+    votesDown INTEGER NOT NULL DEFAULT 0
     
 );
 
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown, totalVotes) VALUES ('merlich', '10/10/2010', 'titulo1_teste', 'conteudo1_teste',1,1,0);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown, totalVotes) VALUES ('fabioD', '10/11/2011', 'titulo2_teste', 'conteudo2_teste',3,2,0);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown, totalVotes) VALUES ('techn', '10/12/2010', 'titulo3_teste', 'conteudo3_teste',1,1,0);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown, totalVotes) VALUES ('fabioD', '10/12/2011', 'titulo4_teste', 'conteudo4_teste',3,2,0);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown, totalVotes) VALUES ('merlich', '10/12/2010', 'titulo5_teste', 'conteudo5_teste',1,1,0);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown, totalVotes) VALUES ('techn', '10/12/2011', 'titulo6_teste', 'conteudo6_teste',3,2,0);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('merlich', '10/10/2010', 'titulo1_teste', 'conteudo1_teste',1,1);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', '10/11/2011', 'titulo2_teste', 'conteudo2_teste',3,2);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2010', 'titulo3_teste', 'conteudo3_teste',1,1);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', '10/12/2011', 'titulo4_teste', 'conteudo4_teste',3,2);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('merlich', '10/12/2010', 'titulo5_teste', 'conteudo5_teste',1,1);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2011', 'titulo6_teste', 'conteudo6_teste',3,2);
 
 
 
