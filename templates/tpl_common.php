@@ -10,7 +10,9 @@
 
 <head>
     <meta charset="utf-8">
+ <script type="text/javascript" src="js/main.js"></script> 
     <!-- <link rel="stylesheet" href="../css/style.css">-->
+    
 </head>
 
 <body>
