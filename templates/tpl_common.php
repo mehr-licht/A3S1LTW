@@ -12,7 +12,6 @@
     <meta charset="utf-8">
  <script type="text/javascript" src="js/main.js"></script> 
     <!-- <link rel="stylesheet" href="../css/style.css">-->
-    
 </head>
 
 <body>
@@ -35,6 +34,7 @@
                 <ul>
                     <li><?=$username?></li>
                     <li>Logout</li>
+                    <li>Estou logado</li>
                 </ul>
             </nav>
         <?php }?>

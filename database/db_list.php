@@ -1,5 +1,5 @@
 <?php
-include_once('../includes/database.php');
+include_once('database.php');
 
 /** --------------------------------------------------------------------------- USER
  * @brief Returns all User's information of a certain user. - UPDATED
@@ -7,7 +7,7 @@ include_once('../includes/database.php');
  * @return username, sha1 and email
  */
 function getUserInformation($username){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT * FROM User WHERE username = ?');
     $stmt->execute(array(
         $username
@@ -21,7 +21,7 @@ function getUserInformation($username){
  * @return TRUE OR FALSE if the user has posts
  */
 function getUserPost($username, $idPost){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
     $stmt->execute(array(
         $username
@@ -35,7 +35,7 @@ function getUserPost($username, $idPost){
  * @return all table information from Posts
  */
 function getAllPostsUSER($username){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
     $stmt->execute(array(
         $username
@@ -51,8 +51,8 @@ function getAllPostsUSER($username){
  * @return all POSTS belonging to $username
  */
 function getAllPostsOrderByDate(){
-    global $db;
-    $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post ORDER BY data');
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT idPost, iduser, data,titulo, conteudo, votesUp, votesDown FROM Post ORDER BY data');
     $stmt->execute();
     return $stmt->fetchAll();
 }
@@ -64,7 +64,7 @@ function getAllPostsOrderByDate(){
  * @return all coments
  */
 function getComents($idPost){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT * FROM Coment WHERE idParentComent = ?');
     $stmt->execute(array(
         $idPost
@@ -80,7 +80,7 @@ function getComents($idPost){
  * @param conteudo  - needs confirmation
  */
 function insertPost($iduser, $data, $conteudo){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('INSERT INTO Post VALUES(?, ?, ?,0,0,0)');
     $stmt->execute(array(
         $iduser,
@@ -98,7 +98,7 @@ function insertPost($iduser, $data, $conteudo){
  * @param idParentComent
  */
 function insertComent($iduser, $data, $comentConteudo, $idPost){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, NULL)');
     $stmt->execute(array(
         $iduser,
@@ -117,7 +117,7 @@ function insertComent($iduser, $data, $comentConteudo, $idPost){
  * @param idParentComent
  */
 function insertComentIntoComent($iduser, $data, $comentConteudo, $idPost, $idParentComent){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, ?)');
     $stmt->execute(array(
         $iduser,
@@ -133,7 +133,7 @@ function insertComentIntoComent($iduser, $data, $comentConteudo, $idPost, $idPar
  * Returns a certain item from the database.
  */
 function getItem($item_id){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('SELECT * FROM item WHERE item_id = ?');
     $stmt->execute(array(
         $item_id
@@ -144,7 +144,7 @@ function getItem($item_id){
  * Deletes a certain item from the database.
  */
 function deleteItem($item_id){
-    global $db;
+    $db = Database::instance()->db();
     $stmt = $db->prepare('DELETE FROM item WHERE item_id = ?');
     $stmt->execute(array(
         $item_id
