@@ -45,11 +45,18 @@
                 <label class="label3"> Repeat password: </label>
                 <input id="SignupRepeatPwd" name="checkPassword" type="password" placeholder="password" />
             </div>
+            
+            <div id="insrtemail" class="emailc">
+                <label class="label4"> Email: </label>
+                <input id="signupEmail" name="email" type="email" placeholder="email" />
+            </div>
+
+
             <div id="buttons">
                 <!-- <input id="submitButton" type="submit" value="login"> -->
                 <label id="LblBtn"> </label>
-                <button class="button" formaction="../pages/signup.php" formmethod="post">signup</button>
-                <label id="please">already have an account? please login</label><button class="button" onclick="location.href='./pages/login.php'" type="button">login</button>
+                <button class="button" formaction="../pages/profile.php" formmethod="post">signup</button>
+                <label id="please">already have an account? please login</label><button class="button" onclick="location.href='../pages/login.php'" type="button">login</button>
             </div>
         </form>
     </div>

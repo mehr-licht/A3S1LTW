@@ -1,5 +1,5 @@
 var defaultText = 'Click me and enter some text';
-
+/**
 function endEdit(e) {
     var input = $(e.target),
         label = input && input.prev();
@@ -23,3 +23,6 @@ $('.editable').hide()
         $(this).hide();
         $(this).next().show().focus();
     });
+
+*/
+    
