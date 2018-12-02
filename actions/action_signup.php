@@ -4,6 +4,14 @@
   
   $username = $_POST['username'];
   $password = $_POST['password'];
+  $password2 = $_POST['checkPassword'];
+  $email = $_POST['email'];
+
+  echo $username;
+  echo "   fg   ";
+  echo $password;
+  echo $email;
+  echo $password2;
   
   // Don't allow certain characters
   if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
