@@ -5,16 +5,18 @@
   <div id="login">
 
 <form class="form" action="../actions/action_login.php" method="post">
-    <div id="userinput" class="inputs">
-        <label class="labeluser">username: </label>
-        <input id="loginUsername" name="username" type="text" placeholder="username" required="required" />
-    </div>
-    <div id="pwdinput" class="inputs">
-        <label class="labelpwd">password:</label>
-        <input id="loginPwd" type="password" placeholder="password" class="password"/>
-        <button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>
-    </div>
-     <input id="submitButton" name="submit" type="submit" value="loginBaza">
+    <!-- username field -->
+    <label>Username:
+        <input name="username" type="text" placeholder="username" required="required" />
+    </label>
+    <!-- password field -->
+    <label>Password:
+        <input name="password" type="password" placeholder="password" required="required"/>
+        <!-- TODO -->
+        <!--<button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>-->
+    </label>
+    <!-- login button -->
+    <input name="submit" type="submit" value="Login"/>
 
     <div id="buttons">
         <label class="LblBtn"></label>
