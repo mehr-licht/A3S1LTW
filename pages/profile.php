@@ -19,6 +19,9 @@ if (!empty($_SESSION['username']))
 
 <form id="profile-form" class="profile" action="#" method="get">
 
+      
+      <script type="text/javascript" src="js/main.js"></script> 
+
 <!-- getPhoto(user) -->
 <img src="../res/antman.png" width="4%" class="avatar"> 
 <!-- <img src="../res/ <?php // echo $rws['user_avatar'];?>" class="avatar"> -->
@@ -39,8 +42,18 @@ if (!empty($_SESSION['username']))
   <label id="profile-age" class="profile">45</label></p>
 </div>
 <div contenteditable="true">   
-  <label id="profile-pass" class="profile">****************</label></p>
-< label id="profile-repeat" class="profile">****************</label><img src="../res/editPencil.gif" width="1.5%"></div></p>
+<label id="profile-pass" class="profile password"> 
+  <input id="loginPwd" type="password" placeholder="password" class="password"/>
+  <button id="toggleBtn1" class="glyphicon glyphicons-eye-open toggler-ico" 
+  style="background-color:transparent; border-color:transparent;" type="button" width="50px"> 
+  <img src="../res/glyphicons-eye-open.svg" width="50%"/>
+  &nbsp;</button>
+      </label></p>
+<label id="profile-repeat" class="profile password"> 
+  <input id="loginPwd" type="password" placeholder="password" class="password"/>
+  <button id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button>
+      </label>
+      <img src="../res/editPencil.gif" width="1.5%"></div></p>
 <input type="submit" value="edit">
     </form>
 

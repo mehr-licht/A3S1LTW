@@ -11,7 +11,8 @@
     </div>
     <div id="pwdinput" class="inputs">
         <label class="labelpwd">password:</label>
-        <input id="loginPwd"  name="password" type="password" placeholder="password" />
+        <input id="loginPwd" type="password" placeholder="password" class="password"/>
+        <button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>
     </div>
      <input id="submitButton" name="submit" type="submit" value="loginBaza">
 
@@ -38,12 +39,14 @@
                 <input id="SignupUsername" name="username" type="text" placeholder="desired username" required="required" />
             </div>
             <div id="pwdinput" class="inputs">
-                <label class="label2">Password: </label>
-                <input id="SignupPwd" name="password"type="password" placeholder="password" />
+                <label class="label2">password: </label>
+                <input id="SignupPwd" type="password" placeholder="password" />
+                <button id="toggleBtn4" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button>
             </div>
             <div id="repwdinput" class="inputs">
-                <label class="label3"> Repeat password: </label>
-                <input id="SignupRepeatPwd" name="checkPassword" type="password" placeholder="password" />
+                <label class="label3"> repeat password: </label>
+                <input id="SignupRepeatPwd" type="password" placeholder="password" />
+                <button id="toggleBtn5" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button>
             </div>
             
             <div id="insrtemail" class="emailc">

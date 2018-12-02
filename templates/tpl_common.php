@@ -12,6 +12,7 @@
     <meta charset="utf-8">
  <script type="text/javascript" src="../js/main.js"></script> 
     <!-- <link rel="stylesheet" href="../css/style.css">-->
+    <link rel="stylesheet" href="../css/password.css">
 </head>
 
 <body>
