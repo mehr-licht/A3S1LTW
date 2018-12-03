@@ -10,7 +10,24 @@
  
   draw_header(null);
   
+
   draw_signup();
-  
+  ?>
+       <nav>
+          <ul>
+            <p> <?php
+           // para imprimir o que vem dos erros  apos verificaoes no signup  
+           $pkl = $_SESSION['messages'];
+           print_r($pkl);
+                 
+               
+                ?>
+            </p>
+            <a id="loginl" href="../pages/login.php">Login</a>
+            <a id="signupl" href="../pages/signup.php">Signup</a> 
+          </ul>
+        </nav>
+        
+<?php
   draw_footer();
 ?>

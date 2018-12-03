@@ -26,7 +26,7 @@
 
   function checkUserEmail($email){
     $db = Database::instance()->db();
-    $stmt = $db->prepare("SELECT * FROM User WHERE email = ?");
+    $stmt = $db->prepare('SELECT * FROM User WHERE email = ?');
     $stmt->execute(array($email));
     return $stmt->fetch()?true:false;
   }

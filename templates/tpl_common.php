@@ -4,6 +4,7 @@
  * if the user is logged in in order to draw the logout
  * link.
  */ ?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 <html>
@@ -20,6 +21,7 @@
 <body>
     <header>
         <p>Yet Another Site</p>
+        
         <?php if ($username == NULL) { ?>
             <a id="loginl" href="../pages/login.php">Login</a>
             <a id="signupl" href="../pages/signup.php">Signup</a>
