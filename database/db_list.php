@@ -57,6 +57,15 @@ function getAllPostsOrderByDate(){
     return $stmt->fetchAll();
 }
 
+/**
+ * 
+ */
+function getPostByID($postID) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM Post WHERE idPost = ?');
+    $stmt->execute(array($postID));
+    return $stmt->fetch();
+}
 
 /**
  * @brief Returns all Comment's Information belonging to a certain Post.
