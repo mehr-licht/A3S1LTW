@@ -23,8 +23,8 @@ $user_array=getUserInformation($username);
 <div>
   <p> <?php
            // para imprimir o que vem dos erros  apos verificaoes no signup  
-           $pkl = $_SESSION['messages'][0]['type'];
-           $pkk = $_SESSION['messages'][0]['content'];
+           $pkl = $_SESSION['signup'][0]['type'];
+           $pkk = $_SESSION['signup'][0]['content'];
            print_r($pkl);
            print_r($pkk);
                          
