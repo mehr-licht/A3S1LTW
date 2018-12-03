@@ -31,7 +31,7 @@
     //updateUserPass($_POST['username'], $_POST['pass1'], $_POST['pass2']);
     //updateUserAvatar($_POST['username'], $_POST['avatar']);
     // insertUser($_POST['username'],$_POST['email'],  $_POST['email']);
-      $_SESSION['username'] = $username;
+    //  $_SESSION['username'] = $username;
       $_SESSION['messages'][] = array('type' => 'success', 'content' => 'database updated!');
       header('Location: ../pages/profile.php'); 
   } catch (PDOException $e) {

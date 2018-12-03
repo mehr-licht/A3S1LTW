@@ -71,11 +71,13 @@ $user_array=getUserInformation($username);
   &nbsp;</button>
       </label></p>
 <label id="profile-repeat" class="profile password"name="pass2"> 
-  <input id="loginPwd" type="password" placeholder="password" class="password"/>
+  <input id="loginPwd2" type="password" placeholder="password" class="password"/>
   <button id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button>
       </label>
       <img src="../res/editPencil.gif" width="1.5%"></div></p>
-<input type="submit" value="edit">
+
+  <button type="submit" class="button" formaction="../actions/action_update.php" formmethod="post">Edit</button>
+<? print_r($_POST['name']);?>
     </form>
 
 </div>

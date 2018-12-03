@@ -21,7 +21,7 @@
 <body>
     <header>
         <p>Yet Another Site</p>
-        
+            
         <?php if ($username == NULL) { ?>
             <a id="loginl" href="../pages/login.php">Login</a>
             <a id="signupl" href="../pages/signup.php">Signup</a>

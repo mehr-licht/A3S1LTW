@@ -53,16 +53,4 @@
     $stmt->execute(array($email, $name, $street, $zip, $city, $country, $phone, $username));//avatar e passes à parte
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
