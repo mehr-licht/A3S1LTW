@@ -42,12 +42,12 @@
             </div>
             <div id="pwdinput" class="inputs">
                 <label class="label2">password: </label>
-                <input id="SignupPwd" type="password" placeholder="password" />
+                <input id="SignupPwd" type="password" name="password" placeholder="password" />
                 <button id="toggleBtn4" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button>
             </div>
             <div id="repwdinput" class="inputs">
                 <label class="label3"> repeat password: </label>
-                <input id="SignupRepeatPwd" type="password" placeholder="password" />
+                <input id="SignupRepeatPwd" type="password" name="password2" placeholder="password" />
                 <button id="toggleBtn5" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button>
             </div>
             
@@ -55,12 +55,10 @@
                 <label class="label4"> Email: </label>
                 <input id="signupEmail" name="email" type="email" placeholder="email" />
             </div>
-
-
             <div id="buttons">
                 <!-- <input id="submitButton" type="submit" value="login"> -->
                 <label id="LblBtn"> </label>
-                <button class="button" formaction="../pages/profile.php" formmethod="post">signup</button>
+                <button type="submit" class="button" formaction="../actions/action_signup.php" formmethod="post">SignUp</button>
                 <label id="please">already have an account? please login</label><button class="button" onclick="location.href='../pages/login.php'" type="button">login</button>
             </div>
         </form>

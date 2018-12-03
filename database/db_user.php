@@ -26,7 +26,7 @@
 
   function checkUserEmail($email){
     $db = Database::instance()->db();
-    $stmt = $db->prepare("SELECT * FROM User WHERE email = ?");
+    $stmt = $db->prepare('SELECT * FROM User WHERE email = ?');
     $stmt->execute(array($email));
     return $stmt->fetch()?true:false;
   }
@@ -38,6 +38,6 @@
   function insertUser($username, $password, $email){
       $db = Database::instance()->db();
       $stmt = $db->prepare("INSERT INTO User VALUES(?, ?, ?)");
-      $stmt->execute(array($username, sha1($password), $email));
+      $stmt->execute(array($username, $password, $email));
   }
 ?>

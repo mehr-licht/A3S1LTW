@@ -4,6 +4,7 @@
  * if the user is logged in in order to draw the logout
  * link.
  */ ?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 <html>
@@ -18,27 +19,36 @@
 <body>
     <header>
         <p>Yet Another Site</p>
+        
         <?php if ($username == NULL) { ?>
-          <!-- TODO: SE JA ESTIVER LOGGADO APARECE LOGOUT E PROFILE EM VEZ DE LOGIN E SIGNUP-->
+        <nav>
+          <ul>
             <a id="loginl" href="../pages/login.php">Login</a>
-            <?php if ($username != NULL) { ?>
+            <a id="signupl" href="../pages/signup.php">Signup</a> 
+          </ul>
+        </nav>
+        <?php } ?>
+
+        <?php if ($username != NULL) { ?>
           <nav>
             <ul>
               <li><?=$username?></li>
-              <li><a href="../actions/action_logout.php">Logout</a></li>
+              <a href="../pages/profile.php">Profile</a>
+              <a href="../actions/action_logout.php">Logout</a>
             </ul>
           </nav>
-          <?php } ?>
-            <a id="signupl" href="../pages/signup.php">Signup</a>
-        <?php } else { ?>
-            <nav>
+        <?php } ?>
+
+        <!--    <nav>
                 <ul>
-                    <li><?=$username?></li>
-                    <li>Logout</li>
-                    <li>Estou logado</li>
+                    <?=$username?>
+                <div id="buttons">
+                     <input id="submitButton" type="submit" value="login"> 
+                    <label id="LblBtn"> </label>
+                    <button type="submit" class="button" formaction="../actions/action_signup.php" formmethod="post">SignUp</button>
                 </ul>
-            </nav>
-        <?php }?>
+            </nav>-->
+        
     </header>
 <?php } ?>
 

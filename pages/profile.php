@@ -6,8 +6,8 @@ include_once('../templates/tpl_auth.php');
 
 
 
-if (!empty($_SESSION['username']))
-    die(header('Location: ../pages/login.php'));
+//if (!empty($_SESSION['username']))
+//    die(header('Location: ../pages/login.php'));
    //    $username=$_SESSION['username'];
    // $array_teste=getUserInformation('mehrlicht');//harrdcoded
 
@@ -28,8 +28,11 @@ if (!empty($_SESSION['username']))
 
     <br>
 <!-- <label class="username"></label> -->
-<br>     <?php echo $_POST['username']?>
-<br>    <?php echo "Sra MAY ESTA NO PROFILE"?> 
+<br>     <?php echo "valor username:"; echo $_SESSION['username']?>
+<br>    <?php echo "valor das variaveis post:"?>
+<?php               var_dump($_SESSION['username']);
+                    var_dump($_SESSION['email']); ?>
+   
 <br>    <?php //echo $_SESSION['email']?> <br> 
 
 
