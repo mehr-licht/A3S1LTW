@@ -15,7 +15,8 @@
  <script type="text/javascript" src="../js/main.js"></script> 
     <!-- <link rel="stylesheet" href="../css/style.css">-->
     <link rel="stylesheet" href="../css/password.css">
-      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 
 <body>
@@ -32,16 +33,19 @@
             </nav>
         <?php }?>
     </header>
+    <main>
 <?php } ?>
 
 <?php function draw_footer() { 
 /**
  * Draws the footer for all pages.
  */ ?>
+    
     <footer>
-        <p>(c)MIEIC - LTW 2018/2019 T3G05</p>
+        <h1>(c)MIEIC - LTW 2018/2019 T3G05</h1>
         <p>Luis Oliveira; Ricardo Silva; Fábio Gaspar</p>
     </footer>
+    </main>
 </body>
 
 </html>
