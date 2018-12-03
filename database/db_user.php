@@ -49,7 +49,7 @@
   function updateUser($username, $email, $name, $street, $zip, $city, $country, $phone){
     $db = Database::instance()->db();
     $stmt = $db->prepare("UPDATE User SET email = ?,name= ?,street= ?, zipcode= ?, 
-    city= ?,country= ?,phone= ? WHERE username= ?");
+    city = ?, country = ?, phone = ? WHERE username = ?");
     $stmt->execute(array($email, $name, $street, $zip, $city, $country, $phone, $username));//avatar e passes à parte
 }
 

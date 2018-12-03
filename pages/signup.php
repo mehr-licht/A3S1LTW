@@ -17,8 +17,11 @@
           <ul>
             <p> <?php
            // para imprimir o que vem dos erros  apos verificaoes no signup  
-           $pkl = $_SESSION['messages'];
+           $pkl = $_SESSION['messages'][0]['type'];
+           $pkk = $_SESSION['messages'][0]['content'];
+           
            print_r($pkl);
+           print_r($pkk);
                  
                
                 ?>
