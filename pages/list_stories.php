@@ -18,7 +18,7 @@
             // ou podemos subsituir a funcao em baixo por getAllPostsUSER($_SESSION['username'] 
             foreach(getAllPostsOrderByDate() as $post) {
                 echo 
-                "<article>
+                "<article --data-postid=\"$post[idPost]\">
                     <h1>$post[titulo]</h1>
                     <div class=\"post_content\">
                         <div class=\"post_votes\">
