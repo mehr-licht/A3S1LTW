@@ -37,7 +37,32 @@
 
   function insertUser($username, $password, $email){
       $db = Database::instance()->db();
-      $stmt = $db->prepare("INSERT INTO User VALUES(?, ?, ?)");
+      $stmt = $db->prepare("INSERT INTO User (username, password, email ) VALUES(?, ?, ?)");
       $stmt->execute(array($username, sha1($password), $email));
   }
+
+/**
+   * @brief Updates the user info in table User 
+   * 
+   */
+
+  function updateUser($username, $email, $name, $street, $zip, $city, $country, $phone){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("UPDATE User SET email = ?,name= ?,street= ?, zipcode= ?, 
+    city= ?,country= ?,phone= ? WHERE username= ?");
+    $stmt->execute(array($email, $name, $street, $zip, $city, $country, $phone, $username));//avatar e passes à parte
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

@@ -48,6 +48,3 @@ $('.editable').hide()
         $(this).hide();
         $(this).next().show().focus();
     });
-
-*/
-    

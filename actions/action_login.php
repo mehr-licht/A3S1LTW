@@ -5,6 +5,7 @@
   $username = $_POST['username'];
   $password = $_POST['password'];
 
+
   if (checkUserPassword($username, $password)) {
     $_SESSION['username'] = $username;
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Logged in successfully!');

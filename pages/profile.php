@@ -5,51 +5,72 @@ include_once('../database/db_list.php'); //for getUserInformation
 include_once('../templates/tpl_auth.php');
 
 
-
-if (!empty($_SESSION['username']))
+if (!isset($_SESSION['username'])){
     die(header('Location: ../pages/login.php'));
-   //    $username=$_SESSION['username'];
-   // $array_teste=getUserInformation('mehrlicht');//harrdcoded
+}
 
-  draw_header($_POST['username']);
+$username=$_SESSION['username'];
+
+$user_array=getUserInformation($username);
+
+//print_r($user_array[0]); //em vez de echo var, print_r(var) imprime partes de arrays
+
+  draw_header($username);
   ?>
 <!-- PROFILE -->
 
 <div class="profile">
 
-<form id="profile-form" class="profile" action="#" method="get">
+<form id="profile-form" class="profile form" action="../actions/action_update.php" method="post">
 
       
-      <script type="text/javascript" src="js/main.js"></script> 
+      <script type="text/javascript" src="../js/main.js"></script> 
+<br/>
+  <label id="profile-avatar" class="profile avatar"><?php echo $user_array[0]['avatar'];?>
+  </label></p>
+  <input type="image" name="avatar" src="../res/antman.png" width="4%" class="avatar"> 
 
-<!-- getPhoto(user) -->
-<img src="../res/antman.png" width="4%" class="avatar"> 
-<!-- <img src="../res/ <?php // echo $rws['user_avatar'];?>" class="avatar"> -->
+<br/>    
+  <label id="profile-username" class="profile editable">username: <div contenteditable="true"><?php echo $user_array[0]['username'];?><input type="text" name="username"></div>
+  </label></p>
 
-    <br>
-<!-- <label class="username"></label> -->
-<br>     <?php echo $_POST['username']?>
-<br>    <?php echo "Sra MAY ESTA NO PROFILE"?> 
-<br>    <?php //echo $_SESSION['email']?> <br> 
+  <label id="profile-name" class="profile editable">email: <div contenteditable="true"><?php echo $user_array[0]['email'];?><input type="text" name="email"></div>
+  </label></p>
 
+    <label id="profile-name" class="profile editable">name: <div contenteditable="true"><?php echo $user_array[0]['name'];?><input type="text" name="name"></div>
+  </label></p>
 
-<!-- <label class="array_test"><?php echo $_POST['email']?></label> -->
-<div contenteditable="true">    
-  <label id="profile-name" class="profile editable">Aquele outro mar que nunca vimos</label></p></div>
-<div contenteditable="true">   
-  <label id="profile-town" class="profile">Póvoa de Varzim</label></p></div>
+  <label id="profile-birthday" class="profile editable">birthday: <div contenteditable="true"><?php echo $user_array[0]['birthday'];?><input type="text" name="birthday"></div>
+  </label></p>
+
 <div contenteditable="true">   
   <label id="profile-age" class="profile">45</label></p>
 </div>
+    <label id="profile-address" class="profile editable">street: <div contenteditable="true"><?php echo $user_array[0]['street'];?><input type="text" name="street"></div>
+  </label></p>
+
+    <label id="profile-zip" class="profile editable" >zip code: <div contenteditable="true"><?php echo $user_array[0]['zipcode'];?><input type="text" name="zipcode"></div>
+  </label></p>
+
+    <label id="profile-city" class="profile editable">city: <div contenteditable="true"><?php echo $user_array[0]['city'];?><input type="text" name="city"></div>
+  </label></p>
+
+    <label id="profile-country" class="profile editable">country: <div contenteditable="true"><?php echo $user_array[0]['country'];?><input type="text" name="country"></div>
+  </label></p>
+
+    <label id="profile-phone" class="profile editable">phone: <div contenteditable="true"><?php echo $user_array[0]['phone'];?><input type="text" name="phone"></div>
+  </label></p>
+
+
 <div contenteditable="true">   
-<label id="profile-pass" class="profile password"> 
+<label id="profile-pass" class="profile password" name="pass1"> 
   <input id="loginPwd" type="password" placeholder="password" class="password"/>
   <button id="toggleBtn1" class="glyphicon glyphicons-eye-open toggler-ico" 
   style="background-color:transparent; border-color:transparent;" type="button" width="50px"> 
   <img src="../res/glyphicons-eye-open.svg" width="50%"/>
   &nbsp;</button>
       </label></p>
-<label id="profile-repeat" class="profile password"> 
+<label id="profile-repeat" class="profile password"name="pass2"> 
   <input id="loginPwd" type="password" placeholder="password" class="password"/>
   <button id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button>
       </label>

@@ -11,10 +11,10 @@
     </div>
     <div id="pwdinput" class="inputs">
         <label class="labelpwd">password:</label>
-        <input id="loginPwd" type="password" placeholder="password" class="password"/>
+        <input id="loginPwd" type="password" placeholder="password" class="password" name="password"/>
         <button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>
     </div>
-     <input id="submitButton" name="submit" type="submit" value="loginBaza">
+     <input id="submitButton" name="submit" type="submit" value="login">
 
     <div id="buttons">
         <label class="LblBtn"></label>
