@@ -5,9 +5,9 @@
 ### Minimum expected requirements are the following:
 
 All users should be able to:
-    Register a new account.
+  [DONE] Register a new account.
   [DONE] Login
-    logout.
+  [DONE] logout.
     Edit their profile.
     Add a new story. Each story should have a title and some text.
     View a list of the most recent stories.
