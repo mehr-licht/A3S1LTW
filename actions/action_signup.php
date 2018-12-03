@@ -2,12 +2,6 @@
   include_once('../includes/session.php');
   include_once('../database/db_user.php');
   
-  
-  function console_log( $data ){
-    echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
-    echo '</script>';
-  }
 
   if( checkUsername($_POST['username']) ){
       $_SESSION['messages'] = array('type' => 'error', 'content' => 'Username already in use!');

@@ -8,7 +8,7 @@ All users should be able to:
   [DONE] Register a new account.
   [DONE] Login
   [DONE] logout.
-    Edit their profile.
+  [DONE]  Edit their profile.
     Add a new story. Each story should have a title and some text.
     View a list of the most recent stories.
     Add a comment to a story.

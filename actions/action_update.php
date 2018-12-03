@@ -7,11 +7,11 @@
       $_SESSION['ERROR'] = 'Username not in our database';
       header("Location:".$_SERVER['HTTP_REFERER']."");
   }
-  
-  if($_POST['password'] != $_POST['password2'] ) {
-    $_SESSION['message'] = 'No match passwords';
+  */
+  if($_POST['pass'] != $_POST['pass2'] ) {
+    $_SESSION['signup'] = 'No match passwords';
     header('Location:../pages/profile.php');
-  }*/
+  }
   
   try {
     updateUser($_POST['username'], $_POST['email'], $_POST['name'], $_POST['street'], $_POST['zipcode'], $_POST['city'], $_POST['country'], $_POST['phone']);
