@@ -23,29 +23,31 @@ INSERT INTO User (username, password, email ) VALUES ('techn', '7110eda4d09e062a
 DROP TABLE IF EXISTS Post;
 
 CREATE TABLE Post (
-    idPost INTEGER PRIMARY KEY ,
+    idPost INTEGER PRIMARY KEY AUTOINCREMENT,
     iduser VARCHAR NOT NULL REFERENCES User(username),
     data DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     titulo VARCHAR NOT NULL,
     conteudo VARCHAR NOT NULL,
     votesUp INTEGER NOT NULL DEFAULT 0,
-    votesDown INTEGER NOT NULL DEFAULT 0
-    
+    votesDown INTEGER NOT NULL DEFAULT 0,
+    image VARCHAR
 );
 
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', '10/10/2010', 'titulo1_teste', 'conteudo1_teste',1,1);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', '10/11/2011', 'titulo2_teste', 'conteudo2_teste',3,2);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2010', 'titulo3_teste', 'conteudo3_teste',1,1);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', '10/12/2011', 'titulo4_teste', 'conteudo4_teste',3,2);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', '10/12/2010', 'titulo5_teste', 'conteudo5_teste',1,1);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2011', 'titulo6_teste', 'conteudo6_teste',3,2);
+
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', '10/10/2010', 'You know what hackers did when Police showed up at their house?', 'They ransomeware safe',1,1);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', '10/11/2011', 'Found on codecademy', 'There are only two kinds of languages: the ones people complain about and the ones nobody uses',3,2);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2010', 'yo mama is so fat', '... she weighs -32767 pounds.',1,1);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', '10/12/2011', 'yoooo mama is so fat', 'Yo mama s so fat, SQL Server introduced BIGINT to store her weight',3,2);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', '10/12/2010', 'Yo mama is so fat, ', 'even Dijkstra couldn t find a path around her.',1,1);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2011', 'Your mom s so fat', 'she sat on a binary tree and turned it into a linked list in constant time.',3,2);
+INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2011', 'Buuuuurn', 'Yo mama s so fat, she needs two pointers.',3,2);
 
 
 
 DROP TABLE IF EXISTS Coment;
 
 CREATE TABLE Coment (
-    id_coment INTEGER PRIMARY KEY,
+    id_coment INTEGER PRIMARY KEY AUTOINCREMENT,
     iduser INTEGER NOT NULL REFERENCES User(username),
     data DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     comentConteudo VARCHAR NOT NULL,
@@ -56,7 +58,7 @@ CREATE TABLE Coment (
 INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('mehrlicht', '11/12/2010', 'Coment_conteudo_1_teste',1, null);
 INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('fabioD', '11/12/2010', 'Coment_conteudo_2_teste',1, null);
 INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('techn', '11/12/2010', 'Coment_conteudo_3_teste',2, null);
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('mehrlicht', '11/12/2010', 'Coment_conteudo_4_teste', 1,1);
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('fabioD', '11/12/2010', 'Coment_conteudo_5_teste', 1,2);
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('techn', '11/12/2010', 'Coment_conteudo_6_teste', 1,3);
+INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('mehrlicht', '11/12/2010', 'Ohhhhh myyy', 1,1);
+INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('fabioD', '11/12/2010', 'Lost my religion now', 1,2);
+INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('techn', '11/12/2010', 'I want more of this', 1,3);
 
