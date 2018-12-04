@@ -31,10 +31,10 @@ $user_array=getUserInformation($username);
   <input type="image" name="avatar" src="../res/antman.png" width="4%" class="avatar"> 
 
 <br/>    
-  <label id="profile-username" class="profile editable">username: <div contenteditable="true"><?php echo $user_array[0]['username'];?><input type="text" name="username"></div>
+  <label id="profile-username" class="profile">username: <div contenteditable="true"><?php echo $user_array[0]['username'];?><input type="text" value="<?php echo $user_array[0]['username'];?>" name="username" disabled></div>
   </label></p>
 
-  <label id="profile-name" class="profile editable">email: <div contenteditable="true"><?php echo $user_array[0]['email'];?><input type="text" name="email"></div>
+  <label id="profile-name" class="profile editable">email: <div contenteditable="true"><input type="text" name="email" value="<?php echo $user_array[0]['email'];?>"></div>
   </label></p>
 
     <label id="profile-name" class="profile editable">name: <div contenteditable="true"><?php echo $user_array[0]['name'];?><input type="text" name="name"></div>
