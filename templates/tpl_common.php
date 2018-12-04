@@ -16,6 +16,7 @@
     <!-- <link rel="stylesheet" href="../css/style.css">-->
     <link rel="stylesheet" href="../css/password.css">
     <link rel="stylesheet" href="../css/footer.css">
+    
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 

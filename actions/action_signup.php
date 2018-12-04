@@ -2,19 +2,6 @@
   include_once('../includes/session.php');
   include_once('../database/db_user.php');
   
-  
-  function console_log( $data ){
-    echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
-    echo '</script>';
-  }
-
-  //  elseif($_POST['password'] != $_POST['password2'] ) {
-//    $_SESSION['ERROR'] = 'No match passwords';
-//    header("Location:".$_SERVER['HTTP_REFERER']."");
-//  }
-    // Don't allow certain characters
-
 
   if( checkUsername($_POST['username']) ){
       $_SESSION['messages'] = array('type' => 'error', 'content' => 'Username already in use!');

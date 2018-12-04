@@ -129,12 +129,12 @@ echo $sentence;
     //updateUserAvatar($_POST['username'], $_POST['avatar']);
     // insertUser($_POST['username'],$_POST['email'],  $_POST['email']);
     //  $_SESSION['username'] = $username;
-      $_SESSION['messages'][] = array('type' => 'success', 'content' => 'database updated!');
+      $_SESSION['signup'][] = array('type' => 'success', 'content' => 'database updated!');
       header('Location: ../pages/profile.php'); 
   } catch (PDOException $e) {
       die($e->getMessage("error updatating database"));
-      $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
-      header('Location: ../pages/login.php');
+      $_SESSION['signup'][] = array('type' => 'error', 'content' => 'Failed to signup!');
+      header('Location: ../pages/profile.php');
   }
   echo 'profile updated';*/
 ?>
