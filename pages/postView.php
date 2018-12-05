@@ -17,9 +17,9 @@
 
         <section>
             <h2>Comments</h2>
-            <?=
+            <?php
             $comments = getComments($_GET['postId']);
-            foreach ($comments as $comment) {?>
+            foreach ($comments as $comment) { ?>
                 <article>
                     <header>
                         <span><?=$comment[iduser]?></span>
@@ -31,6 +31,6 @@
                         <span>Reply (soon)</span>
                     </footer>
                 </article>
-            <?php}?>
+            <?php } ?>
         </section>
-    <?php}?>  
+    <?php } ?>  
