@@ -72,9 +72,9 @@ function getPostByID($postID) {
  * @param id post que tem comentarios que desejamos ver
  * @return all coments
  */
-function getComents($idPost){
+function getComments($idPost){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT * FROM Coment WHERE idParentComent = ?');
+    $stmt = $db->prepare('SELECT * FROM Coment WHERE idPost = ?');
     $stmt->execute(array(
         $idPost
     ));
