@@ -1,33 +1,34 @@
-<?php function draw_login() { 
+<?php 
 /**
  * Draws the login section.
- */ ?>
-  <div id="login">
+ */ 
+function draw_login() { 
+?>
+    <div id="login">
+	    <form class="form" action="../actions/action_login.php" method="post">
+	        <!-- username field -->
+	        <label>Username:
+	            <input name="username" type="text" placeholder="username" required="required" />
+	        </label>
+	        <!-- password field -->
+	        <label>Password:
+	            <input name="password" type="password" placeholder="password" required="required"/>
+	            <!-- TODO -->
+	            <!--<button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>-->
+	        </label>
+	        <!-- login button -->
+	        <input name="submit" type="submit" value="Login"/>
 
-<form class="form" action="../actions/action_login.php" method="post">
-    <!-- username field -->
-    <label>Username:
-        <input name="username" type="text" placeholder="username" required="required" />
-    </label>
-    <!-- password field -->
-    <label>Password:
-        <input name="password" type="password" placeholder="password" required="required"/>
-        <!-- TODO -->
-        <!--<button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>-->
-    </label>
-    <!-- login button -->
-    <input name="submit" type="submit" value="Login"/>
+	        <div id="buttons">
+	            <label class="LblBtn"></label>
+	           <!-- <button class="button" formaction="../pages/signup.php" formmethod="post">login</button> -->
+	            <label id="please">if you still have no account please register first</label><button class="button" onclick="location.href='../pages/signup.php'" type="button">
+	        signup</button>
+	        </div>
+	    </form>
 
-    <div id="buttons">
-        <label class="LblBtn"></label>
-       <!-- <button class="button" formaction="../pages/signup.php" formmethod="post">login</button> -->
-        <label id="please">if you still have no account please register first</label><button class="button" onclick="location.href='../pages/signup.php'" type="button">
-    signup</button>
+
     </div>
-</form>
-
-
-</div>
 <?php } ?>
 
 <?php function draw_signup() { 
