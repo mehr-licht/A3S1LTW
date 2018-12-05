@@ -68,7 +68,10 @@ $user_array=getUserInformation($username);
     <label id="profile-country" class="profile editable">country: <div contenteditable="true"><?php echo $user_array[0]['country'];?><input type="text" name="country"></div>
   </label></p>
 
-    <label id="profile-phone" class="profile editable">phone: <div contenteditable="true"><?php echo $user_array[0]['phone'];?><input type="text" name="phone"></div>
+    <label id="profile-phone" class="profile editable">phone: 
+    <div contenteditable="true">
+    <?php echo $user_array[0]['phone'];?>
+    <input type="text" name="phone"></div>
   </label></p>
 
 

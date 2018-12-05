@@ -52,7 +52,7 @@ function getAllPostsUSER($username){
  */
 function getAllPostsOrderByDate(){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT idPost, iduser, data,titulo, conteudo, votesUp, votesDown FROM Post ORDER BY data');
+    $stmt = $db->prepare('SELECT idPost, iduser, data,titulo, conteudo, votesUp, votesDown FROM Post ORDER BY data DESC');
     $stmt->execute();
     return $stmt->fetchAll();
 }
@@ -88,12 +88,12 @@ function getComents($idPost){
  * @param data,
  * @param conteudo  - needs confirmation
  */
-function insertPost($iduser, $data, $conteudo){
+function insertPost($iduser, $titulo, $conteudo){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Post VALUES(?, ?, ?,0,0,0)');
+    $stmt = $db->prepare('INSERT INTO Post(iduser, titulo, conteudo) VALUES(?, ?, ?)');
     $stmt->execute(array(
         $iduser,
-        $data,
+        $titulo,
         $conteudo
     ));
 }

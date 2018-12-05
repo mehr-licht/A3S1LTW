@@ -12,7 +12,7 @@ CREATE TABLE User (
     zipcode VARCHAR(8),
     city VARCHAR,
     country VARCHAR,
-    avatar VARCHAR,
+    avatar VARCHAR DEFAULT NULL,
     phone INTEGER
 );
 
@@ -30,17 +30,17 @@ CREATE TABLE Post (
     conteudo VARCHAR NOT NULL,
     votesUp INTEGER NOT NULL DEFAULT 0,
     votesDown INTEGER NOT NULL DEFAULT 0,
-    image VARCHAR
+    image VARCHAR DEFAULT NULL
 );
 
 
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', '10/10/2010', 'You know what hackers did when Police showed up at their house?', 'They ransomeware safe',1,1);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', '10/11/2011', 'Found on codecademy', 'There are only two kinds of languages: the ones people complain about and the ones nobody uses',3,2);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2010', 'yo mama is so fat', '... she weighs -32767 pounds.',1,1);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', '10/12/2011', 'yoooo mama is so fat', 'Yo mama s so fat, SQL Server introduced BIGINT to store her weight',3,2);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', '10/12/2010', 'Yo mama is so fat, ', 'even Dijkstra couldn t find a path around her.',1,1);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2011', 'Your mom s so fat', 'she sat on a binary tree and turned it into a linked list in constant time.',3,2);
-INSERT INTO Post (iduser, data, titulo, conteudo, votesUp, votesDown) VALUES ('techn', '10/12/2011', 'Buuuuurn', 'Yo mama s so fat, she needs two pointers.',3,2);
+INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', 'You know what hackers did when Police showed up at their house?', 'They ransomeware safe',1,1);
+INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', 'Found on codecademy', 'There are only two kinds of languages: the ones people complain about and the ones nobody uses',3,2);
+INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('techn', 'yo mama is so fat', '... she weighs -32767 pounds.',1,1);
+INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', 'yoooo mama is so fat', 'Yo mama s so fat, SQL Server introduced BIGINT to store her weight',3,2);
+INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', 'Yo mama is so fat, ', 'even Dijkstra couldn t find a path around her.',1,1);
+INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('techn', 'Your mom s so fat', 'she sat on a binary tree and turned it into a linked list in constant time.',3,2);
+INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('techn', 'Buuuuurn', 'Yo mama s so fat, she needs two pointers.',3,2);
 
 
 
