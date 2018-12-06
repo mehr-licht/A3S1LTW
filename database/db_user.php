@@ -45,46 +45,18 @@
    * @brief Updates the user info in table User 
    * 
    */
-/*
+
   function updateUser($username, $email, $name, $street, $zip, $city, $country, $phone){
     $db = Database::instance()->db();
     $stmt = $db->prepare("UPDATE User SET email = ?,name= ?,street= ?, zipcode= ?, 
     city = ?, country = ?, phone = ? WHERE username = ?");
     $stmt->execute(array($email, $name, $street, $zip, $city, $country, $phone, $username));//avatar e passes à parte
-}*/
-function updateName($username, $name){
-  $db = Database::instance()->db();
-  $stmt = $db->prepare("UPDATE User SET name = ? WHERE username= ?");
-  $stmt->execute(array($name, $username));
-}
-function updateEmail($username, $email){
-  $db = Database::instance()->db();
-  $stmt = $db->prepare("UPDATE User SET email = ? WHERE username= ?");
-  $stmt->execute(array($email, $username));
-}
-function updateStreet($username, $street){
-  $db = Database::instance()->db();
-  $stmt = $db->prepare("UPDATE User SET street = ? WHERE username= ?");
-  $stmt->execute(array($street,$username));
-}
-function updateZip($username, $zip){
-  $db = Database::instance()->db();
-  $stmt = $db->prepare("UPDATE User SET zip = ? WHERE username= ?");
-  $stmt->execute(array($zip, $username));
-}
-function updateCity($username, $city){
-  $db = Database::instance()->db();
-  $stmt = $db->prepare("UPDATE User SET city = ? WHERE username= ?");
-  $stmt->execute(array($city, $username));
-}
-function updateCountry($username, $country){
-  $db = Database::instance()->db();
-  $stmt = $db->prepare("UPDATE User SET country = ? WHERE username= ?");
-  $stmt->execute(array($country, $username));
-}
-function updatePhone($username, $phone){
-  $db = Database::instance()->db();
-  $stmt = $db->prepare("UPDATE User SET phone = ? WHERE username= ?");
-  $stmt->execute(array($cphone, $username));
-}
+  }
+
+  function updatePass($username,$pass1){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("UPDATE User SET password = ? WHERE username = ?");
+    $stmt->execute(array(sha1($pass1), $username));
+  }
+
 ?>

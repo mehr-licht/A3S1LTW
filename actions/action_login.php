@@ -7,6 +7,7 @@
 
 
   if (checkUserPassword($username, $password)) {
+    unset($_SESSION['messages']); 
     $_SESSION['username'] = $username;
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Logged in successfully!');
     header('Location: ../pages/list_stories.php');

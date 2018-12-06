@@ -1,0 +1,23 @@
+   /* #profile-form input {
+        visibility: hidden;
+    }*/
+   
+   .edit {
+       display: none;
+   }
+   
+   .btnEdit {
+       background: url(../res/editPencil.gif) no-repeat;
+       cursor: pointer;
+       width: 20px;
+       height: 20px;
+       border: none;
+   }
+   
+   label.editable {
+       display: block;
+   }
+   
+   input.editable {
+       display: none;
+   }

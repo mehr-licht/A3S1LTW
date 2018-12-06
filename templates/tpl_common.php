@@ -12,7 +12,7 @@
 <head>
     <title>Yet Another Site</title>
     <meta charset="utf-8">
- <script type="text/javascript" src="../js/main.js"></script> 
+ <!-- <script type="text/javascript" src="../js/profile.js"></script> -->
     <!-- <link rel="stylesheet" href="../css/style.css">-->
     <link rel="stylesheet" href="../css/password.css">
     <link rel="stylesheet" href="../css/footer.css">
@@ -34,7 +34,27 @@
             </nav>
         <?php }?>
     </header>
+    <div id="message">
+    <?php if (isset($_SESSION['messages']) ) {?>
+        <section id="messages">
+          <?php foreach($_SESSION['messages'] as $message) { ?>
+            <div class="<?=$message['type']?>"><?=$message['content']?></div>
+       
+          <?php } 
+           unset($_SESSION['messages']); } ?>
+        </section>
+
+        <?php  if(isset($_SESSION['ERROR'])){?>
+        <section id="error">
+       
+ 
+ <div class="error"><?=$_SESSION['ERROR']?></div>
+ <?php   unset($_SESSION['ERROR']); } ?> 
+</section>
+     
+          </div>
     <main>
+
 <?php } ?>
 
 <?php function draw_footer() { 
