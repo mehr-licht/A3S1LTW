@@ -1,0 +1,89 @@
+#stories > article {
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    background-color: var(--bg-light);
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+}
+
+.post_preview {
+    margin: 0.5rem 0;
+}
+
+/**
+ * VOTES
+ */
+.post_preview .votes{
+    background-color: #ebebeb;
+    color: #999999;
+    padding: 0 .3rem;
+    margin: unset;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post_preview .votes svg {
+    fill: #999999;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: block;
+}
+
+.post_preview .thumb {
+    width: 200px;
+    height: 200px;
+}
+
+/**
+ * CONTENT
+ */
+.post_preview .content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5rem;
+    width: 100%;
+}
+
+.post_preview .content h1 {
+    margin: unset;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.post_preview .content p {
+    margin: 0.5rem 0;
+    flex-grow: 1;
+}
+
+.post_preview .content a {
+    display: block;
+    text-align: right;
+}
+
+/**
+ * Responsiveness
+ */
+@media only screen  and (max-width : 700px) {
+    .post_preview .thumb {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media only screen  and (max-width : 500px) {
+    /* Reduce image size but also limit amount of characters by reducing height */
+    .post_preview .thumb {
+        display: none;
+    }
+    #stories > article .post_content > p {
+        max-height: 6ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

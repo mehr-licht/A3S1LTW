@@ -17,7 +17,8 @@ body {
 }
 
 main {
-    height: calc(100% - 5rem);
+    height: calc(100% - 5rem - 100px);
+    padding: 0 1rem;
 }
 
 /**
@@ -71,9 +72,12 @@ nav.navbar {
  * FOOTER
  */
 footer {
-    background-color: #343a40;
+    height: 100px;
+    background-color: var(--bg-dark);
     color: white;
-    position: absolute;
-    bottom: 0;
     width: 100%;
+}
+
+footer h1 {
+    margin: unset;
 }
