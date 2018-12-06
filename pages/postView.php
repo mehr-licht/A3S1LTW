@@ -7,7 +7,7 @@
         print_r($post);?> 
         <section>
             <h1><?=$post['titulo']?></h1>
-            <p>By <?=$post['iduser']?> | <?=$post[data]?></p>
+            <p>By <?=$post['iduser']?> | <?=$post['data']?></p>
             <p><?=$post['conteudo']?></p>
             <div>
                 <span>Up: <?=$post['votesUp']?></span>
