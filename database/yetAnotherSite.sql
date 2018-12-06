@@ -63,12 +63,14 @@ INSERT INTO Coment (iduser, comentConteudo, idPost, idParentComent) VALUES ('tec
 
 DROP TABLE IF EXISTS Votedposts;
 
+
 CREATE TABLE Votedposts (
     iduser VARCHAR NOT NULL REFERENCES User(username),
     idpost INTEGER NOT NULL REFERENCES Post(idpost),
     votes INTEGER NOT NULL DEFAULT 0, 
     CONSTRAINT id_Votedposts PRIMARY KEY (iduser, idpost)
 );
+
 
 DROP TABLE IF EXISTS Votedcoments;
 
