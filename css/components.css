@@ -1,0 +1,31 @@
+input[type='text'], input[type='password'] {
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    color: var(--bg-dark);
+    padding: 0.2rem;
+    user-select: none;
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+}
+
+button, input[type="submit"] {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    user-select: none;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--bg-primary);
+    transition: background-color, 0.3s;
+}
+
+a:hover {
+    color: var(--bg-primary-light);
+}

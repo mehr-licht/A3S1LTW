@@ -1,0 +1,11 @@
+/**
+ *
+ */
+
+#login {
+	max-width: 300px;
+	margin: auto;
+	background-color: var(--bg-light);
+	border-radius: 0.25rem;
+	padding: 4.5rem 2rem;
+}
