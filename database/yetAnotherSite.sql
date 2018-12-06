@@ -25,22 +25,20 @@ DROP TABLE IF EXISTS Post;
 CREATE TABLE Post (
     idPost INTEGER PRIMARY KEY AUTOINCREMENT,
     iduser VARCHAR NOT NULL REFERENCES User(username),
-    data DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    data DATE NOT NULL DEFAULT CURRENT_DATE,
     titulo VARCHAR NOT NULL,
     conteudo VARCHAR NOT NULL,
-    votesUp INTEGER NOT NULL DEFAULT 0,
-    votesDown INTEGER NOT NULL DEFAULT 0,
     image VARCHAR DEFAULT NULL
 );
 
 
-INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', 'You know what hackers did when Police showed up at their house?', 'They ransomeware safe',1,1);
-INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', 'Found on codecademy', 'There are only two kinds of languages: the ones people complain about and the ones nobody uses',3,2);
-INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('techn', 'yo mama is so fat', '... she weighs -32767 pounds.',1,1);
-INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('fabioD', 'yoooo mama is so fat', 'Yo mama s so fat, SQL Server introduced BIGINT to store her weight',3,2);
-INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('mehrlicht', 'Yo mama is so fat, ', 'even Dijkstra couldn t find a path around her.',1,1);
-INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('techn', 'Your mom s so fat', 'she sat on a binary tree and turned it into a linked list in constant time.',3,2);
-INSERT INTO Post (iduser, titulo, conteudo, votesUp, votesDown) VALUES ('techn', 'Buuuuurn', 'Yo mama s so fat, she needs two pointers.',3,2);
+INSERT INTO Post (iduser, titulo, conteudo) VALUES ('mehrlicht', 'You know what hackers did when Police showed up at their house?', 'They ransomeware safe');
+INSERT INTO Post (iduser, titulo, conteudo) VALUES ('fabioD', 'Found on codecademy', 'There are only two kinds of languages: the ones people complain about and the ones nobody uses');
+INSERT INTO Post (iduser, titulo, conteudo) VALUES ('techn', 'yo mama is so fat', '... she weighs -32767 pounds.');
+INSERT INTO Post (iduser, titulo, conteudo) VALUES ('fabioD', 'yoooo mama is so fat', 'Yo mama s so fat, SQL Server introduced BIGINT to store her weight');
+INSERT INTO Post (iduser, titulo, conteudo) VALUES ('mehrlicht', 'Yo mama is so fat, ', 'even Dijkstra couldn t find a path around her.');
+INSERT INTO Post (iduser, titulo, conteudo) VALUES ('techn', 'Your mom s so fat', 'she sat on a binary tree and turned it into a linked list in constant time.');
+INSERT INTO Post (iduser, titulo, conteudo) VALUES ('techn', 'Buuuuurn', 'Yo mama s so fat, she needs two pointers.');
 
 
 
@@ -48,17 +46,36 @@ DROP TABLE IF EXISTS Coment;
 
 CREATE TABLE Coment (
     id_coment INTEGER PRIMARY KEY AUTOINCREMENT,
-    iduser INTEGER NOT NULL REFERENCES User(username),
-    data DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    iduser VARCHAR NOT NULL REFERENCES User(username),
+    data DATE NOT NULL DEFAULT CURRENT_DATE,
     comentConteudo VARCHAR NOT NULL,
     idPost INTEGER NOT NULL REFERENCES Post(idPost),
     idParentComent INTEGER
 );
 
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('mehrlicht', '11/12/2010', 'Coment_conteudo_1_teste',1, null);
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('fabioD', '11/12/2010', 'Coment_conteudo_2_teste',1, null);
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('techn', '11/12/2010', 'Coment_conteudo_3_teste',2, null);
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('mehrlicht', '11/12/2010', 'Ohhhhh myyy', 1,1);
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('fabioD', '11/12/2010', 'Lost my religion now', 1,2);
-INSERT INTO Coment (iduser, data, comentConteudo, idPost, idParentComent) VALUES ('techn', '11/12/2010', 'I want more of this', 1,3);
+INSERT INTO Coment (iduser, comentConteudo, idPost, idParentComent) VALUES ('mehrlicht', 'Coment_conteudo_1_teste',1, null);
+INSERT INTO Coment (iduser, comentConteudo, idPost, idParentComent) VALUES ('fabioD', 'Coment_conteudo_2_teste',1, null);
+INSERT INTO Coment (iduser, comentConteudo, idPost, idParentComent) VALUES ('techn', 'Coment_conteudo_3_teste',2, null);
+INSERT INTO Coment (iduser, comentConteudo, idPost, idParentComent) VALUES ('mehrlicht', 'Ohhhhh myyy', 1,1);
+INSERT INTO Coment (iduser, comentConteudo, idPost, idParentComent) VALUES ('fabioD', 'Lost my religion now', 1,2);
+INSERT INTO Coment (iduser, comentConteudo, idPost, idParentComent) VALUES ('techn', 'I want more of this', 1,3);
+
+
+DROP TABLE IF EXISTS Votedposts;
+
+CREATE TABLE Votedposts (
+    iduser VARCHAR NOT NULL REFERENCES User(username),
+    idpost INTEGER NOT NULL REFERENCES Post(idpost),
+    votes INTEGER NOT NULL DEFAULT 0, 
+    CONSTRAINT id_Votedposts PRIMARY KEY (iduser, idpost)
+);
+
+DROP TABLE IF EXISTS Votedcoments;
+
+CREATE TABLE Votedcoments (
+    iduser VARCHAR NOT NULL REFERENCES User(username),
+    idcoment INTEGER NOT NULL REFERENCES Coment(id_coment),
+    votes INTEGER NOT NULL DEFAULT 0, 
+    CONSTRAINT id_Votedcoments PRIMARY KEY (iduser, idcoment)
+);
 

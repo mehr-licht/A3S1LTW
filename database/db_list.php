@@ -1,5 +1,98 @@
 <?php
 include_once('database.php');
+// ##############################################################   Coments Votes Managing ###############################
+/**
+ * @brief Checks if user voted in this post
+ * @param username a procurar
+ * @param idComent o id do coment a procurar
+ * @return return true if a line exists
+ */
+function can_user_voteComent($username, $idComent){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM  Votedcoments where iduser = ? AND idcoment = ?');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+    return $stmt->fetch() ? true : false; // return true if a line exists
+}
+
+/**
+ * @brief Upvotes a Post
+ * @param username de quem vota no coment
+ * @param idcoment o id do coment que leva o voto
+ */
+function upvoteComent($username, $idcoment){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedcoments(iduser, idcoment, votes) VALUES( ?, ?, 1)');
+    $stmt->execute(array(
+        $username,
+        $idcoment
+    ));
+}
+
+/**
+ * @brief downvotes a Post
+ * @param username de quem vota
+ * @param idcoment o id do coment que leva o voto
+ */
+function downVoteComent($username, $idcoment){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedcoments(iduser, idcoment, votes) VALUES( ?, ?, -1)');
+    $stmt->execute(array(
+        $username,
+        $idcoment
+    ));
+}
+
+//##########################################################################  END COMMENTS MANAGER
+
+//##########################################################################  Posts MANAGER ############################
+/**
+ * @brief Checks if user voted in this post
+ * @param username a procurar
+ * @param idPost o id do post a procurar
+ * @return return true if a line exists
+ */
+function can_user_votePost($username, $idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM  VotedPosts where iduser = ? AND idpost = ?');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+    return $stmt->fetch() ? true : false; // return true if a line exists
+}
+
+
+/**
+ * @brief Upvotes a Post
+ * @param username de quem vota
+ * @param idPost o id do post que leva o voto
+ */
+function upvotePost($username, $idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedposts(iduser, idpost, votes) VALUES( ?, ?, 1)');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+}
+
+/**
+ * @brief downvotes a Post
+ * @param username de quem vota
+ * @param idPost o id do post que leva o voto
+ */
+function downVotePost($username, $idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedposts(iduser, idpost, votes) VALUES( ?, ?, -1)');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+}
+
 
 /** --------------------------------------------------------------------------- USER
  * @brief Returns all User's information of a certain user. - UPDATED
