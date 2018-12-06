@@ -15,15 +15,14 @@
  */
 .post_preview .votes{
     background-color: #ebebeb;
+    color: #999999;
     padding: 0 .3rem;
     margin: unset;
-}
-
-.post_preview .votes{
-    color: #999999;
     font-weight: 700;
     text-align: center;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .post_preview .votes svg {
@@ -31,6 +30,12 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    display: block;
+}
+
+.post_preview .thumb {
+    width: 200px;
+    height: 200px;
 }
 
 /**
