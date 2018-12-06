@@ -56,6 +56,12 @@ nav.navbar {
 }
 
 /*
+ * FORM GROUPS
+ */
+.form-group {
+    margin: 0.5rem 0;  
+}
+/*
  * FOOTER
  */
 footer {

@@ -6,16 +6,20 @@ function draw_login() {
 ?>
     <div id="login">
 	    <form class="form" action="../actions/action_login.php" method="post">
-	        <!-- username field -->
-	        <label>Username:
-	            <input name="username" type="text" placeholder="username" required="required" />
-	        </label>
+            <!-- username field -->
+            <div class="form-group">
+                <label>Username:
+                    <input name="username" type="text" placeholder="username" required="required" />
+                </label>
+            </div>
 	        <!-- password field -->
-	        <label>Password:
-	            <input name="password" type="password" placeholder="password" required="required"/>
-	            <!-- TODO -->
-	            <!--<button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>-->
-	        </label>
+	        <div class="form-group">
+                <label>Password:
+                    <input name="password" type="password" placeholder="password" required="required"/>
+                    <!-- TODO -->
+                    <!--<button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>-->
+                </label>
+            </div>
 	        <!-- login button -->
 	        <input name="submit" type="submit" value="Login"/>
 
