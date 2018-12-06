@@ -20,15 +20,12 @@ function draw_login() {
                     <!--<button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>-->
                 </label>
             </div>
-	        <!-- login button -->
-	        <input name="submit" type="submit" value="Login"/>
-
-	        <div id="buttons">
-	            <label class="LblBtn"></label>
-	           <!-- <button class="button" formaction="../pages/signup.php" formmethod="post">login</button> -->
-	            <label id="please">if you still have no account please register first</label><button class="button" onclick="location.href='../pages/signup.php'" type="button">
-	        signup</button>
-	        </div>
+            <!-- login button -->
+            <div class="form-group">
+                <input name="submit" type="submit" value="Login"/>
+            </div>
+            <!-- Link for signup -->
+            <span>If you still have no account please <a href="/pages/signup.php">register</a> first!</span>
 	    </form>
 
 

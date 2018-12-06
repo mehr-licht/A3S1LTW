@@ -2,6 +2,7 @@
 
 :root {
     --bg-primary: #007bff;
+    --bg-primary-light: #0099ff;
     --bg-dark: #343a40;
     --bg-light: #f8f9fa;
 }
@@ -12,6 +13,11 @@
 
 body {
     margin: unset; /* it seems all browsers set a margin to the body ...*/
+    font-size: 1rem;
+}
+
+main {
+    height: calc(100% - 5rem);
 }
 
 /**
@@ -21,7 +27,7 @@ nav.navbar {
     background-color: var(--bg-primary);
     display:flex;
     align-items: center;
-    min-height: 2rem;
+    height: 2rem;
     padding: 1.5rem 1rem;
 }
 

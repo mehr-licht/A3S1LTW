@@ -13,9 +13,10 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="../js/main.js"></script> 
     <!-- <link rel="stylesheet" href="../css/style.css">-->
-    <link rel="stylesheet" href="../css/password.css">
-    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/password.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/components.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
