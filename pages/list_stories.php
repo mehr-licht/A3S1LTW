@@ -27,7 +27,7 @@
                                     c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
                             </g>
                         </svg>
-                        <span><?=isset($post['votes']) ? $post['votes'] : 0 ?></span>
+                        <span><?=isset($post['points']) ? $post['points'] : 0 ?></span>
                         <svg class="votes arrowup" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
                             <g>
                                 <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561
