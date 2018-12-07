@@ -15,10 +15,13 @@
     <section id="stories">
         <?php 
             // ou podemos subsituir a funcao em baixo por getAllPostsUSER($_SESSION['username'] 
-            foreach(getAllPostsOrderByDate() as $post) { ?>
+            foreach(getAllPostsOrderByDate() as $post) { 
+                // get user vote on this post
+                $vote = getPostVoteByUser($post['idPost'], $_SESSION['username']);
+                ?>
                 <article class="post_preview">
                     <aside class="votes">
-                        <svg class="votes arrowdown" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
+                        <svg class="votes upvote <?= ($vote > 0) ? 'active' : '' ?>" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
                             <g>
                                 <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566
                                     L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413
@@ -28,7 +31,7 @@
                             </g>
                         </svg>
                         <span><?=isset($post['points']) ? $post['points'] : 0 ?></span>
-                        <svg class="votes arrowup" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
+                        <svg class="votes downvote <?= ($vote < 0) ? 'active' : '' ?>" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
                             <g>
                                 <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561
                                     L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416
