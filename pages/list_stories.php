@@ -3,7 +3,7 @@
     include_once('../database/db_list.php');
     include_once('../templates/tpl_common.php');
     include_once('../templates/tpl_auth.php');
-
+    include_once('../database/dbPosts.php');
     //Verify if user is logged in
     if(!isset($_SESSION['username']))
         die(header('Location: ../pages/login.php'));
@@ -27,7 +27,7 @@
                                     c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
                             </g>
                         </svg>
-                        <span><?=$post['votesUp']-$post['votesDown']?></span>
+                        <span><?=isset($post['votes']) ? $post['votes'] : 0 ?></span>
                         <svg class="votes arrowup" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
                             <g>
                                 <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561
@@ -40,8 +40,9 @@
                     </aside>
                     <img class="thumb" src="https://picsum.photos/200">
                     <div class="content">
-                        <h1><?=$post['titulo']?></h1>
-                        <p><?=$post['conteudo']?></p>
+                        <h1><?=$post['title']?></h1>
+                        <span><?=$post['idUser']?> | <?=$post['date']?></span>
+                        <p><?=$post['content']?></p>
                         <a href="postView.php?postId=<?=$post['idPost']?>">Read More</a>
                     </div>
                 </article>

@@ -10,6 +10,12 @@ INSERT INTO Post (idUser, title, content) VALUES ('mehrlicht', 'Yo mama is so fa
 INSERT INTO Post (idUser, title, content) VALUES ('techn', 'Your mom s so fat', 'she sat on a binary tree and turned it into a linked list in constant time.');
 INSERT INTO Post (idUser, title, content) VALUES ('techn', 'Buuuuurn', 'Yo mama s so fat, she needs two pointers.');
 
+INSERT INTO PostVote(idPost, idUser, vote) VALUES (1, 'fabioD', 1);
+INSERT INTO PostVote(idPost, idUser, vote) VALUES (2, 'fabioD', -1);
+INSERT INTO PostVote(idPost, idUser, vote) VALUES (3, 'mehrlicht', 1);
+INSERT INTO PostVote(idPost, idUser, vote) VALUES (1, 'techn', 1);
+INSERT INTO PostVote(idPost, idUser, vote) VALUES (1, 'mehrlicht', 1);
+
 INSERT INTO Coment (idUser, comentContent, idPost, idParentComent) VALUES ('mehrlicht', 'Coment_conteudo_1_teste',1, null);
 INSERT INTO Coment (idUser, comentContent, idPost, idParentComent) VALUES ('fabioD', 'Coment_conteudo_2_teste',1, null);
 INSERT INTO Coment (idUser, comentContent, idPost, idParentComent) VALUES ('techn', 'Coment_conteudo_3_teste',2, null);

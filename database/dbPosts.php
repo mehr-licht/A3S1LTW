@@ -9,9 +9,9 @@ include_once('database.php');
 function getAllPostsOrderByDate(){
     $db = Database::instance()->db();
     $stmt = $db->prepare(
-        'SELECT * 
-        FROM Post, User, PostVote 
-        ORDER BY data DESC'
+        'SELECT * FROM Post as P LEFT JOIN (SELECT idPost, sum(vote) as votes FROM PostVote GROUP BY idPost) as V 
+        ON P.idPost = V.idPost
+        ORDER BY date DESC'
     );
     $stmt->execute();
     return $stmt->fetchAll();
