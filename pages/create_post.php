@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])){
 $username=$_SESSION['username'];
 draw_header($username);
 
-//if( $_SESSION['signup'][0]['type'] == 'error'){
+//if( $_SESSION['signup']['type'] == 'error'){
 //    die(header('Location: ../pages/signup.php'));
 //}
 
@@ -39,6 +39,6 @@ draw_header($username);
 </div>
 
 
-<?
+<?php
   draw_footer();
 ?>
