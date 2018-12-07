@@ -136,29 +136,10 @@ function getAllPostsUSER($username){
     return $stmt->fetchAll();
 }
 
-
-
-/**---------------------------------------------------------------------------------- Comment
- * @brief Returns all POSTs information froma certain USER -UPDATED
- * @param  username
- * @return all POSTS belonging to $username
- */
-function getAllPostsOrderByDate(){
-    $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT idPost, iduser, data,titulo, conteudo, votesUp, votesDown FROM Post ORDER BY data DESC');
-    $stmt->execute();
-    return $stmt->fetchAll();
-}
-
 /**
  * 
  */
-function getPostByID($postID) {
-    $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT * FROM Post WHERE idPost = ?');
-    $stmt->execute(array($postID));
-    return $stmt->fetch();
-}
+
 
 /**
  * @brief Returns all Comment's Information belonging to a certain Post.

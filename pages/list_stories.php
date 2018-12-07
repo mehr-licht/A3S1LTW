@@ -3,7 +3,7 @@
     include_once('../database/db_list.php');
     include_once('../templates/tpl_common.php');
     include_once('../templates/tpl_auth.php');
-
+    include_once('../database/dbPosts.php');
     //Verify if user is logged in
     if(!isset($_SESSION['username']))
         die(header('Location: ../pages/login.php'));
@@ -15,10 +15,13 @@
     <section id="stories">
         <?php 
             // ou podemos subsituir a funcao em baixo por getAllPostsUSER($_SESSION['username'] 
-            foreach(getAllPostsOrderByDate() as $post) { ?>
+            foreach(getAllPostsOrderByDate() as $post) { 
+                // get user vote on this post
+                $vote = getPostVoteByUser($post['idPost'], $_SESSION['username']);
+                ?>
                 <article class="post_preview">
                     <aside class="votes">
-                        <svg class="votes arrowdown" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
+                        <svg class="votes upvote <?= ($vote > 0) ? 'active' : '' ?>" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
                             <g>
                                 <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566
                                     L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413
@@ -27,8 +30,8 @@
                                     c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
                             </g>
                         </svg>
-                        <span><?=$post['votesUp']-$post['votesDown']?></span>
-                        <svg class="votes arrowup" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
+                        <span><?=isset($post['points']) ? $post['points'] : 0 ?></span>
+                        <svg class="votes downvote <?= ($vote < 0) ? 'active' : '' ?>" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
                             <g>
                                 <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561
                                     L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416
@@ -40,8 +43,9 @@
                     </aside>
                     <img class="thumb" src="https://picsum.photos/200">
                     <div class="content">
-                        <h1><?=$post['titulo']?></h1>
-                        <p><?=$post['conteudo']?></p>
+                        <h1><?=$post['title']?></h1>
+                        <span><?=$post['idUser']?> | <?=$post['date']?></span>
+                        <p><?=$post['content']?></p>
                         <a href="postView.php?postId=<?=$post['idPost']?>">Read More</a>
                     </div>
                 </article>

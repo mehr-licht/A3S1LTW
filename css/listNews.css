@@ -33,6 +33,18 @@
     display: block;
 }
 
+.post_preview svg.votes.upvote:hover, .post_preview svg.votes.downvote:hover {
+    transition: opacity 0.5s;
+    opacity: 0.7;
+}
+.post_preview svg.votes.upvote.active {
+    fill: rgb(0, 161, 27);
+}
+
+.post_preview svg.votes.downvote.active {
+    fill: rgb(180, 0, 0);
+}
+
 .post_preview .thumb {
     width: 200px;
     height: 200px;
