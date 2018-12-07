@@ -64,3 +64,31 @@ function getPostVoteByUser($idPost, $username){
 	$res =  $stmt->fetch();
     return $res ? $res['vote'] : 0; // return true if a line exists
 }
+
+/**
+ * @brief Upvotes a Post
+ * @param username de quem vota
+ * @param idPost o id do post que leva o voto
+ */
+function upvotePost($username, $idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedposts(iduser, idpost, votes) VALUES( ?, ?, 1)');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+}
+
+/**
+ * @brief downvotes a Post
+ * @param username de quem vota
+ * @param idPost o id do post que leva o voto
+ */
+function downVotePost($username, $idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedposts(iduser, idpost, votes) VALUES( ?, ?, -1)');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+}
