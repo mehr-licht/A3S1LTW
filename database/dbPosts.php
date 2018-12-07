@@ -47,3 +47,20 @@ function getPostByID($postID) {
     $stmt->execute(array($postID));
     return $stmt->fetch();
 }
+
+/**
+ * Returns the user vote for some post
+ * @param $idPost The post for which the vote is required
+ * @param $username The username
+ * @return int If the user has voted, it returns either -1 (downvote) or 1 (upvote). Otherwise, 0 is returned
+ */
+function getPostVoteByUser($idPost, $username){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT vote FROM PostVote WHERE idUser = ? AND idPost = ?');
+    $stmt->execute(array(
+        $username,
+        $idPost
+	));
+	$res =  $stmt->fetch();
+    return $res ? $res['vote'] : 0; // return true if a line exists
+}
