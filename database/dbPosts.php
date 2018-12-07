@@ -157,14 +157,16 @@ function getComents($idPost){
 /** --------------------------------------------------------------------------------  POST
  * Inserts a new Post into the database.
  * @param iduser, data, conteudo
- * @param data,
- * @param conteudo  - needs confirmation
+ * @param today, data of the post published
+ * @param titulo, post title
+ * @param conteudo, post main text
  */
-function insertPost($iduser, $titulo, $conteudo){
+function insertPost($iduser, $today, $titulo, $conteudo){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Post(iduser, titulo, conteudo) VALUES(?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO Post(idUser, date, title, content) VALUES(?, ?, ?, ?)');
     $stmt->execute(array(
         $iduser,
+        $today,
         $titulo,
         $conteudo
     ));
