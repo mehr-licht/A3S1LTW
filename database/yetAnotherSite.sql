@@ -51,10 +51,10 @@ CREATE TABLE PostVote (
 DROP TABLE IF EXISTS Coment;
 
 CREATE TABLE Coment (
-    id_coment INTEGER PRIMARY KEY AUTOINCREMENT,
-    iduser VARCHAR NOT NULL REFERENCES User(username),
+    idComent INTEGER PRIMARY KEY AUTOINCREMENT,
+    idUser VARCHAR NOT NULL REFERENCES User(username),
     data DATE NOT NULL DEFAULT CURRENT_DATE,
-    comentConteudo VARCHAR NOT NULL,
+    comentContent VARCHAR NOT NULL,
     idPost INTEGER NOT NULL REFERENCES Post(idPost),
     idParentComent INTEGER
 );
@@ -66,7 +66,7 @@ DROP TABLE IF EXISTS Votedcoments;
 
 CREATE TABLE Votedcoments (
     iduser VARCHAR NOT NULL REFERENCES User(username),
-    idcoment INTEGER NOT NULL REFERENCES Coment(id_coment),
+    idcoment INTEGER NOT NULL REFERENCES Coment(idComent),
     votes INTEGER NOT NULL DEFAULT 0, 
     CONSTRAINT id_Votedcoments PRIMARY KEY (iduser, idcoment)
 );
