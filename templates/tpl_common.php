@@ -29,6 +29,7 @@
         <?php if ($username != NULL) { ?>
             <div class="navbar right">
                 <a class="navbar user" href="../pages/profile.php"><?=$username?></a>
+                <a class="navbar user" href="../pages/create_post.php">Create post</a>
                 <a class="navbar user" href="../actions/action_logout.php">Logout</a>
             </div>
         <?php } ?>
