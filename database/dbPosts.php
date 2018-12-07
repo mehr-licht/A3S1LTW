@@ -64,3 +64,149 @@ function getPostVoteByUser($idPost, $username){
 	$res =  $stmt->fetch();
     return $res ? $res['vote'] : 0; // return true if a line exists
 }
+
+/**
+ * THIS WILL PROBABLY BECOME A REST API
+ * @brief Upvotes a Post
+ * @param username de quem vota
+ * @param idPost o id do post que leva o voto
+ */
+function upvotePost($username, $idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedposts(iduser, idpost, votes) VALUES( ?, ?, 1)');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+}
+
+/**
+ * THIS WILL PROBABLY BECOME A REST API
+ * @brief downvotes a Post
+ * @param username de quem vota
+ * @param idPost o id do post que leva o voto
+ */
+function downVotePost($username, $idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedposts(iduser, idpost, votes) VALUES( ?, ?, -1)');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+}
+
+/**
+ * @brief Checks if user voted in this post
+ * @param username a procurar
+ * @param idComent o id do coment a procurar
+ * @return return true if a line exists
+ */
+function can_user_voteComent($username, $idComent){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM  Votedcoments where iduser = ? AND idcoment = ?');
+    $stmt->execute(array(
+        $username,
+        $idPost
+    ));
+    return $stmt->fetch() ? true : false; // return true if a line exists
+}
+
+/**
+ * @brief Upvotes a Post
+ * @param username de quem vota no coment
+ * @param idcoment o id do coment que leva o voto
+ */
+function upvoteComent($username, $idcoment){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedcoments(iduser, idcoment, votes) VALUES( ?, ?, 1)');
+    $stmt->execute(array(
+        $username,
+        $idcoment
+    ));
+}
+
+/**
+ * @brief downvotes a Post
+ * @param username de quem vota
+ * @param idcoment o id do coment que leva o voto
+ */
+function downVoteComent($username, $idcoment){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Votedcoments(iduser, idcoment, votes) VALUES( ?, ?, -1)');
+    $stmt->execute(array(
+        $username,
+        $idcoment
+    ));
+}
+
+/**
+ * @brief Returns all Comment's Information belonging to a certain Post.
+ * @param id post que tem comentarios que desejamos ver
+ * @return all coments
+ */
+function getComents($idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM Coment WHERE idParentComent = ?');
+    $stmt->execute(array(
+        $idPost
+    ));
+    return $stmt->fetchAll();
+}
+
+
+/** --------------------------------------------------------------------------------  POST
+ * Inserts a new Post into the database.
+ * @param iduser, data, conteudo
+ * @param data,
+ * @param conteudo  - needs confirmation
+ */
+function insertPost($iduser, $titulo, $conteudo){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Post(iduser, titulo, conteudo) VALUES(?, ?, ?)');
+    $stmt->execute(array(
+        $iduser,
+        $titulo,
+        $conteudo
+    ));
+}
+
+/**
+ * Inserts a new Coment into a POST.
+ * @param iduser,    
+ * @param data,
+ * @param comentConteudo,
+ * @param idPost,
+ * @param idParentComent
+ */
+function insertComent($iduser, $data, $comentConteudo, $idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, NULL)');
+    $stmt->execute(array(
+        $iduser,
+        $data,
+        $comentConteudo,
+        $idPost
+    ));
+}
+
+/**
+ * Inserts a new Coment into a COMENT.
+ * @param iduser,    
+ * @param data,
+ * @param comentConteudo,
+ * @param idPost,
+ * @param idParentComent
+ */
+function insertComentIntoComent($iduser, $data, $comentConteudo, $idPost, $idParentComent){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, ?)');
+    $stmt->execute(array(
+        $iduser,
+        $data,
+        $comentConteudo,
+        $idPost,
+        $idParentComent
+    ));
+}
+
+?>
