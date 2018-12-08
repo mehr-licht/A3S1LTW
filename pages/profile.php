@@ -1,7 +1,6 @@
 <?php
 include_once '../includes/session.php';
 include_once '../templates/tpl_common.php';
-include_once '../database/db_list.php'; //for getUserInformation
 include_once '../database/db_user.php';//for checkusername  
 include_once '../templates/tpl_auth.php';
 

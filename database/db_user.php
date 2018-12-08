@@ -73,6 +73,20 @@ function getUserInformation($username){
   return $stmt->fetchAll();
 }
 
+/** --------------------------------------------------------------------------- USER
+ * @brief Returns all User's information of a certain user. - UPDATED
+ * @param username
+ * @return username, sha1 and email
+ */
+function getUserFromEmail($email){
+  $db = Database::instance()->db();
+  $stmt = $db->prepare('SELECT username FROM User WHERE email = ?');
+  $stmt->execute(array(
+      $email
+  ));
+  return $stmt->fetch();
+}
+
 /**
 * @brief Returns information if user posted something. -UPDATED
 * @param  username

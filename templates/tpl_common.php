@@ -1,9 +1,11 @@
-<?php function draw_header($username){
+<?php 
 /**
  * Draws the header for all pages. Receives an username
  * if the user is logged in in order to draw the logout
  * link.
- */ ?>
+ */
+function draw_header($username){
+?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -28,60 +30,25 @@
 
 <body>
     <header>
-        <p>Yet Another Site</p>
-
-        <?php if ($username == NULL) { ?>
-        <!-- SE NAO ESTIVER LOGADO; O HEADER SO MOSTRA O NOME DO SITE -->
-        <!-- <a id="loginl" href="../pages/login.php">Login</a>
-            <a id="signupl" href="../pages/signup.php">Signup</a>-->
-        <?php } else { ?>
-        <!-- SE JA ESTIVER LOGGADO APARECE LOGOUT E PROFILE EM VEZ DE LOGIN E SIGNUP-->
-        <nav>
-            <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$username.jpg") ?
-                "../res/avatars/$username.jpg" : "../res/default.gif" ?> width="4%" class="avatar">
-            <a id="profilel" href="../pages/profile.php">
-                <?=$username?></a>
-            <a href="../actions/action_logout.php">Logout</a>
-        </nav>
-        <?php }?>
-    </header>
-    <div id="message">
-        <?php if (isset($_SESSION['messages']) ) {?>
-        <section id="messages">
-         
-            <?php foreach($_SESSION['messages'] as $message) { ?>
-            <div class="<?=$message['type']?>">
-                <?=$message['content']?>
+        <nav class="navbar">
+            <div class="navbar left">
+                <span class="navbar title">Yet Another Site</span>
             </div>
 
-            <?php } 
-           unset($_SESSION['messages']); } ?>
-        </section>
-
-        <?php  if(isset($_SESSION['ERROR'])){?>
-        <section id="error">
-
-
-            <div class="error">
-                <?=$_SESSION['ERROR']?>
-            </div>
-            <?php   unset($_SESSION['ERROR']); } ?>
-        </section>
-
-    </div>
-    <nav class="navbar">
-        <div class="navbar left">
-            <span class="navbar title">Yet Another Site</span>
-        </div>
-        <?php if ($username != NULL) { ?>
+            <?php if ($username != NULL) { ?>
             <div class="navbar right">
+                <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$username.jpg") ?
+                "../res/avatars/$username.jpg" : "../res/default.gif" ?> width="4%" class="avatar">
                 <a class="navbar user" href="../pages/profile.php"><?=$username?></a>
                 <a class="navbar user" href="../pages/create_post.php">Create post</a>
                 <a class="navbar user" href="../actions/action_logout.php">Logout</a>
             </div>
-        <?php } ?>
-    </nav>
+            <?php } ?>
+        </nav>
+    </header>
+    
     <main>
+<?php } ?>
 
 <?php 
 /**
@@ -96,7 +63,7 @@ function draw_footer() { ?>
 </body>
 
 </html>
-<?php } 
+<?php }
 
 function sendEmail($emailAddress,$emailUser,$emailPass) {
 
