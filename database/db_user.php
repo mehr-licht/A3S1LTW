@@ -46,11 +46,11 @@
    * 
    */
 
-  function updateUser($username, $email, $name, $street, $zip, $city, $country, $phone){
+  function updateUser($username, $email, $name, $street, $zip,$birthday, $city, $country, $phone){
     $db = Database::instance()->db();
-    $stmt = $db->prepare("UPDATE User SET email = ?,name= ?,street= ?, zipcode= ?, 
+    $stmt = $db->prepare("UPDATE User SET email = ?,name= ?,street= ?, zipcode= ?, birthday=?,
     city = ?, country = ?, phone = ? WHERE username = ?");
-    $stmt->execute(array($email, $name, $street, $zip, $city, $country, $phone, $username));//avatar e passes à parte
+    $stmt->execute(array($email, $name, $street, $zip, $birthday,$city, $country, $phone, $username));//avatar e passes à parte
   }
 
   function updatePass($username,$pass1){

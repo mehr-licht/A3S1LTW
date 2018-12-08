@@ -16,6 +16,11 @@ if($_POST['pass1'] != $_POST['pass2'] ) {
   die(header('Location: '.$_SERVER['HTTP_REFERER']));
 }
 
+if (!preg_match('/^(?=[a-z])(?=[A-Z])[a-zA-Z]{8,}$/', $_POST['pass1']) || !preg_match('/^(?=[a-z])(?=[A-Z])[a-zA-Z]{8,}$/', $_POST['pass2'])) {
+  $_SESSION['messages'][] = array('type' => 'error', 'content' => 'password: invalid length or characters!');
+  die(header('Location:../pages/profile.php'));
+}
+
 try {
   updatePass($username,$_POST['pass1']);
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'password changed sucessfully!');

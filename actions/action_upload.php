@@ -8,7 +8,7 @@
 
   // Generate filenames for original, small and medium files
   $originalFileName = "../res/originals/$username.jpg";
-  $smallFileName = "../res/$username.jpg";
+  $smallFileName = "../res/avatars/$username.jpg";
   $mediumFileName = "../res/thumbs_medium/$username.jpg";
 
   // Move the uploaded file to its final destination
@@ -39,5 +39,5 @@
   imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
   imagejpeg($medium, $mediumFileName);
 
-  header("Location: index.php");
+  header("Location: ../pages/profile.php");
 ?>

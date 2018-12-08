@@ -1,23 +1,42 @@
-   /* #profile-form input {
-        visibility: hidden;
-    }*/
-   
-   .edit {
-       display: none;
-   }
-   
-   .btnEdit {
-       background: url(../res/editPencil.gif) no-repeat;
-       cursor: pointer;
-       width: 20px;
-       height: 20px;
-       border: none;
-   }
-   
-   label.editable {
-       display: block;
-   }
-   
-   input.editable {
-       display: none;
-   }
+.edit {
+    display: none;
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.btnEdit {
+    width: 150px;
+    position: relative;
+    height: 30px;
+}
+
+.icon {
+    position: absolute;
+    left: 18px;
+    top: 9px;
+    font-size: 30px;
+}
+
+input.editable {
+    /*display: none;*/
+    color: grey;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+#profile-name:before,
+#profile-email:before {
+    content: " *";
+    font-size: small;
+    color: red;
+}
