@@ -66,32 +66,50 @@ function getPostVoteByUser($idPost, $username){
 }
 
 /**
- * THIS WILL PROBABLY BECOME A REST API
- * @brief Upvotes a Post
- * @param username de quem vota
- * @param idPost o id do post que leva o voto
+ * Tells wether a specific has already voted in some post or not
+ * @param $idPost The post for which the information is required
+ * @param $username The user's ID (username)
+ * @return Returns true if user already voted, else returns false
  */
-function upvotePost($username, $idPost){
+function hasUserVotedInPost($idPost, $username) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Votedposts(iduser, idpost, votes) VALUES( ?, ?, 1)');
+    $stmt = $db->prepare('SELECT vote FROM PostVote WHERE idUser = ? AND idPost = ?');
     $stmt->execute(array(
         $username,
         $idPost
     ));
+    $res =  $stmt->fetch();
+    return $res ? true : false;
 }
 
 /**
- * THIS WILL PROBABLY BECOME A REST API
- * @brief downvotes a Post
- * @param username de quem vota
- * @param idPost o id do post que leva o voto
+ * Updates an user vote in some post
+ * @return Returns true upon success, false otherwise 
  */
-function downVotePost($username, $idPost){
+function updatePostVote($idPost, $username, $vote) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Votedposts(iduser, idpost, votes) VALUES( ?, ?, -1)');
-    $stmt->execute(array(
+    $stmt = $db->prepare('UPDATE PostVote SET vote = ? WHERE idUser = ? AND idPost = ?');
+    
+    return $stmt->execute(array(
+        $vote,
         $username,
         $idPost
+    ));
+
+}
+
+/**
+ * Records a new user vote on some post in the database
+ * @return Returns true upon success, false otherwise
+ */
+function addPostVote($idPost, $username, $vote) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('INSERT INTO PostVote(idUser, idPost, vote) VALUES(?, ?, ?)');
+    
+    return $stmt->execute(array(
+        $username,
+        $idPost,
+        $vote
     ));
 }
 
@@ -163,7 +181,7 @@ function getComents($idPost){
  */
 function insertPost($iduser, $today, $titulo, $conteudo){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Post(idUser, date, title, content) VALUES(?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO Post(idUser, date, title,  content) VALUES(?, ?, ?, ?)');
     $stmt->execute(array(
         $iduser,
         $today,
