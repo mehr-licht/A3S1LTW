@@ -59,4 +59,46 @@
     $stmt->execute(array(sha1($pass1), $username));
   }
 
+/** --------------------------------------------------------------------------- USER
+ * @brief Returns all User's information of a certain user. - UPDATED
+ * @param username
+ * @return username, sha1 and email
+ */
+function getUserInformation($username){
+  $db = Database::instance()->db();
+  $stmt = $db->prepare('SELECT * FROM User WHERE username = ?');
+  $stmt->execute(array(
+      $username
+  ));
+  return $stmt->fetchAll();
+}
+
+/**
+* @brief Returns information if user posted something. -UPDATED
+* @param  username
+* @return TRUE OR FALSE if the user has posts
+*/
+function getUserPost($username, $idPost){
+  $db = Database::instance()->db();
+  $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
+  $stmt->execute(array(
+      $username
+  ));
+  return $stmt->fetch() ? true : false; // return true if a line exists
+}
+
+/**
+* @brief Returns All POSTS in db order by date
+* @param
+* @return all table information from Posts
+*/
+function getAllPostsUSER($username){
+  $db = Database::instance()->db();
+  $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
+  $stmt->execute(array(
+      $username
+  ));
+  return $stmt->fetchAll();
+}
+
 ?>

@@ -7,7 +7,6 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-<html>
 
 <head>
     <title>Yet Another Site</title>
@@ -19,6 +18,12 @@
     <link rel="stylesheet" href="../css/footer.css">
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/password.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 
 <body>
@@ -64,20 +69,30 @@
         </section>
 
     </div>
+    <nav class="navbar">
+        <div class="navbar left">
+            <span class="navbar title">Yet Another Site</span>
+        </div>
+        <?php if ($username != NULL) { ?>
+            <div class="navbar right">
+                <a class="navbar user" href="../pages/profile.php"><?=$username?></a>
+                <a class="navbar user" href="../pages/create_post.php">Create post</a>
+                <a class="navbar user" href="../actions/action_logout.php">Logout</a>
+            </div>
+        <?php } ?>
+    </nav>
     <main>
 
-        <?php } ?>
-
-        <?php function draw_footer() { 
+<?php 
 /**
  * Draws the footer for all pages.
- */ ?>
-
-        <footer>
-            <h1>(c)MIEIC - LTW 2018/2019 T3G05</h1>
-            <p>Luis Oliveira; Ricardo Silva; Fábio Gaspar</p>
-        </footer>
+ */
+function draw_footer() { ?>
     </main>
+    <footer>
+        <h1>(c)MIEIC - LTW 2018/2019 T3G05</h1>
+        <p>Luis Oliveira; Ricardo Silva; Fábio Gaspar</p>
+    </footer>
 </body>
 
 </html>

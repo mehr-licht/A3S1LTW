@@ -1,8 +1,32 @@
-<?php function draw_login() { 
+<?php 
 /**
  * Draws the login section.
- */ ?>
-  <div id="login">
+ */ 
+function draw_login() { 
+?>
+    <div id="login">
+	    <form class="form" action="../actions/action_login.php" method="post">
+            <!-- username field -->
+            <div class="form-group">
+                <label>Username:
+                    <input name="username" type="text" placeholder="username" required="required" />
+                </label>
+            </div>
+	        <!-- password field -->
+	        <div class="form-group">
+                <label>Password:
+                    <input name="password" type="password" placeholder="password" required="required"/>
+                    <!-- TODO -->
+                    <!--<button id="toggleBtn3" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>-->
+                </label>
+            </div>
+            <!-- login button -->
+            <div class="form-group">
+                <input name="submit" type="submit" value="Login"/>
+            </div>
+            <!-- Link for signup -->
+            <span>If you still have no account please <a href="/pages/signup.php">register</a> first!</span>
+	    </form>
 
 <form class="form" action="../actions/action_login.php" method="post">
     <!-- username field -->
@@ -30,10 +54,6 @@
     <label id="req">if you don't remember your username or password</label><button class="button" onclick="location.href='../pages/request.php'" type="button">
     request</button>
     </div>
-</form>
-
-
-</div>
 <?php } ?>
 
 <?php function draw_signup() { 
