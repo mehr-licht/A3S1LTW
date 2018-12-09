@@ -1,7 +1,7 @@
 <?php
   include_once('../includes/session.php');
   include_once('../database/db_user.php');
-
+  
 $username = $_SESSION['username'];
 /**
  * check if the two passwords match and that  are different than the current one

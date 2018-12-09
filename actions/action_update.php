@@ -35,26 +35,26 @@
   }
 */
 
-/*
-only allows possible characters for dates
-*/
+
+if($_POST['birthday'] != ""){
+
+//only allows possible characters for dates
 $birthday = preg_replace("/[^0-9\-]/", "",$_POST['birthday']);
-/*
-if not a valid gregorian date (note that both YYYY-mm-dd and dd-mm-YYYY are accepted)
-*/
-if (checkdate(date('d', strtotime($birthday)) ,date('m', strtotime($birthday)) ,date('Y', strtotime($birthday)))){
+
+//if not a valid gregorian date (note that both YYYY-mm-dd and dd-mm-YYYY are accepted)
+if (!checkdate(date('d', strtotime($birthday)) ,date('m', strtotime($birthday)) ,date('Y', strtotime($birthday)))){
   $_SESSION['messages'][] = array('type' => 'error', 'content' => 'invalid date!');
   die(header('Location: ../pages/profile.php')); 
 };
 
-
+}
   try {
     updateUser($_SESSION['username'], $_POST['email'], $_POST['name'], $_POST['street'], $_POST['zipcode'],$birthday,
      $_POST['city'], $_POST['country'], $_POST['phone']);
       $_SESSION['messages'][] = array('type' => 'success', 'content' => 'database updated!');
       header('Location: ../pages/profile.php'); 
   } catch (PDOException $e) {
-      die($e->getMessage("error updatating database"));
+      die($e->getMessage("error updating database"));
       $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to update database!');
       header('Location: ../pages/login.php');
   }

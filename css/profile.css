@@ -1,4 +1,4 @@
-.edit {
+.hide {
     display: none;
     animation: fadeIn 1s;
 }
@@ -34,9 +34,16 @@ input.editable {
     border-radius: 50%;
 }
 
-#profile-name:before,
 #profile-email:before {
     content: " *";
     font-size: small;
     color: red;
+}
+
+.profile input {
+    border-color: initial;
+}
+
+#input-name::after {
+    content: " após";
 }
