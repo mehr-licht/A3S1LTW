@@ -140,7 +140,6 @@ if ($editable) { ?>
  <!-- <button onclick="toggleEdit(1);toggleInput()" class="btnEdit"><img src="../res/editPencil.gif" height="20px" width="20px"></button> -->
   
  
-
   <!-- Change Password Form -->
   <?php if ($editable) { ?> 
    
@@ -161,7 +160,6 @@ if ($editable) { ?>
             <img src="../res/glyphicons-eye-open.svg" width="50%" />
             &nbsp;</button>
         </label>
-       <!-- <img src="../res/editPencil.gif" width="0%">  se apagasse desaparecia a do botao seguinte!!! -->
       </p>
 
       <button type="submit" class="button" formaction="../actions/action_updatePass.php" formmethod="post">Change
