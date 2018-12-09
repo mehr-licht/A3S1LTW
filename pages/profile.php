@@ -32,6 +32,7 @@ draw_header($thisuser);
 
 <!-- PROFILE -->
 <div class="profile">
+<script type="text/javascript" src="../js/eye.js"></script>
   <script type="text/javascript" src="../js/profile.js"></script>
   <link rel="stylesheet" href="../css/profile.css">
 
@@ -48,7 +49,7 @@ draw_header($thisuser);
       </label></p>
      
       <input type="image" name="avatar" src=<?= file_exists("../res/avatars/$username.jpg") ? "../res/avatars/$username.jpg" :
-                                              "../res/default.gif" ?> width="8%" class="avatar">
+ "../res/default.gif" ?> width="8%" class="avatar">
     </div>
     <?php if ($editable) { ?>
     <div class="profile edit avatar hide" id="avatarEdit">
@@ -137,24 +138,23 @@ if ($editable) { ?>
     <?php 
   } ?>
   </form>
- <!-- <button onclick="toggleEdit(1);toggleInput()" class="btnEdit"><img src="../res/editPencil.gif" height="20px" width="20px"></button> -->
   
  
   <!-- Change Password Form -->
   <?php if ($editable) { ?> 
    
-    <div class="profile edit password hide" id="passEdit" >
+    <div class="profile password hide" id="passEdit" >
     <form id="profile-pass" class="profile form" action="../actions/action_updatePass.php" method="post">
 
         <label id="profile-pass" class="profile edit password">
-          <input id="loginPwd" type="password" placeholder="password" class="passEdit" name="pass1" />
+          <input id="loginPwd" type="password" placeholder="password" class="passEdit" name="pass1"  oninput="checkPassword('loginPwd')"/><span></span> 
           <button onclick="togglePass(0)" id="toggleBtn1" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
             type="button" width="50px">
             <img src="../res/glyphicons-eye-open.svg" width="50%" />
             &nbsp;</button>
         </label></p>
         <label id="profile-repeat" class="profile edit password">
-          <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" />
+          <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" oninput="checkPassword('loginPwd2')"/><span></span> 
           <button onclick="togglePass(1)" id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
             type="button" width="50px">
             <img src="../res/glyphicons-eye-open.svg" width="50%" />

@@ -47,3 +47,7 @@ input.editable {
 #input-name::after {
     content: " após";
 }
+
+.profile.edit.password {
+    display: inline-flex;
+}

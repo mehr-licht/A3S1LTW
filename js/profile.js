@@ -23,7 +23,8 @@ function validateNames() {
     if (!re.test(String(country.value).toLowerCase())) {
         isok = false;
         country.style.borderColor = 'red';
-        country.style.borderStyle = 'thick';
+        country.style.borderStyle = 'solid';
+        country.style.borderWidth = '3px';
 
         var el = country.nextSibling;
         el.style.color = 'red';
@@ -31,7 +32,8 @@ function validateNames() {
     } else if (!re.test(String(city.value).toLowerCase())) {
         isok = false;
         city.style.borderColor = 'red';
-        city.style.borderStyle = 'thick';
+        city.style.borderStyle = 'solid';
+        city.style.borderWidth = '3px';
 
         var el2 = city.nextSibling;
         el2.style.color = 'red';
@@ -39,7 +41,8 @@ function validateNames() {
     } else if (!re.test(String(name.value).toLowerCase())) {
         isok = false;
         name.style.borderColor = 'red';
-        name.style.borderStyle = 'thick';
+        name.style.borderStyle = 'solid';
+        name.style.borderWidth = '3px';
 
         var el3 = name.nextSibling;
         el3.style.color = 'red';
@@ -53,7 +56,8 @@ function validatePhone() {
     var re = /(^$)|(^\d{9})|(^\+{1}\d{12})$/;
     if (!re.test(String(phone.value).toLowerCase())) {
         phone.style.borderColor = 'red';
-        phone.style.borderStyle = 'thick';
+        phone.style.borderStyle = 'solid';
+        phone.style.borderWidth = '3px';
 
         var el = phone.nextSibling;
         el.style.color = 'red';
@@ -67,7 +71,8 @@ function validateZip() {
     var re = /(^$)|^\d+\-\d+$/;
     if (!re.test(String(zip.value).toLowerCase())) {
         zip.style.borderColor = 'red';
-        zip.style.borderStyle = 'thick';
+        zip.style.borderStyle = 'solid';
+        zip.style.borderWidth = '3px';
 
         var el = zip.nextSibling;
         el.style.color = 'red';
@@ -81,7 +86,8 @@ function validateEmail() {
     var re = /(^$)|^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(String(email.value).toLowerCase())) {
         email.style.borderColor = 'red';
-        email.style.borderStyle = 'thick';
+        email.style.borderStyle = 'solid';
+        email.style.borderWidth = '3px';
 
         var el = email.nextSibling;
         el.style.color = 'red';
@@ -96,7 +102,8 @@ function validateDate() {
         var re = /((^$)|^([0-2][0-9]|(3)[0-1])(\-)(((0)[0-9])|((1)[0-2]))(\-)\d{4}$)|((^$)|^\d{4}(\-)(((0)[0-9])|((1)[0-2]))(\-)([0-2][0-9]|(3)[0-1])$)/;
         if (!re.test(String(birthday.value).toLowerCase())) {
             birthday.style.borderColor = 'red';
-            birthday.style.borderStyle = 'thick';
+            birthday.style.borderStyle = 'solid';
+            birthday.style.borderWidth = '3px';
 
             var el = birthday.nextSibling;
             el.style.color = 'red';
@@ -111,11 +118,34 @@ function clearInputError(elem) {
     if ((el = document.getElementById(elem)).style.borderColor == 'red') {
         el.style.borderColor = '';
         el.style.borderStyle = '';
+        el.style.borderWidth = '';
 
         el = el.nextSibling;
         el.textContent = '';
     }
 }
+
+
+function checkPassword(pwd) {
+    var error;
+    var el = document.getElementById(pwd);
+    var re = /[0-9]+/;
+    var re1 = /[a-zA-Z]+/;
+    if ((el.value).length < 8) {
+        error = " Password too short!";
+    } else if (!re.test(String(el.value).toLowerCase())) {
+        error = " Password must include at least one number!";
+    } else if (!re1.test(String(el.value).toLowerCase())) {
+        error = " Password must include at least one letter!";
+    }
+
+    el.style.borderColor = 'red';
+    el.style.borderStyle = 'solid';
+    el.style.borderWidth = '3px';
+    el = el.nextSibling;
+    el.textContent = error;
+}
+
 
 /*
 function toggleInput() {
