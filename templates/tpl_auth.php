@@ -32,6 +32,7 @@ function draw_login()
         <div class="form-group">
             <span>If you still have no account please <a href="../pages/signup.php">register</a> first!</span>
         </div>
+          <!-- Link for request -->
         <div class="form-group">
             <span>if you don't remember your username or password please <a href="../pages/request.php">request</a> it
                 again</span>
@@ -48,11 +49,11 @@ function draw_login()
  */ ?>
 <div id="signup">
     <script type="text/javascript" src="../js/eye.js"></script>
-    <script type="text/javascript" src="../js/profile.js"></script>
+    <script type="text/javascript" src="../js/su.js"></script>
     <form class="form" action="../actions/action_signup.php" method="post">
         <div id="userinput" class="inputs">
             <label class="label1">Desired username: </label>
-            <input id="SignupUsername" name="username" type="text" placeholder="desired username" required="required" oninput="validateName()"/><span></span>
+            <input id="SignupUsername" name="username" type="text" placeholder="desired username" required="required" oninput="validateNameSignup()"/><span></span>
         </div>
         <div id="pwdinput" class="inputs">
             <label class="label2">password: </label>
@@ -75,22 +76,22 @@ function draw_login()
 
         <div id="insrtemail" class="emailc">
             <label class="label4"> Email: </label>
-            <input id="signupEmail" name="email" type="email" placeholder="email" />
+            <input id="signupEmail" name="email" type="email" placeholder="email" oninput="validateEmailSignup()"/>
         </div>
         <div id="buttons">
             <!-- <input id="submitButton" type="submit" value="login"> -->
             <label id="LblBtn"> </label>
             <button type="submit" class="button" formaction="../actions/action_signup.php" formmethod="post">SignUp</button>
         </div>
-        <div id="buttonl">
-
-            <label id="please">already have an account? please login</label><button class="button" onclick="location.href='../pages/login.php'"
-                type="button">login</button>
         </div>
-        <div id="buttonReq">
-            <label id="req">if you don't remember your username or password</label><button class="button" onclick="location.href='../pages/request.php'"
-                type="button">
-                request</button>
+        <!-- Link for login -->
+        <div class="form-group">
+            <span>already have an account? please <a href="../pages/login.php">login</a></span>
+        </div>
+            <!-- Link for request -->
+        <div class="form-group">
+            <span>if you don't remember your username or password please <a href="../pages/request.php">request</a> it
+                again</span>
         </div>
     </form>
 </div>
@@ -126,10 +127,13 @@ function draw_login()
                 type="button">
                 signup</button>
         </div>
-        <div id="buttonReq">
-            <label id="please">already have an account? please login</label><button class="button" onclick="location.href='../pages/login.php'"
-                type="button">login</button>
-
+        <!-- Link for login -->
+        <div class="form-group">
+            <span>already have an account? please <a href="../pages/login.php">login</a></span>
+        </div>
+         <!-- Link for signup -->
+         <div class="form-group">
+            <span>If you still have no account please <a href="../pages/signup.php">register</a> first!</span>
         </div>
     </form>
 

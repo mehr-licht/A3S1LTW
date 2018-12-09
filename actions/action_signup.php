@@ -10,8 +10,9 @@ if (checkUsername($_POST['username'])) {
 } else if (checkUserEmail($_POST['email'])) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email already in use!');
     header('Location:../pages/signup.php');
-}else if (!preg_match('/^(?=[a-z])(?=[A-Z])[a-zA-Z]{8,}$/', $_POST['password2']) || !preg_match('/^(?=[a-z])(?=[A-Z])[a-zA-Z]{8,}$/', $_POST['password'])) {
-    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'password: invalid length or characters!');
+
+}else if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $_POST['password2']) || !preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $_POST['password'])) {
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'password: minumum 8 characters, must include one letter and one number!');
     die(header('Location:../pages/signup.php'));
 } else if ($_POST['password'] !== $_POST['password2']) {
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'No matching passwords!');

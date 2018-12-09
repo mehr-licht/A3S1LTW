@@ -5,12 +5,12 @@ include_once('../templates/tpl_common.php');
 
 
 
-if (isset($_POST['username']) && !checkUsername($_POST['username'])) {
-    $_SESSION['messages'] = array('type' => 'error', 'content' => 'Username not in the database, please signup!');
+if ($_POST['username']!="" && !checkUsername($_POST['username'])) {
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username not in the database, please signup!');
     header('Location:../pages/signup.php');
 
-} else if (isset($_POST['email']) && !checkUserEmail($_POST['email'])) {
-    $_SESSION['messages'] = array('type' => 'error', 'content' => 'Email not in the database!');
+} else if ($_POST['email']!="" && !checkUserEmail($_POST['email'])) {//nao encontra
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email not in the database!');
     header('Location:../pages/signup.php');
 
 } else {
