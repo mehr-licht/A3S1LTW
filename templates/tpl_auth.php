@@ -1,7 +1,7 @@
 <?php 
 /**
  * Draws the login section.
- */ 
+ */  
 function draw_login() { 
 ?>
     <div id="login">
