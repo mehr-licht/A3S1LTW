@@ -46,7 +46,8 @@
 	} catch(Exception $e) {
 		header("HTTP/1.1 500");
 		echo json_encode(array(
-			'exception'=>$e->getMessage()
+			'code'=>-2,
+			'description'=>$e->getMessage()
 		));
 	}
 
