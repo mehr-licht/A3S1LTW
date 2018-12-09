@@ -6,8 +6,7 @@ function api_user_voted_post(postId, vote) {
     xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xmlhttp.send(JSON.stringify({
         postId: postId,
-        vote: vote,
-        username: 'fabioD'
+        vote: vote
     }));
 }
 
