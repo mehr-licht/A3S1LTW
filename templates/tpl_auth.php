@@ -6,6 +6,7 @@ function draw_login()
 {
     ?>
 <div id="login">
+<script type="text/javascript" src="../js/eye.js"></script>
     <form class="form" action="../actions/action_login.php" method="post">
         <!-- username field -->
         <div class="form-group">
@@ -16,7 +17,7 @@ function draw_login()
         <!-- password field -->
         <div class="form-group">
             <label>Password:
-                <input name="password" type="password" placeholder="password" required="required" />
+                <input name="password" class="passEdit" type="password" placeholder="password" required="required" />
                 <button onclick="togglePass(0)" id="toggleBtn3" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
                     type="button" width="50px">
                     <img src="../res/glyphicons-eye-open.svg" width="50%" />

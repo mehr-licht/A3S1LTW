@@ -18,18 +18,15 @@ function draw_header($username){
     <!-- <link rel="stylesheet" href="../css/style.css">-->
     <link rel="stylesheet" href="../css/password.css">
     <link rel="stylesheet" href="../css/footer.css">
-
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/password.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/auth.css">
-    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/components.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 
 <body>
     <header>
+    
         <nav class="navbar">
             <div class="navbar left">
                 <span class="navbar title">Yet Another Site</span>
@@ -43,6 +40,30 @@ function draw_header($username){
                 <a class="navbar user" href="../pages/create_post.php">Create post</a>
                 <a class="navbar user" href="../actions/action_logout.php">Logout</a>
             </div>
+            <div class="navbar message">
+        <?php if (isset($_SESSION['messages']) ) {?>
+        <section id="messages">
+         
+            <?php foreach($_SESSION['messages'] as $message) { ?>
+            <div class="<?=$message['type']?>">
+                <?=$message['content']?>
+            </div>
+
+            <?php } 
+           unset($_SESSION['messages']); } ?>
+        </section>
+
+        <?php  if(isset($_SESSION['ERROR'])){?>
+        <section id="error">
+
+
+            <div class="error">
+                <?=$_SESSION['ERROR']?>
+            </div>
+            <?php   unset($_SESSION['ERROR']); } ?>
+        </section>
+
+    </div>
             <?php } ?>
         </nav>
     </header>
