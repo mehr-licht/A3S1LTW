@@ -13,14 +13,13 @@ function draw_header($username){
 <head>
     <title>Yet Another Site</title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="../js/eye.js"></script>
-
-    <!-- <link rel="stylesheet" href="../css/style.css">-->
-    <link rel="stylesheet" href="../css/password.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="../css/auth.css">
-    <link rel="stylesheet" href="../css/components.css">
+    <script type="text/javascript" src="/js/eye.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/password.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/auth.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 
