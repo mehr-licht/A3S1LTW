@@ -31,15 +31,6 @@ function draw_header($username){
             <div class="navbar left">
                 <span class="navbar title">Yet Another Site</span>
             </div>
-
-            <?php if ($username != NULL) { ?>
-            <div class="navbar right">
-                <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$username.jpg") ?
-                "../res/avatars/$username.jpg" : "../res/default.gif" ?> width="4%" class="avatar">
-                <a class="navbar user" href="../pages/profile.php"><?=$username?></a>
-                <a class="navbar user" href="../pages/create_post.php">Create post</a>
-                <a class="navbar user" href="../actions/action_logout.php">Logout</a>
-            </div>
             <div class="navbar message">
         <?php if (isset($_SESSION['messages']) ) {?>
         <section id="messages">
@@ -64,6 +55,15 @@ function draw_header($username){
         </section>
 
     </div>
+            <?php if ($username != NULL) { ?>
+            <div class="navbar right">
+                <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$username.jpg") ?
+                "../res/avatars/$username.jpg" : "../res/default.gif" ?> width="4%" class="avatar">
+                <a class="navbar user" href="../pages/profile.php"><?=$username?></a>
+                <a class="navbar user" href="../pages/create_post.php">Create post</a>
+                <a class="navbar user" href="../actions/action_logout.php">Logout</a>
+            </div>
+        
             <?php } ?>
         </nav>
     </header>

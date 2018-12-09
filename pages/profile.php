@@ -147,18 +147,18 @@ if ($editable) { ?>
     <form id="profile-pass" class="profile form" action="../actions/action_updatePass.php" method="post">
 
         <label id="profile-pass" class="profile edit password">
-          <input id="loginPwd" type="password" placeholder="password" class="passEdit" name="pass1"  oninput="checkPassword('loginPwd')"/><span></span> 
+          <input id="loginPwd" type="password" placeholder="password" class="passEdit" name="pass1"  oninput="checkPassword('loginPwd')"/>
           <button onclick="togglePass(0)" id="toggleBtn1" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
             type="button" width="50px">
             <img src="../res/glyphicons-eye-open.svg" width="50%" />
-            &nbsp;</button>
+            &nbsp;</button><span></span>
         </label></p>
         <label id="profile-repeat" class="profile edit password">
-          <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" oninput="checkPassword('loginPwd2')"/><span></span> 
+          <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" oninput="checkPassword('loginPwd2')"/>
           <button onclick="togglePass(1)" id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
             type="button" width="50px">
             <img src="../res/glyphicons-eye-open.svg" width="50%" />
-            &nbsp;</button>
+            &nbsp;</button><span></span> 
         </label>
       </p>
 

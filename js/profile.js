@@ -14,10 +14,34 @@ function validateInputs() {
     return (validateEmail() && validateDate() && validateZip() && validatePhone() && validateNames());
 }
 
+function validateName() {
+
+    var name2 = document.getElementById('SignupUsername');
+    var el = name2.nextSibling;
+    var re = /(^$)|^([a-zA-Z\u0080-\u024F]+(?:(\.) |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
+
+    if (!re.test(String(name2.value).toLowerCase())) {
+        name2.style.borderColor = 'red';
+        name2.style.borderStyle = 'solid';
+        name2.style.borderWidth = '3px';
+
+        el.style.color = 'red';
+        el.textContent = ' not a valid name';
+    } else {
+        name2.style.borderColor = '';
+        name2.style.borderStyle = '';
+        name2.style.borderWidth = '';
+
+        el.textContent = '';
+    }
+
+}
+
 function validateNames() {
     var country = document.getElementById('input-country');
     var city = document.getElementById('input-city');
     var name = document.getElementById('input-name');
+    var name2 = document.getElementById('SignupUserName');
     var re = /(^$)|^([a-zA-Z\u0080-\u024F]+(?:(\.) |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
     var isok = true;
     if (!re.test(String(country.value).toLowerCase())) {

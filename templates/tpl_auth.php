@@ -48,30 +48,28 @@ function draw_login()
  */ ?>
 <div id="signup">
     <script type="text/javascript" src="../js/eye.js"></script>
+    <script type="text/javascript" src="../js/profile.js"></script>
     <form class="form" action="../actions/action_signup.php" method="post">
         <div id="userinput" class="inputs">
             <label class="label1">Desired username: </label>
-            <input id="SignupUsername" name="username" type="text" placeholder="desired username" required="required" />
+            <input id="SignupUsername" name="username" type="text" placeholder="desired username" required="required" oninput="validateName()"/><span></span>
         </div>
         <div id="pwdinput" class="inputs">
             <label class="label2">password: </label>
-            <input id="SignupPwd" class="passEdit" type="password" name="password" class="passEdit" placeholder="password" />
-            <!--      <button id="toggleBtn4" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button> -->
+            <input id="SignupPwd" class="passEdit" type="password" name="password" class="passEdit" placeholder="password" oninput="checkPassword('SignupPwd')"/>
             <button onclick="togglePass(0)" id="toggleBtn4" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
                 type="button" width="50px">
                 <img src="../res/glyphicons-eye-open.svg" width="50%" />
-                &nbsp;</button>
+                &nbsp;</button><span></span>
 
         </div>
         <div id="repwdinput" class="inputs">
             <label class="label3"> repeat password: </label>
-            <input id="SignupRepeatPwd" type="password" name="password2" class="passEdit" placeholder="password" />
-            <!-- <button id="toggleBtn5" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button> -->
-
+            <input id="SignupRepeatPwd" type="password" name="password2" class="passEdit" placeholder="password" oninput="checkPassword('SignupRepeatPwd')"/>
             <button onclick="togglePass(1)" id="toggleBtn5" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
                 type="button" width="50px">
                 <img src="../res/glyphicons-eye-open.svg" width="50%" />
-                &nbsp;</button>
+                &nbsp;</button><span></span>
 
         </div>
 

@@ -4,6 +4,7 @@ var ele = document.getElementsByClassName('password');
 
 
 function togglePass(which) {
+
     var passwords = document.getElementsByClassName('passEdit');
     for (var i = 0; i < passwords.length; i++) {
         if (i == which) {

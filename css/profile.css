@@ -44,10 +44,6 @@ input.editable {
     border-color: initial;
 }
 
-#input-name::after {
-    content: " após";
-}
-
 .profile.edit.password {
     display: inline-flex;
 }
