@@ -38,39 +38,16 @@ function draw_login()
         </div>
     </form>
 
-<form class="form" action="../actions/action_login.php" method="post">
-    <!-- username field -->
-    <label>Username:
-        <input name="username" type="text" placeholder="username" required="required" />
-    </label>
-    <!-- password field -->
-    <label>Password:
-        <input name="password" type="password" placeholder="password" class="passEdit" required="required"/>
-        <button onclick="togglePass(0)" id="toggleBtn3" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
-            type="button" width="50px">
-            <img src="../res/glyphicons-eye-open.svg" width="50%" />
-            &nbsp;</button>
-    </label>
-    <!-- login button -->
-    <input name="submit" type="submit" value="Login"/>
-
-    <div id="buttons">
-        <label class="LblBtn"></label>
-       <!-- <button class="button" formaction="../pages/signup.php" formmethod="post">login</button> -->
-        <label id="please">if you still have no account please register first</label><button class="button" onclick="location.href='../pages/signup.php'" type="button">
-    signup</button>
 </div>
-    <div id="buttonReq">
-    <label id="req">if you don't remember your username or password</label><button class="button" onclick="location.href='../pages/request.php'" type="button">
-    request</button>
-    </div>
-<?php } ?>
+<?php 
+} ?>
 
 <?php function draw_signup() { 
 /**
  * Draws the signup section.
  */ ?>
    <div id="signup">
+   <script type="text/javascript" src="../js/eye.js"></script>
         <form class="form" action="../actions/action_signup.php" method="post">
             <div id="userinput" class="inputs">
                 <label class="label1">Desired username: </label>
@@ -78,7 +55,7 @@ function draw_login()
             </div>
             <div id="pwdinput" class="inputs">
                 <label class="label2">password: </label>
-                <input id="SignupPwd" type="password" name="password" class="passEdit"placeholder="password" />
+                <input id="SignupPwd" class="passEdit" type="password" name="password" class="passEdit"placeholder="password" />
           <!--      <button id="toggleBtn4" class="glyphicon glyphicons-eye-open toggler-ico" type="button">&nbsp;</button> -->
                 <button onclick="togglePass(0)" id="toggleBtn4" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
             type="button" width="50px">
