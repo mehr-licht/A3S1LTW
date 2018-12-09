@@ -1,5 +1,5 @@
 PRAGMA foreign_keys=ON;
-
+.headers ON
 /**
  * USER TABLE
  */
