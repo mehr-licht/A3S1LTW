@@ -2,7 +2,7 @@
     include_once('../includes/session.php');
     include_once('../database/dbPosts.php');
     include_once('../templates/tpl_common.php');
-    draw_header(NULL);
+    draw_header($_SESSION['username']);
     if(isset($_GET['postId'])) {
         $post = getPostByID($_GET['postId']);
         print_r($post);
@@ -66,6 +66,6 @@
             <div>Votes stuff</div>
         </div>
     </article>
-    <hr>
+    
     <?php } ?>
 </section>
