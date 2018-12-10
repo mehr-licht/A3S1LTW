@@ -12,9 +12,9 @@
 
     $vote = getPostVoteByUser($post['idPost'], $_SESSION['username']);
 ?>
+<link href="/css/post.css" type="text/css" rel="stylesheet">
 <!-- the post content section -->
-<link rel="stylesheet" type="text/css" href="/css/postView.css">
-<section id="post_view">
+<section id="post_view" class="post view">
     <aside class="votes">
         <svg class="votes upvote <?= ($vote > 0) ? 'active' : '' ?>" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
             <g>
@@ -38,7 +38,10 @@
     </aside>
     <article class="content">
         <h1><?=$post['title']?></h1>
-        <p>By <?=$post['idUser']?> | <?=$post['date']?></p>
+        <p> Published by
+            <span class="author"><?=$post['idUser']?></span>
+            <span class="date">• <?=$post['date']?></span>
+        </p>
         <?php 
         if(!is_null($post['image'])) { ?>
         <img alt="Post thumbnail" src="<?$post['image']?>">
@@ -50,7 +53,7 @@
     <h1>Comments:</h1>
     <?php
     foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
-    <article>
+    <article class="comment">
         <?php if(!isset($comment['avatar'])) { ?>
             <img alt="User profile" src="/res/avatars/default.png">
         <?php } else { ?>

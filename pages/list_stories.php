@@ -11,7 +11,7 @@
     
 ?>  
 <script src="../js/post.js"></script>
-<link href="/css/listNews.css" type="text/css" rel="stylesheet">
+<link href="/css/post.css" type="text/css" rel="stylesheet">
     <section id="stories">
         <?php 
             // ou podemos subsituir a funcao em baixo por getAllPostsUSER($_SESSION['username'] 
@@ -19,7 +19,7 @@
                 // get user vote on this post
                 $vote = getPostVoteByUser($post['idPost'], $_SESSION['username']);
                 ?>
-                <article class="post_preview" --data-id-post="<?= $post['idPost'] ?>">
+                <article class="post preview" --data-id-post="<?= $post['idPost'] ?>">
                     <aside class="votes">
                         <svg class="votes upvote <?= ($vote > 0) ? 'active' : '' ?>" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
                             <g>
@@ -48,7 +48,7 @@
                     <?php } ?>
                     <div class="content">
                         <h1><?=$post['title']?></h1>
-                        <span><?=$post['idUser']?> | <?=$post['date']?></span>
+                        <span><?=$post['idUser']?> • <?=$post['date']?></span>
                         <p><?=$post['content']?></p>
                         <a href="postView.php?postId=<?=$post['idPost']?>">Read More</a>
                     </div>

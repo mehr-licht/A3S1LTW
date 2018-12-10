@@ -1,0 +1,156 @@
+.post {
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    background-color: var(--bg-light);
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+}
+
+.post .votes {
+    background-color: #ebebeb;
+    color: darkslategrey;
+    padding: 0 .3rem;
+    margin: unset;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post svg.votes.upvote, .post svg.votes.downvote {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: block;
+    fill: darkslategrey;
+}
+
+.post svg.votes.upvote:hover, .post svg.votes.downvote:hover {
+    transition: opacity 0.5s;
+    opacity: 0.7;
+}
+.post svg.votes.upvote.active {
+    fill: rgb(0, 161, 27);
+}
+
+.post svg.votes.downvote.active {
+    fill: rgb(180, 0, 0);
+}
+
+.post.preview {
+    margin: 0.5rem 0;
+}
+
+/**
+ * CONTENT (PREVIEW)
+ */
+
+.post.preview .thumb {
+    padding: 1rem;
+    width: 200px;
+    height: 200px;
+}
+
+.post.preview .content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5rem;
+    width: 100%;
+}
+
+.post.preview .content h1 {
+    margin: unset;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.post.preview .content p {
+    margin: 0.5rem 0;
+    flex-grow: 1;
+}
+
+.post.preview .content a {
+    display: block;
+    text-align: right;
+}
+
+/**
+ * CONTENT (VIEW)
+ */
+.post.view .content {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    min-height: 300px;
+}
+.post.view .content h1 {
+    margin: unset;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.post.view .content p {
+    margin: 0.5rem 0;
+    text-align: justify;
+}
+
+/**
+ * COMMENTS
+ */
+.comment {
+    margin: 0.5rem 0;
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.comment img {
+    width: 48x;
+    height: 48px;
+    margin: 0.25rem 0.5rem;
+    border-radius: 5px;
+}
+
+.comment .header {
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+    color: black;
+    font-weight: normal;
+}
+
+/**
+ * Utils
+ */
+.author {
+    font-weight: 600;
+    color: var(--bg-primary);
+}
+
+.date {
+    color: grey;
+}
+
+/**
+ * Responsiveness
+ */
+@media only screen  and (max-width : 700px) {
+    .post.preview .thumb {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media only screen  and (max-width : 500px) {
+    /* Reduce image size but also limit amount of characters by reducing height */
+    .post.preview .thumb {
+        display: none;
+    }
+    #stories > article .post_content > p {
+        max-height: 6ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
