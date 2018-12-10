@@ -115,6 +115,20 @@ function addPostVote($idPost, $username, $vote) {
 }
 
 /**
+ * @brief Returns all Comment's Information belonging to a certain Post.
+ * @param id post que tem comentarios que desejamos ver
+ * @return all coments
+ */
+function getCommentsByPost($idPost){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM Coment WHERE idPost = ?');
+    $stmt->execute(array(
+        $idPost
+    ));
+    return $stmt->fetchAll();
+}
+
+/**
  * @brief Checks if user voted in this post
  * @param username a procurar
  * @param idComent o id do coment a procurar
@@ -157,21 +171,6 @@ function downVoteComent($username, $idcoment){
         $idcoment
     ));
 }
-
-/**
- * @brief Returns all Comment's Information belonging to a certain Post.
- * @param id post que tem comentarios que desejamos ver
- * @return all coments
- */
-function getComents($idPost){
-    $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT * FROM Coment WHERE idParentComent = ?');
-    $stmt->execute(array(
-        $idPost
-    ));
-    return $stmt->fetchAll();
-}
-
 
 /** --------------------------------------------------------------------------------  POST
  * Inserts a new Post into the database.
