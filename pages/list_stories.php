@@ -48,7 +48,7 @@
                     <?php } ?>
                     <div class="content">
                         <h1><?=$post['title']?></h1>
-                        <span><?=$post['idUser']?> • <?=$post['date']?></span>
+                        <span><span class="author"><?=$post['idUser']?></span> <span class="date">• <?=$post['date']?></span></span>
                         <p><?=$post['content']?></p>
                         <a href="postView.php?postId=<?=$post['idPost']?>">Read More</a>
                     </div>

@@ -47,7 +47,7 @@
  */
 
 .post.preview .thumb {
-    padding: 1rem;
+    padding: 0.5rem 0.25rem;
     width: 200px;
     height: 200px;
 }
