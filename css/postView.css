@@ -72,6 +72,13 @@
     flex-direction: row;
 }
 
+#comments article img{
+    width: 48x;
+    height: 48px;
+    margin: 0.25rem 0.5rem;
+    border-radius: 5px;
+}
+
 #comments .header {
     font-size: 0.9rem;
     margin: 0.25rem 0;
@@ -84,5 +91,5 @@
 }
 
 #comments .header .date {
-    color: var(--bg-light);
+    color: grey;
 }

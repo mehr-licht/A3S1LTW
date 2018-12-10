@@ -115,13 +115,20 @@ function addPostVote($idPost, $username, $vote) {
 }
 
 /**
- * @brief Returns all Comment's Information belonging to a certain Post.
- * @param id post que tem comentarios que desejamos ver
- * @return all coments
+ * @brief Returns all Comment's Information belonging to a certain Post, alongside it's author information
+ * @param idPost post que tem comentarios que desejamos ver
+ * @return Array [
+ *      
+ * ]
  */
 function getCommentsByPost($idPost){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT * FROM Coment WHERE idPost = ?');
+    $stmt = $db->prepare(
+        'SELECT Coment.*, User.avatar 
+        FROM Coment INNER JOIN User 
+        ON Coment.idUser = User.username
+        WHERE Coment.idPost = ?'
+    );
     $stmt->execute(array(
         $idPost
     ));

@@ -47,16 +47,20 @@
     </article>
 </section>
 <section id="comments">
-    <h1>Comments</h1>
+    <h1>Comments:</h1>
     <?php
     foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
     <article>
-        <img alt="User profile">
+        <?php if(!isset($comment['avatar'])) { ?>
+            <img alt="User profile" src="/res/avatars/default.png">
+        <?php } else { ?>
+            <img alt="User profile" src="/res/avatars/">
+        <?php } ?>
         <div>
             <h1 class="header">
                 <span class="author"><?=$comment['idUser']?></span>
                 said on
-                <span class="date">date goes here</span>
+                <span class="date"> • date goes here</span>
             </h1>
             <p><?=$comment['comentContent']?></p>
             <div>Votes stuff</div>
