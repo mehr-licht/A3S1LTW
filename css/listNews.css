@@ -27,8 +27,8 @@
 
 .post_preview .votes svg {
     fill: #999999;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
     display: block;
 }
@@ -48,6 +48,7 @@
 .post_preview .thumb {
     width: 200px;
     height: 200px;
+    padding: 1rem;
 }
 
 /**

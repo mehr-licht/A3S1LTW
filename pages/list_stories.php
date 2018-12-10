@@ -41,7 +41,11 @@
                             </g>
                         </svg>
                     </aside>
-                    <img class="thumb" src="https://picsum.photos/200">
+                    <?php if(isset($post['image'])) { ?>
+                    <img class="thumb" src="<?=$post['image']?>">
+                    <?php } else { ?>
+                    <img class="thumb" src="/res/default-thumb.png">
+                    <?php } ?>
                     <div class="content">
                         <h1><?=$post['title']?></h1>
                         <span><?=$post['idUser']?> | <?=$post['date']?></span>
