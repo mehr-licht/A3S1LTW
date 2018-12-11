@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="../css/auth.css">
 <?php 
   include_once('../database/database.php');
   include_once('../templates/tpl_common.php');

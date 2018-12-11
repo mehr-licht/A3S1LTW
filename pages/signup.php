@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="../css/auth.css">
 <?php 
 //igual Restivo
   include_once('../includes/session.php');

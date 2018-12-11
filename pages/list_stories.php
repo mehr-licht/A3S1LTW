@@ -11,7 +11,6 @@
     
 ?>  
 <script src="../js/post.js"></script>
-<link href="/css/post.css" type="text/css" rel="stylesheet">
     <section id="stories">
         <?php 
             // ou podemos subsituir a funcao em baixo por getAllPostsUSER($_SESSION['username'] 
@@ -49,7 +48,7 @@
                                 <?php if(isset($post['image'])) { ?>
                                 <img class="thumb" src="<?=$post['image']?>">
                                 <?php } else { ?>
-                                <img class="thumb" src="/res/default-thumb.png">
+                                <img class="thumb" src="../res/default-thumb.png">
                                 <?php } ?>
                                 <span><?=$post['content']?></span>
                             </p>

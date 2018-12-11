@@ -12,7 +12,6 @@
 
     $vote = getPostVoteByUser($post['idPost'], $_SESSION['username']);
 ?>
-<link href="/css/post.css" type="text/css" rel="stylesheet">
 <!-- the post content section -->
 <section id="post_view" class="post view">
     <aside class="votes">
@@ -55,9 +54,9 @@
     foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
     <article class="comment">
         <?php if(!isset($comment['avatar'])) { ?>
-            <img alt="User profile" src="/res/avatars/default.png">
+            <img alt="User profile" src="../res/avatars/default.png">
         <?php } else { ?>
-            <img alt="User profile" src="/res/avatars/">
+            <img alt="User profile" src="../res/avatars/">
         <?php } ?>
         <div>
             <h1 class="header">
