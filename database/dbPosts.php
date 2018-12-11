@@ -127,7 +127,8 @@ function getCommentsByPost($idPost){
         'SELECT Coment.*, User.avatar 
         FROM Coment INNER JOIN User 
         ON Coment.idUser = User.username
-        WHERE Coment.idPost = ?'
+        WHERE Coment.idPost = ?
+        ORDER BY data desc'
     );
     $stmt->execute(array(
         $idPost
