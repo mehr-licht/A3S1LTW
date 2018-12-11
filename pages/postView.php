@@ -37,7 +37,7 @@
     </aside>
     <article class="content">
         <h1><?=$post['title']?></h1>
-        <p> Published by
+        <p>Published by
             <span class="author"><?=$post['idUser']?></span>
             <span class="date">• <?=$post['date']?></span>
         </p>
@@ -50,24 +50,29 @@
 </section>
 <section id="comments">
     <h1>Comments:</h1>
-    <?php
-    foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
-    <article class="comment">
-        <?php if(!isset($comment['avatar'])) { ?>
-            <img alt="User profile" src="../res/avatars/default.png">
-        <?php } else { ?>
-            <img alt="User profile" src="../res/avatars/">
+    <section>
+        <textarea id="comment_txt">New comments go here</textarea>
+        <button id="submit_comment_btn">Submit</button>
+    </section>
+    <section>
+        <?php
+        foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
+        <article class="comment">
+            <?php if(!isset($comment['avatar'])) { ?>
+                <img alt="User profile" src="../res/avatars/default.png">
+            <?php } else { ?>
+                <img alt="User profile" src="../res/avatars/">
+            <?php } ?>
+            <div>
+                <h1 class="header">
+                    <span class="author"><?=$comment['idUser']?></span>
+                    said on
+                    <span class="date"> • date goes here</span>
+                </h1>
+                <p><?=$comment['comentContent']?></p>
+                <div>Votes stuff</div>
+            </div>
+        </article>
         <?php } ?>
-        <div>
-            <h1 class="header">
-                <span class="author"><?=$comment['idUser']?></span>
-                said on
-                <span class="date"> • date goes here</span>
-            </h1>
-            <p><?=$comment['comentContent']?></p>
-            <div>Votes stuff</div>
-        </div>
-    </article>
-    
-    <?php } ?>
+    </section>
 </section>

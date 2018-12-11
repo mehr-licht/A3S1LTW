@@ -46,6 +46,7 @@
                             <span><span class="author"><?=$post['idUser']?></span> <span class="date">• <?=$post['date']?></span></span>
                             <p>
                                 <?php if(isset($post['image'])) { ?>
+                                <!-- TODO this will need to be fixed -->
                                 <img class="thumb" src="<?=$post['image']?>">
                                 <?php } else { ?>
                                 <img class="thumb" src="../res/default-thumb.png">
