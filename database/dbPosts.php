@@ -127,8 +127,7 @@ function getCommentsByPost($idPost){
         'SELECT Coment.*, User.avatar 
         FROM Coment INNER JOIN User 
         ON Coment.idUser = User.username
-        WHERE Coment.idPost = ?
-        ORDER BY data desc'
+        WHERE Coment.idPost = ?'
     );
     $stmt->execute(array(
         $idPost
@@ -187,36 +186,34 @@ function downVoteComent($username, $idcoment){
  * @param titulo, post title
  * @param conteudo, post main text
  */
-function insertPost($iduser, $today, $titulo, $conteudo){
+function insertPost($iduser, $today, $titulo, $conteudo, $image){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Post(idUser, date, title,  content) VALUES(?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO Post(idUser, date, title,  content, image) VALUES(?, ?, ?, ?, ?)');
     $stmt->execute(array(
         $iduser,
         $today,
         $titulo,
-        $conteudo
+        $conteudo,
+        $image
     ));
 }
 
 /**
- * Inserts a new Coment into a POST
+ * Inserts a new Coment into a POST.
  * @param iduser,    
  * @param data,
  * @param comentConteudo,
  * @param idPost,
  * @param idParentComent
  */
-function insertComment($idPost, $idUser, $comment, $date = NULL){
-    if(is_null($date))
-        $date = date('Y-m-d');
-    
+function insertComent($iduser, $data, $comentConteudo, $idPost){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Coment(idPost, idUser, data, comentContent) VALUES(?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, NULL)');
     $stmt->execute(array(
-        $idPost,
-        $idUser,
-        $date,
-        $comment
+        $iduser,
+        $data,
+        $comentConteudo,
+        $idPost
     ));
 }
 
