@@ -81,7 +81,7 @@ function draw_login()
         <div id="buttons">
             <!-- <input id="submitButton" type="submit" value="login"> -->
             <label id="LblBtn"> </label>
-            <button type="submit" class="button" formaction="../actions/action_signup.php" formmethod="post">SignUp</button>
+            <button onclick="return validateFields()" type="submit" class="button" formaction="../actions/action_signup.php" formmethod="post">SignUp</button>
         </div>
         </div>
         <!-- Link for login -->
