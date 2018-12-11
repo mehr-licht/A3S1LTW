@@ -28,7 +28,9 @@ function draw_header($username){
     
         <nav class="navbar">
             <div class="navbar left">
+            <a href="../pages/list_stories.php"> 
                 <span class="navbar title">Yet Another Site</span>
+                </a>
             </div>
             <div class="navbar message">
         <?php if (isset($_SESSION['messages']) ) {?>
