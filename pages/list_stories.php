@@ -42,9 +42,8 @@
                         </svg>
                     </aside>
                     <div class="content">
-                        <h1><?=$post['title']?></h1>
+                        <h1 title="<?=$post['title']?>"><?=$post['title']?></h1>
                         <div>
-                            
                             <span><span class="author"><?=$post['idUser']?></span> <span class="date">• <?=$post['date']?></span></span>
                             <p>
                                 <?php if(isset($post['image'])) { ?>
