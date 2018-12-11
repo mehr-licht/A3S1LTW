@@ -41,15 +41,20 @@
                             </g>
                         </svg>
                     </aside>
-                    <?php if(isset($post['image'])) { ?>
-                    <img class="thumb" src="<?=$post['image']?>">
-                    <?php } else { ?>
-                    <img class="thumb" src="/res/default-thumb.png">
-                    <?php } ?>
                     <div class="content">
                         <h1><?=$post['title']?></h1>
-                        <span><span class="author"><?=$post['idUser']?></span> <span class="date">• <?=$post['date']?></span></span>
-                        <p><?=$post['content']?></p>
+                        <div>
+                            
+                            <span><span class="author"><?=$post['idUser']?></span> <span class="date">• <?=$post['date']?></span></span>
+                            <p>
+                                <?php if(isset($post['image'])) { ?>
+                                <img class="thumb" src="<?=$post['image']?>">
+                                <?php } else { ?>
+                                <img class="thumb" src="/res/default-thumb.png">
+                                <?php } ?>
+                                <span><?=$post['content']?></span>
+                            </p>
+                        </div>
                         <a href="postView.php?postId=<?=$post['idPost']?>">Read More</a>
                     </div>
                 </article>
