@@ -186,34 +186,36 @@ function downVoteComent($username, $idcoment){
  * @param titulo, post title
  * @param conteudo, post main text
  */
-function insertPost($iduser, $today, $titulo, $conteudo, $image){
+function insertPost($iduser, $today, $titulo, $conteudo){
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Post(idUser, date, title,  content, image) VALUES(?, ?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO Post(idUser, date, title,  content) VALUES(?, ?, ?, ?)');
     $stmt->execute(array(
         $iduser,
         $today,
         $titulo,
-        $conteudo,
-        $image
+        $conteudo
     ));
 }
 
 /**
- * Inserts a new Coment into a POST.
+ * Inserts a new Coment into a POST
  * @param iduser,    
  * @param data,
  * @param comentConteudo,
  * @param idPost,
  * @param idParentComent
  */
-function insertComent($iduser, $data, $comentConteudo, $idPost){
+function insertComment($idPost, $idUser, $comment, $date = NULL){
+    if(is_null($date))
+        $date = date('Y-m-d');
+    
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, NULL)');
+    $stmt = $db->prepare('INSERT INTO Coment(idPost, idUser, data, comentContent) VALUES(?, ?, ?, ?)');
     $stmt->execute(array(
-        $iduser,
-        $data,
-        $comentConteudo,
-        $idPost
+        $idPost,
+        $idUser,
+        $date,
+        $comment
     ));
 }
 

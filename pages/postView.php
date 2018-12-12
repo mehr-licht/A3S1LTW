@@ -5,14 +5,11 @@
     draw_header($_SESSION['username']);
     if(isset($_GET['postId'])) {
         $post = getPostByID($_GET['postId']);
-        print_r($post);
     } else {
-        // do something
     }
 
     $vote = getPostVoteByUser($post['idPost'], $_SESSION['username']);
 ?>
-<link href="/css/post.css" type="text/css" rel="stylesheet">
 <!-- the post content section -->
 <section id="post_view" class="post view">
     <aside class="votes">
@@ -73,4 +70,33 @@
     </article>
     
     <?php } ?>
+
+<section id="comments">
+    <h1>Comments:</h1>
+    <section>
+        <textarea id="comment_txt">New comments go here</textarea>
+        <button id="submit_comment_btn">Submit</button>
+    </section>
+    <section>
+        <?php
+        foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
+        <article class="comment">
+            <?php if(!isset($comment['avatar'])) { ?>
+                <img alt="User profile" src="../res/avatars/default.png">
+            <?php } else { ?>
+                <img alt="User profile" src="../res/avatars/">
+            <?php } ?>
+            <div>
+                <h1 class="header">
+                    <span class="author"><?=$comment['idUser']?></span>
+                    said on
+                    <span class="date"> • date goes here</span>
+                </h1>
+                <p><?=$comment['comentContent']?></p>
+                <div>Votes stuff</div>
+            </div>
+        </article>
+        <?php } ?>
+    </section>
+</section>
 </section>
