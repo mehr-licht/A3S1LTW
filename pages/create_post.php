@@ -16,7 +16,7 @@ draw_header($username);
 ?>
 
 <div>
-    <form action="/action_page.php">
+    <form action="../actions/action_post.php" enctype="multipart/form-data">
         <p>
         <label id="postTitle" class="createtitle" >
             <input type="text" name="titulo" placeholder="Title">
@@ -27,13 +27,11 @@ draw_header($username);
             <input type="text" name="content" placeholder="Drop your post here">
         </label>
         </p>
-
-        
-        <label id="postContent" class="createpost" >
-            <input type="file"/>
-        </label>
-        
-        <button id="buttonSubmit" type="submmit" formaction="../actions/action_post.php" formmethod="post">Post Me!</button>
+        <!-- <div class="profile edit avatar hide" id="imageEdit"> -->
+            <input type="file" name="imageToUpload" id="imageToUpLoad" accept="image/*">
+        <!--    <button type="submit" class="button" formaction="../actions/action_post.php" formmethod="post" value="Upload">Upload</button>
+         </div> --->
+            <button id="buttonSubmit" name="submit" type="submmit" formaction="../actions/action_post.php" formmethod="post">Post Me!</button>
         </p>
     </form>
 </div>
