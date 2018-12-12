@@ -3,12 +3,12 @@
   include_once('../database/db_user.php');
 
   $username = $_SESSION['username'];
-
+$imageName = sha1($username);
 
   // Generate filenames for original, small and medium files
-  $originalFileName = "../res/originals/$username.jpg";
-  $smallFileName = "../res/avatars/$username.jpg";
-  $mediumFileName = "../res/thumbs_medium/$username.jpg";
+  $originalFileName = "../res/originals/$imageName.jpg";
+  $smallFileName = "../res/avatars/$imageName.jpg";
+  $mediumFileName = "../res/thumbs_medium/$imageName.jpg";
 
   // Move the uploaded file to its final destination
   move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);

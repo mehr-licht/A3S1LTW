@@ -108,11 +108,33 @@ function getUserPost($username, $idPost){
 */
 function getAllPostsUSER($username){
   $db = Database::instance()->db();
-  $stmt = $db->prepare('SELECT idPost, iduser, data, conteudo, votesUp, votesDown FROM Post WHERE  iduser = ?');
+  $stmt = $db->prepare('SELECT distinct Post.idPost, Post.idUser, date, title, content, vote image FROM Post join PostVote on (PostVote.idUser = Post.idUser) WHERE Post.iduser =  ?');
   $stmt->execute(array(
       $username
   ));
   return $stmt->fetchAll();
 }
+
+/**
+* @brief Returns All Comments in db order by date
+* @param
+* @return all table information from Comments
+*/
+function getAllCommentsUSER($username){
+  $db = Database::instance()->db();
+  $stmt = $db->prepare('SELECT distinct coment.idComent, coment.idUser, coment.data, idPost, coment.comentContent, votes FROM Coment join votedComents  WHERE  coment.iduser =  ?');
+  $stmt->execute(array(
+      $username
+  ));
+  return $stmt->fetchAll();
+}
+
+/*
+idComent INTEGER PRIMARY KEY AUTOINCREMENT,
+    idUser VARCHAR NOT NULL REFERENCES User(username),
+    data DATE NOT NULL DEFAULT CURRENT_DATE,
+    comentContent VARCHAR NOT NULL,
+    idPost INTEGER NOT NULL REFERENCES Post(idPost),
+    idParentComent */
 
 ?>
