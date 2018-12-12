@@ -44,7 +44,7 @@
         </p>
         <?php 
         if(!is_null($post['image'])) { ?>
-        <img alt="Post thumbnail" src="<?$post['image']?>">
+        <img alt="Post thumbnail" src="<?=$post['image']?>">
         <?php } ?> 
         <p><?=$post['content']?></p>
     </article>
