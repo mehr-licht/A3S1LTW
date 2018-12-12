@@ -46,30 +46,6 @@
         <p><?=$post['content']?></p>
     </article>
 </section>
-<section id="comments">
-    <h1>Comments:</h1>
-    <?php
-    foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
-    <article class="comment" id="<?= $comment['idComent'] ?>">
-        <?php 
-        $imageName = sha1($comment['idUser']);
-        if(!file_exists("../res/avatars/$imageName.jpg")) { ?>
-            <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
-        <?php } else { ?>
-            <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
-        <?php } ?>
-        <div>
-            <h1 class="header">
-                <span class="author"><a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <?=$comment['idUser']?></a></span>
-                said on
-                <span class="date"> • date goes here</span>
-            </h1>
-            <p><?=$comment['comentContent']?></p>
-            <div>Votes stuff</div>
-        </div>
-    </article>
-    
-    <?php } ?>
 
 <section id="comments">
     <h1>Comments:</h1>
@@ -81,14 +57,16 @@
         <?php
         foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
         <article class="comment">
-            <?php if(!isset($comment['avatar'])) { ?>
-                <img alt="User profile" src="../res/avatars/default.png">
+            <?php 
+            $imageName = sha1($comment['idUser']);
+            if(!file_exists("../res/avatars/$imageName.jpg")) { ?>
+                <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
             <?php } else { ?>
-                <img alt="User profile" src="../res/avatars/">
+                <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
             <?php } ?>
             <div>
                 <h1 class="header">
-                    <span class="author"><?=$comment['idUser']?></span>
+                    <a class="author" href="/pages/profile.php?user=<?= $comment['idUser']?>"><?=$comment['idUser']?></a>
                     said on
                     <span class="date"> • date goes here</span>
                 </h1>
@@ -98,5 +76,4 @@
         </article>
         <?php } ?>
     </section>
-</section>
 </section>
