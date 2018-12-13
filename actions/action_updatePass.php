@@ -1,7 +1,19 @@
 <?php
-  include_once('../includes/session.php');
-  include_once('../database/db_user.php');
-  
+  include_once '../includes/session.php';
+  include_once '../database/db_user.php';
+  include_once '../includes/csrf.class.php';
+ 
+  $csrf = new csrf();
+   
+  // Generate Token Id and Valid
+  $token_id = $csrf->get_token_id();
+  $token_value = $csrf->get_token($token_id);
+  if($csrf->check_valid('post')) {
+    var_dump($_POST[$token_id]);
+  } else {
+    echo 'Not Valid';
+  }
+
 $username = $_SESSION['username'];
 /**
  * check if the two passwords match and that  are different than the current one

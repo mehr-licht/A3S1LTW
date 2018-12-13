@@ -1,12 +1,19 @@
 <?php 
+
+include_once('../includes/csrf.class.php');
 /**
  * Draws the header for all pages. Receives an username
  * if the user is logged in in order to draw the logout
  * link.
  */
 function draw_header($username)
-{
-    ?>
+{$csrf = new csrf();
+    // Generate Token Id and Valid
+   $token_id = $csrf->get_token_id();
+   $token_value = $csrf->get_token($token_id);
+   
+   $imageName=sha1($username);
+   ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -66,7 +73,7 @@ function draw_header($username)
             <div class="navbar right">
                 <div class="search-container">
                     <form id="searchbox" action="/actions/action_search.php">
-
+                    <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
                         <div class="dropdown">
                             <select name="choice">
                                 <option value="any">Any</option>
@@ -80,8 +87,8 @@ function draw_header($username)
                         <button type="submit"><i class="search-button"></i></button>
                     </form>
                 </div>
-                <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$username.jpg") ?
-                    "../res/avatars/$username.jpg" : "../res/default.gif" ?> width="4%" class="avatar">
+                <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
+        "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="4%" class="avatar">
                 <a class="navbar user" href="../pages/profile.php">
                     <?= $username ?></a>
                 <a class="navbar user" href="../pages/create_post.php">Create post</a>

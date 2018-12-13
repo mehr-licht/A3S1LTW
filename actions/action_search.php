@@ -1,9 +1,20 @@
 <?php
-include_once('../includes/session.php');
-include_once('../database/db_user.php');
-include_once('../database/dbPosts.php');
-include_once('../templates/tpl_common.php');
-
+include_once '../includes/session.php';
+include_once '../database/db_user.php';
+include_once '../database/dbPosts.php';
+include_once '../templates/tpl_common.php';
+include_once '../includes/csrf.class.php';
+ 
+$csrf = new csrf();
+ 
+// Generate Token Id and Valid
+$token_id = $csrf->get_token_id();
+$token_value = $csrf->get_token($token_id);
+if($csrf->check_valid('post')) {
+  var_dump($_POST[$token_id]);
+} else {
+  echo 'Not Valid';
+}
 
 if (!isset($_SESSION['username'])) {
   die(header('Location: ../pages/login.php'));
@@ -43,7 +54,7 @@ switch ($_GET['choice']) {
       <div class="<?= $comment['idComent'] ?>">
         <a href="../pages/postView.php?postId=<?= $comment['idPost'] ?>#<?= $comment['idComent'] ?>">
           <?= $comment['idComent']; ?> :
-          <?= substr($comment['comentContent'], 0, 50) ?></a>
+          <?= substr($comment['comentContent'], 0, 50) ?></a>• 
         <?= $comment['data'] ?>
         <!-- plus owner of post? -->
       </div>

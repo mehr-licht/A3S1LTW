@@ -1,10 +1,18 @@
 <?php 
+
+include_once('../includes/csrf.class.php');
+
+
+
 /**
  * Draws the login section.
  */
 function draw_login()
 {
-    ?>
+    $csrf = new csrf();
+     // Generate Token Id and Valid
+    $token_id = $csrf->get_token_id();
+    $token_value = $csrf->get_token($token_id); ?>
 <div id="login">
     <script type="text/javascript" src="../js/eye.js"></script>
     <form class="form" action="../actions/action_login.php" method="post">
@@ -17,6 +25,7 @@ function draw_login()
         <!-- password field -->
         <div class="form-group">
             <label>Password:
+            <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
                 <input name="password" class="passEdit" type="password" placeholder="password" required="required" />
                 <button onclick="togglePass(0)" id="toggleBtn3" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
                     type="button" width="50px">
@@ -43,10 +52,14 @@ function draw_login()
 <?php 
 } ?>
 
-<?php function draw_signup() { 
-/**
- * Draws the signup section.
- */ ?>
+<?php function draw_signup()
+{ $csrf = new csrf();
+    // Generate Token Id and Valid
+   $token_id = $csrf->get_token_id();
+   $token_value = $csrf->get_token($token_id);
+    /**
+     * Draws the signup section.
+     */ ?>
 <div id="signup">
     <script type="text/javascript" src="../js/eye.js"></script>
     <script type="text/javascript" src="../js/su.js"></script>
@@ -77,6 +90,7 @@ function draw_login()
         <div id="insrtemail" class="emailc">
             <label class="label4"> Email: </label>
             <input id="signupEmail" name="email" type="email" placeholder="email" oninput="validateEmailSignup()"/>
+            <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         </div>
         <div id="buttons">
             <!-- <input id="submitButton" type="submit" value="login"> -->
@@ -95,15 +109,20 @@ function draw_login()
         </div>
     </form>
 </div>
-<?php } ?>
+<?php 
+} ?>
 
 
 
 
-<?php function draw_request() { 
-/**
- * Draws the request section.
- */ ?>
+<?php function draw_request()
+{ $csrf = new csrf();
+    // Generate Token Id and Valid
+   $token_id = $csrf->get_token_id();
+   $token_value = $csrf->get_token($token_id);
+    /**
+     * Draws the request section.
+     */ ?>
 <div id="resquest">
 
     <form class="form" action="../actions/action_request.php" method="post">
@@ -115,7 +134,7 @@ function draw_login()
         <!-- email field -->
         <label>email:
             <input name="email" type="text" placeholder="email" />
-
+            <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         </label>
         <!-- login button -->
         <input name="request" type="submit" value="request username and new password" />
@@ -139,4 +158,5 @@ function draw_login()
 
 
 </div>
-<?php } ?>
+<?php 
+} ?>

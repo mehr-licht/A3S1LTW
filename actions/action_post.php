@@ -1,6 +1,18 @@
 <?php
-  include_once('../includes/session.php');
-  include_once('../database/dbPosts.php');
+  include_once '../includes/session.php';
+  include_once '../database/dbPosts.php';
+  include_once '../includes/csrf.class.php';
+ 
+  $csrf = new csrf();
+   
+  // Generate Token Id and Valid
+  $token_id = $csrf->get_token_id();
+  $token_value = $csrf->get_token($token_id);
+  if($csrf->check_valid('post')) {
+    var_dump($_POST[$token_id]);
+  } else {
+    echo 'Not Valid';
+  }
 
   $today = date("Y-m-d", $timestamp = time());
   

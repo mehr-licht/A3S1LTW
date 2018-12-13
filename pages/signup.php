@@ -1,9 +1,9 @@
 <link rel="stylesheet" type="text/css" href="../css/auth.css">
 <?php 
 //igual Restivo
-  include_once('../includes/session.php');
-  include_once('../templates/tpl_common.php');
-  include_once('../templates/tpl_auth.php');
+  include_once '../includes/session.php';
+  include_once '../templates/tpl_common.php';
+  include_once '../templates/tpl_auth.php';
  
   // Verify if user is logged in
   if (isset($_SESSION['username']))
