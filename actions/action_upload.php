@@ -38,5 +38,5 @@ $imageName = sha1($username);
   imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
   imagejpeg($medium, $mediumFileName);
 
-  header("Location: ../pages/profile.php");
+  header('Location: ../pages/profile.php');
 ?>

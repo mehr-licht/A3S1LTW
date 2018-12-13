@@ -70,4 +70,3 @@ CREATE TABLE Votedcoments (
     votes INTEGER NOT NULL DEFAULT 0, 
     CONSTRAINT id_Votedcoments PRIMARY KEY (iduser, idcoment)
 );
-

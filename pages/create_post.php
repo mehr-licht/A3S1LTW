@@ -6,6 +6,8 @@ if (!isset($_SESSION['username'])){
     die(header('Location: ../pages/login.php'));
 }
 
+
+
 $username=$_SESSION['username'];
 draw_header($username);
 
@@ -28,7 +30,7 @@ draw_header($username);
         </label>
         </p>
         <!-- <div class="profile edit avatar hide" id="imageEdit"> -->
-            <input type="file" name="imageToUpload" id="imageToUpLoad" accept="image/*">
+            <input type="file" name="imageToUpload" id="imageToUpLoad" accept="image/jpg, image/jpeg">
         <!--    <button type="submit" class="button" formaction="../actions/action_post.php" formmethod="post" value="Upload">Upload</button>
          </div> --->
             <button id="buttonSubmit" name="submit" type="submmit" formaction="../actions/action_post.php" formmethod="post">Post Me!</button>

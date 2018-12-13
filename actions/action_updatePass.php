@@ -27,7 +27,7 @@ try {
 } catch (PDOException $e) {
     die($e->getMessage("error changing password"));
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to change the password!');
-    header('Location: ../pages/profile.php');
+    header('Location: ../pages/profile.ph');
 }
 
   ?>
