@@ -18,16 +18,16 @@ switch ($_GET['choice']) {
 <section id="users">
   <div class="users">
     <?php $users = searchUser($_GET['search']); 
-    if (count($users)) ?> <h1>Users</h1> 
+    if (count($users)) { ?> <h1>Users</h1> 
     <?php  foreach ($users as $user) { ?>
     <article class="userSearch">
       <div class="<?= $user['username'] ?>">
         <a href="../pages/profile.php?userId=<?= $user['username'] ?>#<?= $user['username'] ?>">
-          <?= $user['username']; ?>
+          <?= $user['username']; ?></a>
       </div>
     </article>
     <?php 
-    } ?>
+  }  } ?>
   </div>
 </section>
 <?php
@@ -37,7 +37,7 @@ switch ($_GET['choice']) {
 <section id="comments">
   <div class="comments">
     <?php $allComments = searchComents($_GET['search']); ?>
-    <?php if(count($allComments)) ?> <h1>Comments:</h1> 
+    <?php if(count($allComments)) { ?> <h1>Comments:</h1> 
     <?php foreach ($allComments as $comment) { ?>
     <article class="commentSearch">
       <div class="<?= $comment['idComent'] ?>">
@@ -49,7 +49,7 @@ switch ($_GET['choice']) {
       </div>
     </article>
     <?php 
-    } ?>
+   } } ?>
   </div>
 </section>
 <?php
@@ -59,7 +59,7 @@ switch ($_GET['choice']) {
 <section id="posts">
   <div class="posts">
     <?php $allPosts = searchPosts($_GET['search']); 
-    if(count($allPosts)) ?> <h1>Posts</h1>
+    if(count($allPosts)) { ?> <h1>Posts</h1>
     <?php foreach ($allPosts as $post) { ?>
     <article class="postSearch">
       <div class="<?= $post['title'] ?>">
@@ -70,7 +70,7 @@ switch ($_GET['choice']) {
       </div>
     </article>
     <?php 
-            } ?>
+          }  } ?>
   </div>
 </section>
 <?php
@@ -79,22 +79,22 @@ switch ($_GET['choice']) {
 <section id="users">
   <div class="users">
     <?php $users = searchUser($_GET['search']); 
-              if(count($users)) ?> <h1>Users</h1>
+              if(count($users)) { ?> <h1>Users</h1>
              <?php foreach ($users as $user) { ?>
     <article class="userSearch">
       <div class="<?= $user['username'] ?>">
         <a href="../pages/profile.php?userId=<?= $user['username'] ?>#<?= $user['username'] ?>">
-          <?= $user['username']; ?>
+          <?= $user['username']; ?></a>
       </div>
     </article>
     <?php 
-            } ?>
+          }  } ?>
   </div>
 </section>
 <section id="comments">
     <div class="comments">
     <?php $allComments = searchComments($_GET['search']); 
-if(count($allComments)) ?> <h1>Comments</h1>
+if(count($allComments)) { ?> <h1>Comments</h1>
     <?php foreach ($allComments as $comment) { ?>
     <article class="commentSearch">
       <div class="<?= $comment['idComent'] ?>">
@@ -105,14 +105,14 @@ if(count($allComments)) ?> <h1>Comments</h1>
       </div>
     </article>
     <?php 
-    } ?>
+    } } ?>
   </div>
 </section>
 <!-- list of Posts-->
 <section id="posts">
   <div class="posts">
     <?php $allPosts = searchPosts($_GET['search']); 
-    if(count($allPosts)) ?> <h1>Posts</h1>
+    if(count($allPosts)) { ?> <h1>Posts</h1>
     <?php foreach ($allPosts as $post) { ?>
     <article class="postSearch">
       <div class="<?= $post['title'] ?>">
@@ -123,7 +123,7 @@ if(count($allComments)) ?> <h1>Comments</h1>
       </div>
     </article>
     <?php 
-        } ?>
+        } } ?>
   </div>
 </section>
 <?php
