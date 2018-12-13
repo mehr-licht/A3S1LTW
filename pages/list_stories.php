@@ -4,6 +4,7 @@
     include_once '../templates/tpl_auth.php';
     include_once '../database/dbPosts.php';
     
+    
     //Verify if user is logged in
     if (checkTimeout() || !isset($_SESSION['username'])){
         die(header('Location: ../pages/login.php'));

@@ -3,18 +3,7 @@ include_once '../includes/session.php';
 include_once '../database/db_user.php';
 include_once '../database/dbPosts.php';
 include_once '../templates/tpl_common.php';
-include_once '../includes/csrf.class.php';
- 
-$csrf = new csrf();
- 
-// Generate Token Id and Valid
-$token_id = $csrf->get_token_id();
-$token_value = $csrf->get_token($token_id);
-if($csrf->check_valid('post')) {
-  var_dump($_POST[$token_id]);
-} else {
-  echo 'Not Valid';
-}
+
 
 if (!isset($_SESSION['username'])) {
   die(header('Location: ../pages/login.php'));
@@ -31,7 +20,7 @@ switch ($_GET['choice']) {
     <?php $users = searchUser($_GET['search']); 
     if (count($users)) ?> <h1>Users</h1> 
     <?php  foreach ($users as $user) { ?>
-    <article class="user">
+    <article class="userSearch">
       <div class="<?= $user['username'] ?>">
         <a href="../pages/profile.php?userId=<?= $user['username'] ?>#<?= $user['username'] ?>">
           <?= $user['username']; ?>
@@ -50,7 +39,7 @@ switch ($_GET['choice']) {
     <?php $allComments = searchComents($_GET['search']); ?>
     <?php if(count($allComments)) ?> <h1>Comments:</h1> 
     <?php foreach ($allComments as $comment) { ?>
-    <article class="comment">
+    <article class="commentSearch">
       <div class="<?= $comment['idComent'] ?>">
         <a href="../pages/postView.php?postId=<?= $comment['idPost'] ?>#<?= $comment['idComent'] ?>">
           <?= $comment['idComent']; ?> :
@@ -72,7 +61,7 @@ switch ($_GET['choice']) {
     <?php $allPosts = searchPosts($_GET['search']); 
     if(count($allPosts)) ?> <h1>Posts</h1>
     <?php foreach ($allPosts as $post) { ?>
-    <article class="post">
+    <article class="postSearch">
       <div class="<?= $post['title'] ?>">
         <a href="../pages/postView.php?postId=<?= $post['idPost'] ?>">
           <?= $post['title'] ?> </a>
@@ -92,7 +81,7 @@ switch ($_GET['choice']) {
     <?php $users = searchUser($_GET['search']); 
               if(count($users)) ?> <h1>Users</h1>
              <?php foreach ($users as $user) { ?>
-    <article class="user">
+    <article class="userSearch">
       <div class="<?= $user['username'] ?>">
         <a href="../pages/profile.php?userId=<?= $user['username'] ?>#<?= $user['username'] ?>">
           <?= $user['username']; ?>
@@ -107,7 +96,7 @@ switch ($_GET['choice']) {
     <?php $allComments = searchComments($_GET['search']); 
 if(count($allComments)) ?> <h1>Comments</h1>
     <?php foreach ($allComments as $comment) { ?>
-    <article class="comment">
+    <article class="commentSearch">
       <div class="<?= $comment['idComent'] ?>">
         <a href="../pages/postView.php?postId=<?= $comment['idPost'] ?>#<?= $comment['idComent'] ?>">
           <?= substr($comment['comentContent'], 0, 50) ?></a>
@@ -125,7 +114,7 @@ if(count($allComments)) ?> <h1>Comments</h1>
     <?php $allPosts = searchPosts($_GET['search']); 
     if(count($allPosts)) ?> <h1>Posts</h1>
     <?php foreach ($allPosts as $post) { ?>
-    <article class="post">
+    <article class="postSearch">
       <div class="<?= $post['title'] ?>">
         <a href="../pages/postView.php?postId=<?= $post['idPost'] ?>">
           <?= $post['title'] ?> </a>

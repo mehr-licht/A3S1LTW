@@ -1,7 +1,7 @@
 <?php 
 include_once '../includes/session.php';
 include_once '../templates/tpl_common.php';
-include_once '../includes/csrf.class.php';
+
 
 if (checkTimeout() || !isset($_SESSION['username'])){
     die(header('Location: ../pages/login.php'));
@@ -9,10 +9,6 @@ if (checkTimeout() || !isset($_SESSION['username'])){
 
 regenerateSession();
 
-$csrf = new csrf();
-    // Generate Token Id and Valid
-   $token_id = $csrf->get_token_id();
-   $token_value = $csrf->get_token($token_id);
 
 $username=$_SESSION['username'];
 draw_header($username);
@@ -32,7 +28,7 @@ draw_header($username);
         
         <p>
         <label id="postContent" class="createpost">
-        <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
+        
             <input type="text" name="content" placeholder="Drop your post here">
         </label>
         </p>
