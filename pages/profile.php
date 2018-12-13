@@ -3,7 +3,7 @@ include_once '../includes/session.php';
 include_once '../templates/tpl_common.php';
 include_once '../database/db_user.php';//for checkusername  
 include_once '../templates/tpl_auth.php';
-include_once '../includes/csrf.class.php';
+
 
 if (checkTimeout() || !isset($_SESSION['username'])){
   die(header('Location: ../pages/login.php'));
@@ -11,10 +11,7 @@ if (checkTimeout() || !isset($_SESSION['username'])){
 
 regenerateSession();
 
-$csrf = new csrf();
-    // Generate Token Id and Valid
-   $token_id = $csrf->get_token_id();
-   $token_value = $csrf->get_token($token_id);
+
 
 $editable = false;
 $thisuser = $_SESSION['username'];
@@ -56,7 +53,7 @@ draw_header($thisuser);
       <label id="profile-avatar" class="profile avatar">
 
       </label></p>
-      <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
+      
       <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
         "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="8%" class="avatar">
     </div>
@@ -133,7 +130,7 @@ draw_header($thisuser);
 
     <label id="profile-zip" class="profile editable">zip code: </label>
     <div contenteditable="false">
-    <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
+    
       <input class="profile editable" id="input-zip" type="text" name="zipcode" value="<?= $user_array[0]['zipcode'] ?>"
         oninput="clearInputError('input-zip')"><span></span> </div>
     </p>
@@ -189,7 +186,7 @@ draw_header($thisuser);
       </label></p>
       <label id="profile-repeat" class="profile edit password">
         <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" oninput="checkPassword('loginPwd2')" />
-        <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
+        
         <button onclick="togglePass(1)" id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
           type="button" width="50px">
           <img src="../res/glyphicons-eye-open.svg" width="50%" />
@@ -216,7 +213,7 @@ draw_header($thisuser);
       <?php $allPostsByUser = getAllPostsUSER($username) ;
       if (count($allPostsByUser)) { ?> <h1>Posts:</h1> <?php 
       foreach ($allPostsByUser as $postByUser) { ?>
-      <article class="post">
+      <article class="postSearch">
         <div class="<?= $postByUser['title'] ?>">
           <a href="../pages/postView.php?postId=<?= $postByUser['idPost'] ?>">
             <?= $postByUser['title'] ?> </a>• 
@@ -236,10 +233,10 @@ draw_header($thisuser);
         <?php $allCommentsByUser = getAllCommentsUSER($username); 
         if (count($allCommentsByUser)) { ?> <h1>Comments:</h1> <?php 
          foreach ($allCommentsByUser as $commentByUser) { ?>
-        <article class="comment">
+        <article class="commentSearch">
           <div class="<?= $commentByUser['idComent']?>">
             <a href="../pages/postView.php?postId=<?= $commentByUser['idPost'] ?>#<?= $commentByUser['idComent'] ?>">
-              <?=  substr($commentByUser['comentContent'], 0, 50) ?></a>
+              <?=  substr($commentByUser['comentContent'], 0, 50) ?>                                                                                                                                                                                                                                      </a>• 
             <?= $commentByUser['data']?>
             <!-- plus owner of post? -->
           </div>

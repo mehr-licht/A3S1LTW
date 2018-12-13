@@ -1,17 +1,13 @@
 <?php 
 
-include_once('../includes/csrf.class.php');
+
 /**
  * Draws the header for all pages. Receives an username
  * if the user is logged in in order to draw the logout
  * link.
  */
 function draw_header($username)
-{$csrf = new csrf();
-    // Generate Token Id and Valid
-   $token_id = $csrf->get_token_id();
-   $token_value = $csrf->get_token($token_id);
-   
+{  
    $imageName=sha1($username);
    ?>
 
@@ -73,7 +69,7 @@ function draw_header($username)
             <div class="navbar right">
                 <div class="search-container">
                     <form id="searchbox" action="/actions/action_search.php">
-                    <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
+                    
                         <div class="dropdown">
                             <select name="choice">
                                 <option value="any">Any</option>

@@ -44,7 +44,8 @@
     <article class="content">
         <h1><?=$post['title']?></h1>
         <p> Published by
-            <span class="author"><?=$post['idUser']?></span>
+        <a href="/pages/profile.php?user=<?= $post['idUser']?>">
+            <span class="author"><?=$post['idUser']?></span></a>
             <span class="date">• <?=$post['date']?></span>
         </p>
         <?php 
@@ -71,7 +72,7 @@
             <h1 class="header">
                 <span class="author"><a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <?=$comment['idUser']?></a></span>
                 said on
-                <span class="date"> • date goes here</span>
+                <span class="date"> • <?= $comment['data']?></span>
             </h1>
             <p><?=$comment['comentContent']?></p>
             <div>Votes stuff</div>
@@ -80,3 +81,6 @@
     
     <?php } ?>
 </section>
+<?php
+draw_footer();
+?>
