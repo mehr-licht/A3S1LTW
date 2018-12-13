@@ -9,7 +9,7 @@
 
   function checkUserPassword($username, $password) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare("SELECT * FROM User WHERE username = ? and password = ?");
+    $stmt = $db->prepare('SELECT * FROM User WHERE username = ? and password = ?');
     $stmt->execute(array($username, sha1($password)));
     return $stmt->fetch()?true:false; // return true if a line exists
   }
@@ -19,7 +19,7 @@
   */
   function checkUsername($username){
     $db = Database::instance()->db();
-    $stmt = $db->prepare("SELECT * FROM User WHERE username = ?");
+    $stmt = $db->prepare('SELECT * FROM User WHERE username = ?');
     $stmt->execute(array($username));
     return $stmt->fetch()?true:false;
   }
@@ -37,7 +37,7 @@
 
   function insertUser($username, $password, $email){
       $db = Database::instance()->db();
-      $stmt = $db->prepare("INSERT INTO User (username, password, email ) VALUES(?, ?, ?)");
+      $stmt = $db->prepare('INSERT INTO User (username, password, email ) VALUES(?, ?, ?)');
       $stmt->execute(array($username, sha1($password), $email));
   }
 
