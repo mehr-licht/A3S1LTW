@@ -240,4 +240,45 @@ function insertComentIntoComent($iduser, $data, $comentConteudo, $idPost, $idPar
     ));
 }
 
+
+/**
+ * searches for a user in the database.
+ * @param search 
+ * @return idUser/username   
+ */
+function searchUser($search){
+    $param = "%$search%";
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('select username from user where username like ?');
+    $stmt->execute(array($param));
+    return $stmt->fetchAll();
+}
+
+
+/**
+ * searches for the pattern in the Comment contents.
+ * @param search  
+ * @return idComent  
+ */
+function searchComments($search){
+    $param = "%$search%";
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('select * from coment where comentContent like ?');
+    $stmt->execute(array($param));
+    return $stmt->fetchAll();
+}
+
+/**
+ * searches for the pattern in both Post titles and contents.
+ * @param search 
+ * @return idPost   
+ */
+function searchPosts($search){
+    $param = "%$search%";
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('select * from post where title like ? or content like ?');
+    $stmt->execute(array($param, $param));
+    return $stmt->fetchAll();
+}
+
 ?>

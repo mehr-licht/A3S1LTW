@@ -8,6 +8,7 @@ if (!isset($_SESSION['username'])) {
   die(header('Location: ../pages/login.php'));
 }
 
+
 $editable = false;
 $thisuser = $_SESSION['username'];
 $username = $_SESSION['username'];
@@ -54,7 +55,7 @@ draw_header($thisuser);
     </div>
     <?php if ($editable) { ?>
     <div class="profile edit avatar hide" id="avatarEdit">
-      <input type="file" name="image" accept="image/*">
+      <input type="file" name="image" accept="image/jpg, image/jpeg">
       <button type="submit" class="button" formaction="../actions/action_upload.php" formmethod="post" value="Upload">Upload</button>
     </div>
   </form>
@@ -201,38 +202,41 @@ draw_header($thisuser);
 
   <!-- list of Posts-->
   <section id="posts">
-    <h1>Posts:</h1>
-  <div class="profile posts">
+      <div class="profile posts">
 
-    <?php $allPostsByUser = getAllPostsUSER($username) ?>
-    <?php foreach ($allPostsByUser as $postByUser) { ?>
+      <?php $allPostsByUser = getAllPostsUSER($username) ;
+      if (count($allPostsByUser)) { ?> <h1>Posts:</h1> <?php 
+      foreach ($allPostsByUser as $postByUser) { ?>
       <article class="post">
-    <div class="<?= $postByUser['title'] ?>">
-    <a href="../pages/postView.php?postId=<?= $postByUser['idPost'] ?>">
-      <?= $postByUser['title'] ?> </a>  <?= $postByUser['date'] ?> <!-- plus votes? -->
+        <div class="<?= $postByUser['title'] ?>">
+          <a href="../pages/postView.php?postId=<?= $postByUser['idPost'] ?>">
+            <?= $postByUser['title'] ?> </a>
+          <?= $postByUser['date'] ?>
+          <!-- plus votes? -->
+        </div>
+      </article>
+      <?php } } ?>
     </div>
-    </article>
-    <?php } ?>
-  </div>
+    </section>
 
 
-
-  <!-- list of Comments-->
-  <section id="comments">
-    <h1>Comments:</h1>
-  <div class="profile comments">
-    <?php $allCommentsByUser = getAllCommentsUSER($username) ?>
-    <?php foreach ($allCommentsByUser as $commentByUser) { ?>
-      <article class="comment">
-    <div class="<?= $commentByUser['idComent']?>">
-    <a href="../pages/postView.php?postId=<?= $commentByUser['idPost'] ?>#<?= $commentByUser['idComent'] ?>">
-      <?= $commentByUser['idComent'];?> : 
-     
-      <?=  substr($commentByUser['comentContent'], 0, 50) ?></a> <?= $commentByUser['data']?> <!-- plus owner of post? -->
-    </div>
-    </article>
-    <?php } ?>
-  </div>
+    <!-- list of Comments-->
+    <section id="comments">
+      
+      <div class="profile comments">
+        <?php $allCommentsByUser = getAllCommentsUSER($username); 
+        if (count($allCommentsByUser)) { ?> <h1>Comments:</h1> <?php 
+         foreach ($allCommentsByUser as $commentByUser) { ?>
+        <article class="comment">
+          <div class="<?= $commentByUser['idComent']?>">
+            <a href="../pages/postView.php?postId=<?= $commentByUser['idPost'] ?>#<?= $commentByUser['idComent'] ?>">
+              <?=  substr($commentByUser['comentContent'], 0, 50) ?></a>
+            <?= $commentByUser['data']?>
+            <!-- plus owner of post? -->
+          </div>
+        </article>
+        <?php } } ?>
+      </div>
     </section>
 
 

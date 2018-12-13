@@ -8,7 +8,7 @@
   // Verify if user is logged in
   if (isset($_SESSION['username']))
     die(header('Location: ../pages/list_stories.php'));
- 
+
   draw_header(null);
   
 

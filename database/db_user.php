@@ -122,7 +122,7 @@ function getAllPostsUSER($username){
 */
 function getAllCommentsUSER($username){
   $db = Database::instance()->db();
-  $stmt = $db->prepare('SELECT distinct coment.idComent, coment.idUser, coment.data, idPost, coment.comentContent, votes FROM Coment join votedComents  WHERE  coment.iduser =  ?');
+  $stmt = $db->prepare('SELECT distinct coment.idComent, coment.idUser, coment.data, idPost, coment.comentContent FROM Coment  WHERE  coment.iduser = ?');
   $stmt->execute(array(
       $username
   ));

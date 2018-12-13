@@ -2,6 +2,12 @@
     include_once('../includes/session.php');
     include_once('../database/dbPosts.php');
     include_once('../templates/tpl_common.php');
+
+
+    if (!isset($_SESSION['username'])) {
+        die(header('Location: ../pages/login.php'));
+    }
+      
     draw_header($_SESSION['username']);
     if(isset($_GET['postId'])) {
         $post = getPostByID($_GET['postId']);
@@ -40,8 +46,8 @@
             <span class="date">• <?=$post['date']?></span>
         </p>
         <?php 
-        if(!is_null($post['image'])) { ?>
-        <img alt="Post thumbnail" src="<?=$post['image']?>">
+        if(file_exists($post['image'])) { ?>
+        <img alt="Post thumbnail" src="<?=$post['image'] ?>">
         <?php } ?> 
         <p><?=$post['content']?></p>
     </article>
@@ -49,31 +55,26 @@
 
 <section id="comments">
     <h1>Comments:</h1>
-    <section>
-        <textarea id="comment_txt">New comments go here</textarea>
-        <button id="submit_comment_btn">Submit</button>
-    </section>
-    <section>
-        <?php
-        foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
-        <article class="comment">
-            <?php 
-            $imageName = sha1($comment['idUser']);
-            if(!file_exists("../res/avatars/$imageName.jpg")) { ?>
-                <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
-            <?php } else { ?>
-                <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
-            <?php } ?>
-            <div>
-                <h1 class="header">
-                    <a class="author" href="/pages/profile.php?user=<?= $comment['idUser']?>"><?=$comment['idUser']?></a>
-                    said on
-                    <span class="date"> • date goes here</span>
-                </h1>
-                <p><?=$comment['comentContent']?></p>
-                <div>Votes stuff</div>
-            </div>
-        </article>
+    <?php
+    foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
+    <article class="comment" id="<?= $comment['idComent'] ?>">
+        <?php 
+        $imageName = sha1($comment['idUser']);
+        if(!file_exists("../res/avatars/$imageName.jpg")) { ?>
+            <a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
+        <?php } else { ?>
+            <a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
         <?php } ?>
-    </section>
+        <div>
+            <h1 class="header">
+                <span class="author"><a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <?=$comment['idUser']?></a></span>
+                said on
+                <span class="date"> • date goes here</span>
+            </h1>
+            <p><?=$comment['comentContent']?></p>
+            <div>Votes stuff</div>
+        </div>
+    </article>
+    
+    <?php } ?>
 </section>
