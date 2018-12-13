@@ -6,8 +6,15 @@
   $username = $_POST['username'];
   $password = $_POST['password'];
 
+try{
+  $isCorrected = checkUserPassword($username, $password);
+} catch (PDOException $e) {
+  die($e->getMessage());
+  $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to comment the post!');
+  header('Location: ../pages/login.php');
+}
 
-  if (checkUserPassword($username, $password)) {
+  if ($isCorrected) {
     unset($_SESSION['messages']); 
     $_SESSION['username'] = $username;
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Logged in successfully!');

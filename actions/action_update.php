@@ -24,7 +24,23 @@ $username = $_SESSION['username'];
 /**
  * Allow only one user per email
  */
- if(checkUserEmail($_POST['email'])  && getUserInformation($username)[0]['email'] != $_POST['email'] ){
+try{
+  $emailExists = checkUserEmail($_POST['email']);
+} catch (PDOException $e) {
+  die($e->getMessage("error updating database"));
+  $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to check data!');
+  header('Location: ../pages/login.php');
+}
+try{
+  $isSameEmail = getUserInformation($username)[0]['email'];
+} catch (PDOException $e) {
+  die($e->getMessage("error updating database"));
+  $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to get data!');
+  header('Location: ../pages/login.php');
+}
+
+
+ if( $emailExists && $isSameEmail != $_POST['email'] ){
     $_SESSION['ERROR'] = 'Email already in use';
     die(header('Location: '.$_SERVER['HTTP_REFERER']));
   }
