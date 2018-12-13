@@ -3,11 +3,16 @@ include_once '../includes/session.php';
 include_once '../templates/tpl_common.php';
 include_once '../database/db_user.php';//for checkusername  
 include_once '../templates/tpl_auth.php';
+include_once '../includes/csrf.class.php';
 
 if (!isset($_SESSION['username'])) {
   die(header('Location: ../pages/login.php'));
 }
 
+$csrf = new csrf();
+    // Generate Token Id and Valid
+   $token_id = $csrf->get_token_id();
+   $token_value = $csrf->get_token($token_id);
 
 $editable = false;
 $thisuser = $_SESSION['username'];
@@ -49,7 +54,7 @@ draw_header($thisuser);
       <label id="profile-avatar" class="profile avatar">
 
       </label></p>
-
+      <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
       <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
         "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="8%" class="avatar">
     </div>
@@ -126,6 +131,7 @@ draw_header($thisuser);
 
     <label id="profile-zip" class="profile editable">zip code: </label>
     <div contenteditable="false">
+    <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
       <input class="profile editable" id="input-zip" type="text" name="zipcode" value="<?= $user_array[0]['zipcode'] ?>"
         oninput="clearInputError('input-zip')"><span></span> </div>
     </p>
@@ -181,6 +187,7 @@ draw_header($thisuser);
       </label></p>
       <label id="profile-repeat" class="profile edit password">
         <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" oninput="checkPassword('loginPwd2')" />
+        <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
         <button onclick="togglePass(1)" id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
           type="button" width="50px">
           <img src="../res/glyphicons-eye-open.svg" width="50%" />
@@ -210,7 +217,7 @@ draw_header($thisuser);
       <article class="post">
         <div class="<?= $postByUser['title'] ?>">
           <a href="../pages/postView.php?postId=<?= $postByUser['idPost'] ?>">
-            <?= $postByUser['title'] ?> </a>
+            <?= $postByUser['title'] ?> </a>• 
           <?= $postByUser['date'] ?>
           <!-- plus votes? -->
         </div>
