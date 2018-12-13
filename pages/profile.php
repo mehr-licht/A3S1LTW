@@ -5,9 +5,11 @@ include_once '../database/db_user.php';//for checkusername
 include_once '../templates/tpl_auth.php';
 include_once '../includes/csrf.class.php';
 
-if (!isset($_SESSION['username'])) {
+if (checkTimeout() || !isset($_SESSION['username'])){
   die(header('Location: ../pages/login.php'));
 }
+
+regenerateSession();
 
 $csrf = new csrf();
     // Generate Token Id and Valid

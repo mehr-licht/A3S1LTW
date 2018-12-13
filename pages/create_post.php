@@ -3,9 +3,11 @@ include_once '../includes/session.php';
 include_once '../templates/tpl_common.php';
 include_once '../includes/csrf.class.php';
 
-if (!isset($_SESSION['username'])){
+if (checkTimeout() || !isset($_SESSION['username'])){
     die(header('Location: ../pages/login.php'));
 }
+
+regenerateSession();
 
 $csrf = new csrf();
     // Generate Token Id and Valid

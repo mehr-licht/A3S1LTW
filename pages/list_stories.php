@@ -3,9 +3,13 @@
     include_once '../templates/tpl_common.php';
     include_once '../templates/tpl_auth.php';
     include_once '../database/dbPosts.php';
+    
     //Verify if user is logged in
-    if(!isset($_SESSION['username']))
+    if (checkTimeout() || !isset($_SESSION['username'])){
         die(header('Location: ../pages/login.php'));
+    }
+    
+    regenerateSession();
  
     draw_header($_SESSION['username']);
     
@@ -54,7 +58,7 @@
                                 <span><?=$post['content']?></span>
                             </p>
                         </div>
-                        <a href="postView.php?postId=<?= $post['idPost'] ?>">Read More</a>
+                        <a href="postView.php?postId=<?=$post['idPost']?>">Read More</a>
                     </div>
                 </article>
             <?php } ?>

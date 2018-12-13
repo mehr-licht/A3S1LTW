@@ -6,9 +6,11 @@
   include_once '../templates/tpl_auth.php';
  
   // Verify if user is logged in
-  if (isset($_SESSION['username']))
-    die(header('Location: ../pages/list_stories.php'));
+  if (checkTimeout() || !isset($_SESSION['username'])){
+    die(header('Location: ../pages/login.php'));
+}
 
+regenerateSession();
   draw_header(null);
   
 
