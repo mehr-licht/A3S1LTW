@@ -283,4 +283,11 @@ function searchPosts($search){
     return $stmt->fetchAll();
 }
 
+/**
+ * Erases html and Php tags
+ */
+function trimAndStripHtmlPHPtags($words){
+    return trim(strip_tags($words)); 
+}
+
 ?>

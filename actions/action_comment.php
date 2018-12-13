@@ -21,7 +21,8 @@ if(   !isset($_SESSION['username'])   ){
 
 
 //strip html and php tags
-$conteudo = trim(   strip_tags($_POST['contentComment'])   );
+$conteudo = trimAndStripHtmlPHPtags($_POST['contentComment'])
+ 
 //data actual
 $today = date("Y-m-d", $timestamp = time());
 // idUser

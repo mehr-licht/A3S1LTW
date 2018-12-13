@@ -46,14 +46,14 @@ try{
   }
 
 //Filtering unexpected characters : removed all html and php tags as well\t \n \r \0 \x0B  
-$newEmail    =  trim(   strip_tags($_POST['email']) );
-$newName    =   trim(   strip_tags($_POST['name']) );
-$newStreet  =   trim(   strip_tags($_POST['street']) );
-$newZipc    =   trim(   strip_tags($_POST['zipcode']) );
-$newCity    =   trim(   strip_tags($_POST['city']) );
-$newCountry =   trim(   strip_tags($_POST['country']) );
-$newBirth   =   trim(   strip_tags($_POST['birthday']) );
-$newphone   =   trim(   strip_tags($_POST['phone'])); 
+$newEmail    =  trimAndStripHtmlPHPtags($_POST['email']);
+$newName    =   trimAndStripHtmlPHPtags($_POST['name']);
+$newStreet  =   trimAndStripHtmlPHPtags($_POST['street']);
+$newZipc    =   trimAndStripHtmlPHPtags($_POST['zipcode']);
+$newCity    =   trimAndStripHtmlPHPtags($_POST['city']);
+$newCountry =   trimAndStripHtmlPHPtags($_POST['country']);
+$newBirth   =   trimAndStripHtmlPHPtags($_POST['birthday']);
+$newphone   =   trimAndStripHtmlPHPtags($_POST['phone']); 
 
 if($newBirth != ""){
   //only allows possible characters for dates
