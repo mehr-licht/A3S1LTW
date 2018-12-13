@@ -28,19 +28,6 @@ $username = $_SESSION['username'];
     $_SESSION['ERROR'] = 'Email already in use';
     die(header('Location: '.$_SERVER['HTTP_REFERER']));
   }
-/*
-  elseif($_POST['password'] != $_POST['password2'] ) {
-    $_SESSION['ERROR'] = 'No match passwords';
-    header("Location:".$_SERVER['HTTP_REFERER']."");
-  }*/
-
-  /*
-    // Don't allow certain characters
-  if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
-    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username can only contain letters and numbers!');
-    die(header('Location: ../pages/signup.php'));
-  }
-*/
 
 //Filtering unexpected characters : removed all html and php tags as well\t \n \r \0 \x0B  
 $newEmail    =  trim(   strip_tags($_POST['email']) );

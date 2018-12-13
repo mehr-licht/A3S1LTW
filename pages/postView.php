@@ -51,6 +51,22 @@
         <?php } ?> 
         <p><?=$post['content']?></p>
     </article>
+</section id="postReply">
+
+<section>
+    <div>
+        <form action="../actions/action_comment.php?idp=<?= $_GET['postId'] ?>" enctype="multipart/form-data">
+        <p>
+        <label id="postContent" class="createpost">
+            <!-- <input type="hidden" name=" <?/* =$token_id; */?>" value="<? /*=$token_value; */?>" /> -->
+           
+            <input type="text" name="contentComment" placeholder="Something to say">
+        </label>
+        </p> 
+            <button id="buttonSubmit" name="submit" type="submmit" formaction="../actions/action_comment.php?idp=<?= $_GET['postId'] ?>" formmethod="post">Coment</button>
+        </p>
+    </form>
+    </div>
 </section>
 
 <section id="comments">
@@ -61,13 +77,13 @@
         <?php 
         $imageName = sha1($comment['idUser']);
         if(!file_exists("../res/avatars/$imageName.jpg")) { ?>
-            <a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
+            <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
         <?php } else { ?>
-            <a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
+            <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
         <?php } ?>
         <div>
             <h1 class="header">
-                <span class="author"><a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <?=$comment['idUser']?></a></span>
+                <span class="author"><a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <?=$comment['idUser']?></a></span>
                 said on
                 <span class="date"> • date goes here</span>
             </h1>
