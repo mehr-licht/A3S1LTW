@@ -63,13 +63,13 @@
         <?php 
         $imageName = sha1($comment['idUser']);
         if(!file_exists("../res/avatars/$imageName.jpg")) { ?>
-            <a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
+            <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
         <?php } else { ?>
-            <a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
+            <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
         <?php } ?>
         <div>
             <h1 class="header">
-                <span class="author"><a href="/pages/profile.php?user=<?= $comment['idUser']?>?>"> <?=$comment['idUser']?></a></span>
+                <span class="author"><a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <?=$comment['idUser']?></a></span>
                 said on
                 <span class="date"> • date goes here</span>
             </h1>
