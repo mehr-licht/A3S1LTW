@@ -207,17 +207,18 @@ function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
  * @param idPost,
  * @param idParentComent
  */
-function insertComment($idPost, $idUser, $comment, $date = NULL){
+function insertComment($idUser, $date, $commentCont, $idPost, $idParentComent){
     if(is_null($date))
         $date = date('Y-m-d');
     
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Coment(idPost, idUser, data, comentContent) VALUES(?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO Coment(idUser, data, comentContent, idPost, idParentComent) VALUES(?, ?, ?, ?, ?)');
     $stmt->execute(array(
-        $idPost,
         $idUser,
         $date,
-        $comment
+        $commentCont,
+        $idPost,
+        $idParentComent
     ));
 }
 
@@ -280,6 +281,13 @@ function searchPosts($search){
     $stmt = $db->prepare('select * from post where title like ? or content like ?');
     $stmt->execute(array($param, $param));
     return $stmt->fetchAll();
+}
+
+/**
+ * Erases html and Php tags
+ */
+function trimAndStripHtmlPHPtags($words){
+    return trim(strip_tags($words)); 
 }
 
 ?>

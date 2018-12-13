@@ -3,11 +3,26 @@ include_once '../includes/session.php';
 include_once '../database/db_user.php';
 
 
-if (checkUsername($_POST['username'])) {
+try{
+    $userExists = checkUsername($_POST['username']);
+} catch (PDOException $e) {
+    die($e->getMessage());
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'No user name!');
+    header('Location: ../pages/login.php');
+}
+try{
+    $emailExists = checkUserEmail($_POST['email']);
+} catch (PDOException $e) {
+    die($e->getMessage());
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'No email!');
+    header('Location: ../pages/login.php');
+}
+
+if ($userExists ) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username already in use!');
     die(header('Location:../pages/signup.php'));
 
-} else if (checkUserEmail($_POST['email'])) {
+} else if ($emailExists) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email already in use!');
     die(header('Location:../pages/signup.php'));
 

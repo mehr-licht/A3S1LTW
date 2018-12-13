@@ -55,6 +55,22 @@
         <?php } ?> 
         <p><?=$post['content']?></p>
     </article>
+</section id="postReply">
+
+<section>
+    <div>
+        <form action="../actions/action_comment.php?idp=<?= $_GET['postId'] ?>" enctype="multipart/form-data">
+        <p>
+        <label id="postContent" class="createpost">
+            <!-- <input type="hidden" name=" <?/* =$token_id; */?>" value="<? /*=$token_value; */?>" /> -->
+           
+            <input type="text" name="contentComment" placeholder="Something to say">
+        </label>
+        </p> 
+            <button id="buttonSubmit" name="submit" type="submmit" formaction="../actions/action_comment.php?idp=<?= $_GET['postId'] ?>" formmethod="post">Coment</button>
+        </p>
+    </form>
+    </div>
 </section>
 
 <section id="comments">
