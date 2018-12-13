@@ -56,7 +56,7 @@ if (!checkdate(date('d', strtotime($birthday)) ,date('m', strtotime($birthday)) 
   } catch (PDOException $e) {
       die($e->getMessage("error updating database"));
       $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to update database!');
-      header('Location: ../pages/login.php');
+      die(header('Location: ../pages/login.php'));
   }
  
 ?>

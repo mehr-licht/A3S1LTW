@@ -55,6 +55,7 @@ function regenerateSession($reload = false)
 
     // Set session ID to the new one, and start it back up again
   session_id($newSession);
+  
   session_start();
 
     // Don't want this one to expire

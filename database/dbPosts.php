@@ -187,7 +187,7 @@ function downVoteComent($username, $idcoment){
  * @param titulo, post title
  * @param conteudo, post main text
  */
-function insertPost($iduser, $today, $titulo, $conteudo, $url){
+function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
     $db = Database::instance()->db();
     $stmt = $db->prepare('INSERT INTO Post(idUser, date, title,  content, image) VALUES(?, ?, ?, ?, ?)');
     $stmt->execute(array(
