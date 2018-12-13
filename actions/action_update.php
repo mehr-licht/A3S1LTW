@@ -2,17 +2,12 @@
   include_once('../includes/session.php');
   include_once('../database/db_user.php');
 
-  //die($_POST['name']);//DEBUG purposes only - delete when ready
   
-  /*
-  if(!checkUsername($_POST['username'])){
-      $_SESSION['ERROR'] = 'Username not in our database';
-      header("Location:".$_SERVER['HTTP_REFERER']."");
-  }*/
+  if(   !isset($_SESSION['username'])   ){
+    die(header('Location: ../pages/login.php'));
+    }
 
-
-  $username = $_SESSION['username'];
-
+$username = $_SESSION['username'];
 
 /**
  * Allow only one user per email
@@ -35,22 +30,37 @@
   }
 */
 
+//Filtering unexpected characters : removed all html and php tags as well\t \n \r \0 \x0B  
+$newEmail    =  trim(   strip_tags($_POST['email']) );
+$newName    =   trim(   strip_tags($_POST['name']) );
+$newStreet  =   trim(   strip_tags($_POST['street']) );
+$newZipc    =   trim(   strip_tags($_POST['zipcode']) );
+$newCity    =   trim(   strip_tags($_POST['city']) );
+$newCountry =   trim(   strip_tags($_POST['country']) );
+$newBirth   =   trim(   strip_tags($_POST['birthday']) );
+$newphone   =   trim(   strip_tags($_POST['phone'])); 
 
-if($_POST['birthday'] != ""){
+if($newBirth != ""){
+  //only allows possible characters for dates
+  $birthday = preg_replace("/[^0-9\-]/", "",$_POST['birthday']);
 
-//only allows possible characters for dates
-$birthday = preg_replace("/[^0-9\-]/", "",$_POST['birthday']);
-
-//if not a valid gregorian date (note that both YYYY-mm-dd and dd-mm-YYYY are accepted)
-if (!checkdate(date('d', strtotime($birthday)) ,date('m', strtotime($birthday)) ,date('Y', strtotime($birthday)))){
-  $_SESSION['messages'][] = array('type' => 'error', 'content' => 'invalid date!');
-  die(header('Location: ../pages/profile.php')); 
-};
-
+  //if not a valid gregorian date (note that both YYYY-mm-dd and dd-mm-YYYY are accepted)
+  if (!checkdate(date('d', strtotime($birthday)) ,date('m', strtotime($birthday)) ,date('Y', strtotime($birthday)))){
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'invalid date!');
+    die(header('Location: ../pages/profile.php')); 
+  };
 }
+
+//Check for a string only with digits
+if( !ctype_digit($newphone) ){
+  $newphone = " ";
+  $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Error on field phone number !');
+  header('Location: ../pages/profile.php');
+}
+
   try {
-    updateUser($_SESSION['username'], $_POST['email'], $_POST['name'], $_POST['street'], $_POST['zipcode'],$birthday,
-     $_POST['city'], $_POST['country'], $_POST['phone']);
+    updateUser($_SESSION['username'], $newEmail , $newName, $newStreet, $newZipc, $birthday,
+    $newCity, $newCountry, $newphone);
       $_SESSION['messages'][] = array('type' => 'success', 'content' => 'database updated!');
       header('Location: ../pages/profile.php'); 
   } catch (PDOException $e) {
