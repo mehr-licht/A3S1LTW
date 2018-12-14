@@ -55,3 +55,16 @@ Web Technologies And Languages - MIEIC FEUP
 
 Projects done in colaboration with [TejInaco](https://github.com/TejInaco) and [Fabiodrg666](https://github.com/Fabiodrg666)
 
+
+
+
+
+
+
+**Security:**
+hashed passwords (could have added salt)
+[DONE] Session Fixation prevention (Session Regeneration, Session, Time-out and verifying)
+[DONE] SQL injection prevention (prepared queries)
+[DONE] CSRF prevention (random token-id and hashed token_values with salt)
+[DONE] XSS prevention \[ Escape Scripts on all inputs and images stored with hash(Sha256 and salt)  ]
+?LTS (HTTPS) (public-key encription
