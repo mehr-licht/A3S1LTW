@@ -31,23 +31,23 @@ All users should be able to:
 
 The web site should be as secure as possible.
 
- _+ Multilevel Comments: Comments can be replies to other comments (2 levels or infinite levels).
+[DONE] Multilevel Comments: Comments can be replies to other comments (2 levels or infinite levels).
 
 Channels: The site is divided into channels. Stories can be posted in a specific channel. Users can create and subscribe to channels. 
 Each channel should have a special place where users can see stories published on those channels. A special place where user can see stories belonging to channels they subscribed to should be available.
 
-_+ Sorting: Stories can be sorted in many different ways (most voted up, more recent, more comments, …).
+[DONE] Sorting: Stories can be sorted in many different ways (most voted up, more recent, more comments, …).
 
 [DONE] Profiles: User profiles have a list of all stories and comments posted by them.
 
-_+ Points: Each time a story or comment from a user is voted up, the user gets some points; and when they are voted down they lose points.
+[DONE] Points: Each time a story or comment from a user is voted up, the user gets some points; and when they are voted down they lose points.
 
 References: Stories and comments can refer to users and channels using some special notation. These should automatically become links 
 to the referred user profile or channel.
 
 [DONE] Search: Users can search for channels, stories and comments.
 
-API: A REST API that allows bots or other apps to use the website.
+[DONE] API: A REST API that allows bots or other apps to use the website.
 
 
 

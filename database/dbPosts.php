@@ -26,6 +26,38 @@ function getAllPostsOrderByDate(){
     return $stmt->fetchAll();
 }
 
+/*
+ * @brief Returns all Posts sorted by the total of votes (from highest to lowest) alonside it's votes number
+ * Same as the getAllPostsOrderByDate() fuction
+ */
+function getAllPostsOrderByMostVoted(){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare(
+        'SELECT P.idPost, P.idUser, P.date, P.title, P.content, P.image, V.points
+        FROM Post as P 
+        LEFT JOIN (SELECT idPost, sum(vote) as points FROM PostVote GROUP BY idPost) as V ON P.idPost = V.idPost
+        ORDER BY points DESC'
+    );
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+/*
+ * @brief Returns all Posts sorted by the total of comments (from highest to lowest) alonside it's votes number
+ * Same as the getAllPostsOrderByDate() fuction
+ */
+function getAllPostsOrderByMostComent(){
+    $db = Database::instance()->db();
+    $stmt = $db->prepare(
+        'SELECT P.idPost, P.idUser, P.date, P.title, P.content, P.image, V.points
+        FROM Post as P 
+        LEFT JOIN (SELECT idPost, sum(vote) as points FROM PostVote GROUP BY idPost) as V ON P.idPost = V.idPost
+        LEFT JOIN (SELECT idPost, COUNT(idComent) as pt FROM Coment GROUP BY idPost) as Z ON P.idPost = Z.idPost 
+        ORDER BY Z.pt DESC'
+    );
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
 /**
  * Gets post information given an ID
  * @param $postID
