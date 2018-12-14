@@ -1,5 +1,7 @@
 'use strict';
 
+const HTTPREQUEST_STATE_DONE = 4;
+
 function api_user_commented_post(postId, comment) {
     let xmlhttp = new XMLHttpRequest();
 
@@ -8,8 +10,7 @@ function api_user_commented_post(postId, comment) {
         if(xmlhttp.readyState === HTTPREQUEST_STATE_DONE) {
             let response = xmlhttp.response; // Javascript object (json)
             if(response.code === 0) {
-                // success
-                // render the submitted comment
+                document.querySelector('#comments > section').insertAdjacentHTML('afterend', response.comment_HTML);
             } else {
                 alert(`Something went wrong (${response.code}): ${response.description}`);
             }
