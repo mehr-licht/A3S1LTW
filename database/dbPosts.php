@@ -138,50 +138,6 @@ function getCommentsByPost($idPost){
     return $stmt->fetchAll();
 }
 
-/**
- * @brief Checks if user voted in this post
- * @param username a procurar
- * @param idComent o id do coment a procurar
- * @return return true if a line exists
- */
-function can_user_voteComent($username, $idComent){
-    $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT * FROM  Votedcoments where iduser = ? AND idcoment = ?');
-    $stmt->execute(array(
-        $username,
-        $idPost
-    ));
-    return $stmt->fetch() ? true : false; // return true if a line exists
-}
-
-/**
- * @brief Upvotes a Post
- * @param username de quem vota no coment
- * @param idcoment o id do coment que leva o voto
- */
-function upvoteComent($username, $idcoment){
-    $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Votedcoments(iduser, idcoment, votes) VALUES( ?, ?, 1)');
-    $stmt->execute(array(
-        $username,
-        $idcoment
-    ));
-}
-
-/**
- * @brief downvotes a Post
- * @param username de quem vota
- * @param idcoment o id do coment que leva o voto
- */
-function downVoteComent($username, $idcoment){
-    $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Votedcoments(iduser, idcoment, votes) VALUES( ?, ?, -1)');
-    $stmt->execute(array(
-        $username,
-        $idcoment
-    ));
-}
-
 /** --------------------------------------------------------------------------------  POST
  * Inserts a new Post into the database.
  * @param iduser, data, conteudo

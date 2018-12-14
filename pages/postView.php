@@ -2,6 +2,7 @@
     include_once '../includes/session.php';
     include_once '../database/dbPosts.php';
     include_once '../templates/tpl_common.php';
+    include_once '../templates/tpl_comment.php';
 
 
     if (checkTimeout() || !isset($_SESSION['username'])){
@@ -58,7 +59,7 @@
     </article>
 </section id="postReply">
 
-<section>
+<!-- <section>
     <div>
         <form action="../actions/action_comment.php?idp=<?= $_GET['postId'] ?>" enctype="multipart/form-data">
         <p>
@@ -71,36 +72,20 @@
         </p>
     </form>
     </div>
-</section>
-
-<section id="comments">
+</section> -->
+<?php 
+    $postComments = getCommentsByPost($_GET['postId'])
+?>
+<section id="comments" --data-last-comment="<?=$postComments[0]['idComent']?>">
     <h1>Comments:</h1>
+    <section>
+        <textarea id="comment_txt">New comments go here</textarea>
+        <button id="submit_comment_btn">Submit</button>
+    </section>
     <?php
-  
-    foreach(getCommentsByPost($_GET['postId']) as $comment) { ?>
-    
-    <article class="comment" id="<?= $comment['idComent'] ?>">
-        <?php 
-        $imageName = sha1($comment['idUser']);
-        if(!file_exists("../res/avatars/$imageName.jpg")) { ?>
-            <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/default.png"></a>
-        <?php } else { ?>
-            <a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <img alt="User profile" src="/res/avatars/<?= $imageName ?>.jpg"></a>
-        <?php } ?>
-        <div>
-            <h1 class="header">
-                <span class="author"><a href="/pages/profile.php?user=<?= $comment['idUser']?>"> <?=$comment['idUser']?></a></span>
-                said on
-                <span class="date"> • <?= $comment['data']?></span>
-            </h1>
-            <p><?=$comment['comentContent']?></p>
-            <div>Votes stuff</div>
-            <a href="postView.php?comId=<?=$comment['idComent']?>">Reply</a>
-        </div>
-
-    </article>
-    
-    <?php } ?>
+    foreach(getCommentsByPost($_GET['postId']) as $comment) {
+        draw_comment($comment['idComent'], $comment['idUser'], $comment['comentContent'], $comment['data']);
+    } ?>
 </section>
 <?php
 draw_footer();
