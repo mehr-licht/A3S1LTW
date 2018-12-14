@@ -137,6 +137,17 @@ function getCommentsByPost($idPost){
     return $stmt->fetchAll();
 }
 
+function getCommentById($idComment) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare(
+        'SELECT *
+        FROM Coment
+        WHERE Coment.idComent = ?'
+    );
+    $stmt->execute(array($idComment));
+    return $stmt->fetch();
+}
+
 /** --------------------------------------------------------------------------------  POST
  * Inserts a new Post into the database.
  * @param iduser, data, conteudo
