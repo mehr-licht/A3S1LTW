@@ -79,7 +79,7 @@
 <section id="comments" --data-last-comment="<?=$postComments[0]['idComent']?>">
     <h1>Comments:</h1>
     <section>
-        <textarea id="comment_txt">New comments go here</textarea>
+        <textarea id="comment_txt" placeholder="New comments go here"></textarea>
         <button id="submit_comment_btn">Submit</button>
     </section>
     <?php

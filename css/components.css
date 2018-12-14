@@ -1,4 +1,5 @@
-input[type='text'], input[type='password'] {
+input[type='text'],
+input[type='password'] {
     line-height: 1.5;
     border-radius: 0.25rem;
     border: 1px solid #ced4da;
@@ -10,7 +11,8 @@ input[type='text'], input[type='password'] {
     font-size: 1rem;
 }
 
-button, input[type="submit"] {
+button,
+input[type="submit"] {
     display: inline-block;
     padding: 0.3rem 0.75rem;
     text-align: center;
@@ -28,4 +30,61 @@ a {
 
 a:hover {
     color: var(--bg-primary-light);
+}
+
+header .navbar {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: auto;
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    grid-template-areas: "left left left right right" "messages messages search search search";
+    /*width: 60em;*/
+    /*  background-color: #EDEFF0;*/
+}
+
+span.navbar.title {
+    grid-area: left;
+    width: 200px;
+}
+
+navbar .right {
+    grid-area: right;
+}
+
+navbar .message {
+    grid-area: messages;
+}
+
+#searchbox {
+    grid-area: search;
+}
+
+#searchbox {
+    display: grid;
+    grid-template-columns: 3fr;
+    grid-template-areas: "drop field magnifier";
+    /*width: 60em;*/
+    /*  background-color: #EDEFF0;*/
+}
+
+.dropdown {
+    grid-area: drop;
+}
+
+#field {
+    width: 300px;
+}
+
+.field {
+    grid-area: field;
+}
+
+#magnifier {
+    grid-area: magnifier;
+}
+
+.right #avatar {
+    align-content: right;
 }

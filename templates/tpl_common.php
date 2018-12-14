@@ -66,7 +66,7 @@ function draw_header($username)
             </div>
             <?php if ($username != null) { ?>
                 
-            <div class="navbar right">
+            
                 <div class="search-container">
                     <form id="searchbox" action="/actions/action_search.php">
                     
@@ -78,13 +78,16 @@ function draw_header($username)
                                 <option value="users">Users</option>
                             </select>
                         </div>
+                        <div class="field">
                         <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
-                        <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="search-button"></i></button>
+                        <input id="field" type="text" placeholder="Search.." name="search" >
+            </div>
+                        <button id="magnifier" type="submit"><i class="search-button"></i></button>
                     </form>
                 </div>
+                <div class="navbar right">
                 <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
-        "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="4%" class="avatar">
+        "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="40px" class="avatar">
                 <a class="navbar user" href="../pages/profile.php">
                     <?= $username ?></a>
                 <a class="navbar user" href="../pages/create_post.php">Create post</a>

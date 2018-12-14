@@ -18,7 +18,8 @@
     justify-content: center;
 }
 
-.post svg.votes.upvote, .post svg.votes.downvote {
+.post svg.votes.upvote,
+.post svg.votes.downvote {
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -26,10 +27,12 @@
     fill: darkslategrey;
 }
 
-.post svg.votes.upvote:hover, .post svg.votes.downvote:hover {
+.post svg.votes.upvote:hover,
+.post svg.votes.downvote:hover {
     transition: opacity 0.5s;
     opacity: 0.7;
 }
+
 .post svg.votes.upvote.active {
     fill: rgb(0, 161, 27);
 }
@@ -41,6 +44,7 @@
 .post.preview {
     margin: 0.5rem 0;
 }
+
 
 /**
  * CONTENT (PREVIEW)
@@ -76,19 +80,22 @@
     flex-grow: 1;
 }
 
-.post.preview .content a {
+.post.preview .content .more {
     display: block;
     text-align: right;
 }
 
+
 /**
  * CONTENT (VIEW)
  */
+
 .post.view .content {
     margin: 0.5rem;
     padding: 0.5rem 1rem;
     min-height: 300px;
 }
+
 .post.view .content h1 {
     margin: unset;
     font-family: 'Oswald', sans-serif;
@@ -101,9 +108,11 @@
     text-align: justify;
 }
 
+
 /**
  * COMMENTS
  */
+
 .comment {
     margin: 0.5rem 0;
     padding: 0.25rem 0.5rem;
@@ -125,9 +134,11 @@
     font-weight: normal;
 }
 
+
 /**
  * Utils
  */
+
 .author {
     font-weight: 600;
     color: var(--bg-primary);
@@ -137,22 +148,24 @@
     color: grey;
 }
 
+
 /**
  * Responsiveness
  */
-@media only screen  and (max-width : 700px) {
+
+@media only screen and (max-width: 700px) {
     .post.preview .thumb {
         width: 120px;
         height: 120px;
     }
 }
 
-@media only screen  and (max-width : 500px) {
+@media only screen and (max-width: 500px) {
     /* Reduce image size but also limit amount of characters by reducing height */
     .post.preview .thumb {
         display: none;
     }
-    #stories > article .post_content > p {
+    #stories>article .post_content>p {
         max-height: 6ch;
         overflow: hidden;
         text-overflow: ellipsis;

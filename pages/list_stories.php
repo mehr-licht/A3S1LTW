@@ -60,7 +60,7 @@
                                 <span><?=$post['content']?></span>
                             </p>
                         </div>
-                        <a href="postView.php?postId=<?=$post['idPost']?>">Read More</a>
+                        <div class="more"><a href="postView.php?postId=<?=$post['idPost']?>">Read More</a></div>
                     </div>
                 </article>
             <?php } ?>
