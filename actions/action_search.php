@@ -6,6 +6,7 @@ include_once '../templates/tpl_common.php';
 
 
 if (!isset($_SESSION['username'])) {
+  $_SESSION['messages'][] = array('type' => 'error', 'content' => 'you are not logged in!');
   die(header('Location: ../pages/login.php'));
 }
 

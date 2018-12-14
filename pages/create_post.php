@@ -4,6 +4,7 @@ include_once '../templates/tpl_common.php';
 
 
 if (checkTimeout() || !isset($_SESSION['username'])){
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session time-out. Please log in again!');
     die(header('Location: ../pages/login.php'));
 }
 

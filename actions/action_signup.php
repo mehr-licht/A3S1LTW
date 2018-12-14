@@ -20,11 +20,11 @@ try{
 
 if ($userExists ) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username already in use!');
-    header('Location:../pages/signup.php');
+    die(header('Location:../pages/signup.php'));
 
 } else if ($emailExists) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email already in use!');
-    header('Location:../pages/signup.php');
+    die(header('Location:../pages/signup.php'));
 
 }else if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $_POST['password2']) || !preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $_POST['password'])) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'password: minumum 8 characters, must include one letter and one number!');
@@ -38,7 +38,7 @@ if ($userExists ) {
 
 } else if (!preg_match('/[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-z]+/', $_POST['email'])) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'not numbers in mail can only contain letters and numbers!');
-    die(header('Location: ../pages/signup.php'));
+die(header('Location: ../pages/signup.php'));
 } else {
 
     try {
@@ -49,7 +49,7 @@ if ($userExists ) {
     } catch (PDOException $e) {
         die($e->getMessage());
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
-        header('Location: ../pages/login.php');
+        die(header('Location: ../pages/login.php'));
     }
 }
 ?>

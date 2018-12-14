@@ -5,7 +5,8 @@
 
 
     if (checkTimeout() || !isset($_SESSION['username'])){
-        die(header('Location: ../pages/login.php'));
+        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session time-out. Please log in again!');
+    die(header('Location: ../pages/login.php'));
     }
     
     regenerateSession();

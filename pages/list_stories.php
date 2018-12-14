@@ -7,6 +7,7 @@
     
     //Verify if user is logged in
     if (checkTimeout() || !isset($_SESSION['username'])){
+        $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session time-out. Please log in again!');
         die(header('Location: ../pages/login.php'));
     }
     
