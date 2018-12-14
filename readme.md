@@ -62,9 +62,9 @@ Projects done in colaboration with [TejInaco](https://github.com/TejInaco) and [
 
 
 **Security:**
-hashed passwords (could have added salt)
+[DONE] authentication \[hashed passwords (could have added salt) and recovery of lost credentials]
 [DONE] Session Fixation prevention (Session Regeneration, Session, Time-out and verifying)
 [DONE] SQL injection prevention (prepared queries)
 [DONE] CSRF prevention (random token-id and hashed token_values with salt)
 [DONE] XSS prevention \[ Escape Scripts on all inputs and images stored with hash(Sha256 and salt)  ]
-?LTS (HTTPS) (public-key encription
+
