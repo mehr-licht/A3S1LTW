@@ -125,9 +125,8 @@ function getCommentsByPost($idPost){
     
     $db = Database::instance()->db();
     $stmt = $db->prepare(
-        'SELECT Coment.*, User.avatar 
-        FROM Coment INNER JOIN User 
-        ON Coment.idUser = User.username
+        'SELECT *
+        FROM Coment
         WHERE Coment.idPost = ?
         ORDER BY data desc'
     );
@@ -186,7 +185,7 @@ function insertComment($idPost, $idUser, $comment, $date = NULL){
     
     $db = Database::instance()->db();
     $stmt = $db->prepare('INSERT INTO Coment(idPost, idUser, data, comentContent) VALUES(?, ?, ?, ?)');
-    $stmt->execute(array(
+    echo $stmt->execute(array(
         $idPost,
         $idUser,
         $date,

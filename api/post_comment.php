@@ -25,8 +25,8 @@
 	// get the post id
 	$idPost = $requestBody['id_post'];
 
-	// get the comment content
-	$comment = $requestBody['comment'];
+	// get the comment content (trimmed and without tags)
+	$comment = trimAndStripHtmlPHPtags($requestBody['comment']);
 
 	// ensure required parameters are set (idPost and comment)
 	if(is_null($idPost) or is_null($comment)) {
@@ -40,9 +40,6 @@
 
 	// perform changes in the database
 	try {
-		echo $idPost;
-		echo $username;
-		echo $comment;
 		insertComment($idPost, $username, $comment);
 
 		header("HTTP/1.1 200");
