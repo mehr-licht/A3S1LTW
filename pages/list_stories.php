@@ -50,10 +50,10 @@
                     <div class="content">
                         <h1 title="<?=$post['title']?>"><?=$post['title']?></h1>
                         <div>
-                            <span><span class="author"><?=$post['idUser']?></span> <span class="date">• <?=$post['date']?></span></span>
+                            <span><span class="author"><a href="/pages/profile.php?user=<?= $post['idUser']?>"><?=$post['idUser']?></a></span> <span class="date">• <?=$post['date']?></span></span>
                             <p>
                                 <?php if(isset($post['image'])) { ?>
-                                <img class="thumb" src="<?=$post['image']?>">
+                                    <a href="<?=$post['image']?>"><img class="thumb" src="<?=$post['image']?>"></a>
                                 <?php } else { ?>
                                 <img class="thumb" src="/res/default-thumb.png">
                                 <?php } ?>

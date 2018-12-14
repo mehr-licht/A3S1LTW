@@ -122,6 +122,7 @@ function addPostVote($idPost, $username, $vote) {
  * ]
  */
 function getCommentsByPost($idPost){
+    
     $db = Database::instance()->db();
     $stmt = $db->prepare(
         'SELECT Coment.*, User.avatar 
@@ -133,6 +134,7 @@ function getCommentsByPost($idPost){
     $stmt->execute(array(
         $idPost
     ));
+   
     return $stmt->fetchAll();
 }
 

@@ -12,12 +12,13 @@
     regenerateSession();
       
     draw_header($_SESSION['username']);
+
     if(isset($_GET['postId'])) {
         $post = getPostByID($_GET['postId']);
     } else {
     }
-
-    $vote = getPostVoteByUser($post['idPost'], $_SESSION['username']);
+   
+    $vote = getPostVoteByUser($_GET['postId'], $_SESSION['username']);
 ?>
 <!-- the post content section -->
 <section id="post_view" class="post view">
@@ -51,7 +52,7 @@
         </p>
         <?php 
         if(file_exists($post['image'])) { ?>
-        <img alt="Post thumbnail" src="<?=$post['image'] ?>">
+        <a href="<?=$post['image'] ?>"><img alt="Post thumbnail" src="<?=$post['image'] ?>" height="200"></a>
         <?php } ?> 
         <p><?=$post['content']?></p>
     </article>
@@ -62,8 +63,7 @@
         <form action="../actions/action_comment.php?idp=<?= $_GET['postId'] ?>" enctype="multipart/form-data">
         <p>
         <label id="postContent" class="createpost">
-            <!-- <input type="hidden" name=" <?/* =$token_id; */?>" value="<? /*=$token_value; */?>" /> -->
-           
+        <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
             <input type="text" name="contentComment" placeholder="Something to say">
         </label>
         </p> 
@@ -76,7 +76,9 @@
 <section id="comments">
     <h1>Comments:</h1>
     <?php
-    foreach(getCommentsByPost($post['idPost']) as $comment) { ?>
+  
+    foreach(getCommentsByPost($_GET['postId']) as $comment) { ?>
+    
     <article class="comment" id="<?= $comment['idComent'] ?>">
         <?php 
         $imageName = sha1($comment['idUser']);

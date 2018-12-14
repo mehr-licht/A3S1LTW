@@ -78,7 +78,7 @@ function draw_header($username)
                                 <option value="users">Users</option>
                             </select>
                         </div>
-
+                        <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
                         <input type="text" placeholder="Search.." name="search">
                         <button type="submit"><i class="search-button"></i></button>
                     </form>

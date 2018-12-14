@@ -26,7 +26,7 @@ draw_header($username);
         <label id="postTitle" class="createtitle" >
             <input type="text" name="titulo" placeholder="Title">
         </label></p>
-        
+        <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
         <p>
         <label id="postContent" class="createpost">
         

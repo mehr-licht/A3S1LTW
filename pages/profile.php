@@ -53,7 +53,7 @@ draw_header($thisuser);
       <label id="profile-avatar" class="profile avatar">
 
       </label></p>
-      
+      <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
       <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
         "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="8%" class="avatar">
     </div>
@@ -130,7 +130,7 @@ draw_header($thisuser);
 
     <label id="profile-zip" class="profile editable">zip code: </label>
     <div contenteditable="false">
-    
+    <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
       <input class="profile editable" id="input-zip" type="text" name="zipcode" value="<?= $user_array[0]['zipcode'] ?>"
         oninput="clearInputError('input-zip')"><span></span> </div>
     </p>
@@ -186,7 +186,7 @@ draw_header($thisuser);
       </label></p>
       <label id="profile-repeat" class="profile edit password">
         <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" oninput="checkPassword('loginPwd2')" />
-        
+        <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
         <button onclick="togglePass(1)" id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
           type="button" width="50px">
           <img src="../res/glyphicons-eye-open.svg" width="50%" />

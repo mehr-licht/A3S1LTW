@@ -4,6 +4,13 @@ include_once '../database/db_user.php';
 include_once '../database/dbPosts.php';
 include_once '../templates/tpl_common.php';
 
+if (!isset($_SESSION['token_id'])) {
+  $idSession = $_SESSION['token_id'];
+  if (!validateToken($idSession, $_POST[$idSession])) {
+      $_SESSION['messages'][] = array('type' => 'error', 'content' => 'invalid session token!');
+      die(header('Location: ../pages/login.php'));
+  }
+}
 
 if (!isset($_SESSION['username'])) {
   $_SESSION['messages'][] = array('type' => 'error', 'content' => 'you are not logged in!');
@@ -23,7 +30,7 @@ switch ($_GET['choice']) {
     <?php  foreach ($users as $user) { ?>
     <article class="userSearch">
       <div class="<?= $user['username'] ?>">
-        <a href="../pages/profile.php?userId=<?= $user['username'] ?>#<?= $user['username'] ?>">
+        <a href="../pages/profile.php?user=<?= $user['username'] ?>">
           <?= $user['username']; ?></a>
       </div>
     </article>
@@ -84,7 +91,7 @@ switch ($_GET['choice']) {
              <?php foreach ($users as $user) { ?>
     <article class="userSearch">
       <div class="<?= $user['username'] ?>">
-        <a href="../pages/profile.php?userId=<?= $user['username'] ?>#<?= $user['username'] ?>">
+        <a href="../pages/profile.php?user=<?= $user['username'] ?>">
           <?= $user['username']; ?></a>
       </div>
     </article>
