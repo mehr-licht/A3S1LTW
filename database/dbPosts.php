@@ -178,6 +178,8 @@ function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
  * @param comentConteudo,
  * @param idPost,
  * @param idParentComent
+ * 
+ * @return Integer Returns the ID for the newly created comment
  */
 function insertComment($idPost, $idUser, $comment, $date = NULL){
     if(is_null($date))
@@ -191,6 +193,8 @@ function insertComment($idPost, $idUser, $comment, $date = NULL){
         $date,
         $comment
     ));
+
+    return $db->lastInsertId();
 }
 
 /**
