@@ -1,7 +1,7 @@
 <?php
 	include_once('../includes/session.php');
 	include_once('../database/dbPosts.php');
-	include_once('../includes/csrf.class.php');
+	//include_once('../includes/csrf.class.php');
 	include_once('../templates/tpl_comment.php');
 	if (!isset($_SESSION['token_id'])) {
 		$idSession = $_SESSION['token_id'];
