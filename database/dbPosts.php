@@ -157,9 +157,8 @@ function getCommentsByPost($idPost){
     
     $db = Database::instance()->db();
     $stmt = $db->prepare(
-        'SELECT Coment.*, User.avatar 
-        FROM Coment INNER JOIN User 
-        ON Coment.idUser = User.username
+        'SELECT *
+        FROM Coment
         WHERE Coment.idPost = ?
         ORDER BY data desc'
     );
@@ -168,6 +167,17 @@ function getCommentsByPost($idPost){
     ));
    
     return $stmt->fetchAll();
+}
+
+function getCommentById($idComment) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare(
+        'SELECT *
+        FROM Coment
+        WHERE Coment.idComent = ?'
+    );
+    $stmt->execute(array($idComment));
+    return $stmt->fetch();
 }
 
 /** --------------------------------------------------------------------------------  POST
@@ -189,6 +199,21 @@ function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
     ));
 }
 
+
+// function insertComment($idUser, $date, $commentCont, $idPost, $idParentComent){
+//     if(is_null($date))
+//         $date = date('Y-m-d');
+    
+//     $db = Database::instance()->db();
+//     $stmt = $db->prepare('INSERT INTO Coment(idUser, data, comentContent, idPost, idParentComent) VALUES(?, ?, ?, ?, ?)');
+//     $stmt->execute(array(
+//         $idUser,
+//         $date,
+//         $commentCont,
+//         $idPost,
+//         $idParentComent
+//     ));
+// }
 /**
  * Inserts a new Coment into a POST
  * @param iduser,    
@@ -196,20 +221,23 @@ function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
  * @param comentConteudo,
  * @param idPost,
  * @param idParentComent
+ * 
+ * @return Integer Returns the ID for the newly created comment
  */
-function insertComment($idUser, $date, $commentCont, $idPost, $idParentComent){
+function insertComment($idPost, $idUser, $comment, $date = NULL){
     if(is_null($date))
         $date = date('Y-m-d');
     
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Coment(idUser, data, comentContent, idPost, idParentComent) VALUES(?, ?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO Coment(idPost, idUser, data, comentContent) VALUES(?, ?, ?, ?)');
     $stmt->execute(array(
+        $idPost,
         $idUser,
         $date,
-        $commentCont,
-        $idPost,
-        $idParentComent
+        $comment
     ));
+
+    return $db->lastInsertId();
 }
 
 /**

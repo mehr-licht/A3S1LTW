@@ -1,8 +1,8 @@
 <?php
 	include_once('../includes/session.php');
 	include_once('../database/dbPosts.php');
-	include_once('../includes/csrf.class.php');
-
+	//include_once('../includes/csrf.class.php');
+	include_once('../templates/tpl_comment.php');
 	if (!isset($_SESSION['token_id'])) {
 		$idSession = $_SESSION['token_id'];
 		if (!validateToken($idSession, $_POST[$idSession])) {
@@ -25,8 +25,8 @@
 	// get the post id
 	$idPost = $requestBody['id_post'];
 
-	// get the comment content
-	$comment = $requestBody['comment'];
+	// get the comment content (trimmed and without tags)
+	$comment = trimAndStripHtmlPHPtags($requestBody['comment']);
 
 	// ensure required parameters are set (idPost and comment)
 	if(is_null($idPost) or is_null($comment)) {
@@ -40,15 +40,13 @@
 
 	// perform changes in the database
 	try {
-		echo $idPost;
-		echo $username;
-		echo $comment;
-		insertComment($idPost, $username, $comment);
-
+		$new_id = insertComment($idPost, $username, $comment);
+		$commentRow = getCommentById($new_id);
 		header("HTTP/1.1 200");
 		echo json_encode(array(
 			'code'=>0,
-			'description'=>'Sucess'
+			'description'=>'Sucess',
+			'comment_HTML'=>get_comment_html($new_id, $username, $comment, $commentRow['data'])
 		));
 	} catch(Exception $e) {
 		header("HTTP/1.1 500");

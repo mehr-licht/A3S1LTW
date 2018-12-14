@@ -76,7 +76,7 @@
 <?php 
     $postComments = getCommentsByPost($_GET['postId'])
 ?>
-<section id="comments" --data-last-comment="<?=$postComments[0]['idComent']?>">
+<section id="comments" --data-last-comment="<?=$postComments[0]['idComent']?>" --data-post-id="<?=$_GET['postId']?>">
     <h1>Comments:</h1>
     <section>
         <textarea id="comment_txt">New comments go here</textarea>
