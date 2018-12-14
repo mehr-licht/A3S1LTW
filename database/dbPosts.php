@@ -157,6 +157,21 @@ function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
     ));
 }
 
+
+// function insertComment($idUser, $date, $commentCont, $idPost, $idParentComent){
+//     if(is_null($date))
+//         $date = date('Y-m-d');
+    
+//     $db = Database::instance()->db();
+//     $stmt = $db->prepare('INSERT INTO Coment(idUser, data, comentContent, idPost, idParentComent) VALUES(?, ?, ?, ?, ?)');
+//     $stmt->execute(array(
+//         $idUser,
+//         $date,
+//         $commentCont,
+//         $idPost,
+//         $idParentComent
+//     ));
+// }
 /**
  * Inserts a new Coment into a POST
  * @param iduser,    
@@ -165,18 +180,17 @@ function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
  * @param idPost,
  * @param idParentComent
  */
-function insertComment($idUser, $date, $commentCont, $idPost, $idParentComent){
+function insertComment($idPost, $idUser, $comment, $date = NULL){
     if(is_null($date))
         $date = date('Y-m-d');
     
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO Coment(idUser, data, comentContent, idPost, idParentComent) VALUES(?, ?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO Coment(idPost, idUser, data, comentContent) VALUES(?, ?, ?, ?)');
     $stmt->execute(array(
+        $idPost,
         $idUser,
         $date,
-        $commentCont,
-        $idPost,
-        $idParentComent
+        $comment
     ));
 }
 
