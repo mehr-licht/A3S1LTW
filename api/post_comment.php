@@ -2,7 +2,7 @@
 	include_once('../includes/session.php');
 	include_once('../database/dbPosts.php');
 	include_once('../includes/csrf.class.php');
-
+	include_once('../templates/tpl_comment.php');
 	if (!isset($_SESSION['token_id'])) {
 		$idSession = $_SESSION['token_id'];
 		if (!validateToken($idSession, $_POST[$idSession])) {
@@ -40,12 +40,13 @@
 
 	// perform changes in the database
 	try {
-		insertComment($idPost, $username, $comment);
-
+		$new_id = insertComment($idPost, $username, $comment);
+		$commentRow = getCommentById($new_id);
 		header("HTTP/1.1 200");
 		echo json_encode(array(
 			'code'=>0,
-			'description'=>'Sucess'
+			'description'=>'Sucess',
+			'comment_HTML'=>get_comment_html($new_id, $username, $comment, $commentRow['data'])
 		));
 	} catch(Exception $e) {
 		header("HTTP/1.1 500");
