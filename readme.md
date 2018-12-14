@@ -5,14 +5,23 @@
 ### Minimum expected requirements are the following:
 
 All users should be able to:
+  
   [DONE] Register a new account.
+  
   [DONE] Login
+  
   [DONE] logout.
+  
   [DONE] Edit their profile.
+  
   [DONE] Add a new story. Each story should have a title and some text.
+  
   [DONE] View a list of the most recent stories.
-         Add a comment to a story.
+  
+  [DONE] Add a comment to a story.
+  
   [DONE] View a story in detail with all comments.
+  
   [DONE] Vote on a story or comment (up or down; only one vote per user and story/comment).
  
   [DONE] Technologies:

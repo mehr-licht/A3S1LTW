@@ -95,7 +95,9 @@
             </h1>
             <p><?=$comment['comentContent']?></p>
             <div>Votes stuff</div>
+            <a href="postView.php?comId=<?=$comment['idComent']?>">Reply</a>
         </div>
+
     </article>
     
     <?php } ?>
