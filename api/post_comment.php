@@ -1,6 +1,21 @@
 <?php
 	include_once('../includes/session.php');
 	include_once('../database/dbPosts.php');
+	include_once('../includes/csrf.class.php');
+
+	if (!isset($_SESSION['token_id'])) {
+		$idSession = $_SESSION['token_id'];
+		if (!validateToken($idSession, $_POST[$idSession])) {
+			$_SESSION['messages'][] = array('type' => 'error', 'content' => 'invalid session token!');
+			die(header('Location: ../pages/login.php'));
+		}
+	}
+	
+	if (!isset($_SESSION['username'])) {
+		die(header('Location: ../pages/login.php'));
+	} else {
+		$username = $_SESSION['username'];
+	}
 
 	// only accept json
 	header("Content-Type: application/json; charset=UTF-8");
@@ -9,12 +24,6 @@
 
 	// get the post id
 	$idPost = $requestBody['id_post'];
-	
-	// get the username
-	if(!isset($requestBody['username']))
-		$username = $_SESSION['username'];
-	else 
-		$username = $requestBody['username'];
 
 	// get the comment content
 	$comment = $requestBody['comment'];
@@ -35,6 +44,7 @@
 		echo $username;
 		echo $comment;
 		insertComment($idPost, $username, $comment);
+
 		header("HTTP/1.1 200");
 		echo json_encode(array(
 			'code'=>0,
