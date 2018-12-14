@@ -62,7 +62,7 @@ Projects done in colaboration with [TejInaco](https://github.com/TejInaco) and [
 
 
 **Security:**
-[DONE] authentication \[hashed passwords (could have added salt) and recovery of lost credentials]
+[DONE] authentication \[hashed passwords (could have added salt), password strength  and recovery of lost credentials]
 
 [DONE] Session Fixation prevention (Session Regeneration, Session, Time-out and verifying)
 
