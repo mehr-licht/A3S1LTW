@@ -185,7 +185,7 @@ function insertComment($idPost, $idUser, $comment, $date = NULL){
     
     $db = Database::instance()->db();
     $stmt = $db->prepare('INSERT INTO Coment(idPost, idUser, data, comentContent) VALUES(?, ?, ?, ?)');
-    echo $stmt->execute(array(
+    $stmt->execute(array(
         $idPost,
         $idUser,
         $date,
