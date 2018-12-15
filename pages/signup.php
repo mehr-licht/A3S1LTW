@@ -14,14 +14,6 @@ regenerateSession();
   draw_header(null);
 
   draw_signup();
-  ?>
-       <nav>
-          <ul>
-            <a id="loginl" href="../pages/login.php">Login</a>
-            <a id="signupl" href="../pages/signup.php">Signup</a> 
-          </ul>
-        </nav>
-        
-<?php
+
   draw_footer();
 ?>

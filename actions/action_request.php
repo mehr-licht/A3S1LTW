@@ -31,7 +31,7 @@ if ($_POST['username']!="" && !$userExists) {
     header('Location:../pages/signup.php');
 } else {
 
-$pass = random_str(10);
+    $pass = random_str(10);
 
     if (isset($_POST['username']) && $userExists) {
         try{    
@@ -55,6 +55,7 @@ $pass = random_str(10);
     }
     try {
         sendEmail($email, $_POST['username'], $pass);
+      //  print_r($pass);
         $_SESSION['messages'][] = array('type' => 'success', 'content' => 'please check your mailbox for an email with your account information!');
     } catch (Exception $e) {
         die($e->getMessage());
@@ -63,6 +64,7 @@ $pass = random_str(10);
     }
 
     try {
+        //print_r($pass);
         updatePass($username, $pass);
         $_SESSION['messages'][] = array('type' => 'success', 'content' => 'password changed sucessfully!');
         header('Location: ../pages/login.php');

@@ -2,7 +2,9 @@
  *
  */
 
-#login {
+#request,
+#login,
+#signup {
     max-width: 300px;
     margin: auto;
     background-color: var(--bg-light);
