@@ -41,33 +41,17 @@ draw_header($thisuser);
   <script type="text/javascript" src="../js/eye.js"></script>
   <script type="text/javascript" src="../js/profile.js"></script>
   <link rel="stylesheet" href="../css/profile.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <div class="profile show avatar">
+    <label id="profile-avatar" class="profile avatar">
+
+    </label></p>
+    <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>" />
+    <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
+      "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="150px" class="avatar">
+  </div>
 
 
-  <!-- Change Avatar Form -->
-  <?php if ($editable) { ?>
-  <form id="avatar-form" class="avatar form" action="../actions/action_upload.php" method="post" enctype="multipart/form-data">
-    <?php 
-  } ?>
-
-    <div class="profile show avatar">
-      <label id="profile-avatar" class="profile avatar">
-
-      </label></p>
-      <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
-      <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
-        "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="8%" class="avatar">
-    </div>
-    <?php if ($editable) { ?>
-    <div class="profile edit avatar hide" id="avatarEdit">
-      <input type="file" name="image" accept="image/jpg, image/jpeg">
-      <button type="submit" class="button" formaction="../actions/action_upload.php" formmethod="post" value="Upload">Upload</button>
-    </div>
-  </form>
-
-  <button onclick="toggleEdit(0)" class="btnEdit" id="imgEdit"><img src="../res/editPencil.gif" height="20px" width="20px">change
-    avatar</button>
-  <?php 
-} ?>
 
 
   <?php if ($editable) { ?>
@@ -130,7 +114,7 @@ draw_header($thisuser);
 
     <label id="profile-zip" class="profile editable">zip code: </label>
     <div contenteditable="false">
-    <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
+      <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>" />
       <input class="profile editable" id="input-zip" type="text" name="zipcode" value="<?= $user_array[0]['zipcode'] ?>"
         oninput="clearInputError('input-zip')"><span></span> </div>
     </p>
@@ -173,77 +157,102 @@ draw_header($thisuser);
 
   <!-- Change Password Form -->
   <?php if ($editable) { ?>
+  <div class="profile hide edit">
+    <div class="profile password hide" id="passEdit">
+      <form id="profile-pass" class="profile form" action="../actions/action_updatePass.php" method="post">
 
-  <div class="profile password hide" id="passEdit">
-    <form id="profile-pass" class="profile form" action="../actions/action_updatePass.php" method="post">
+        <label id="profile-pass" class="profile edit password">
+          <div class="buttonInside">
+            <input id="loginPwd" type="password" placeholder="password" class="passEdit" name="pass1" oninput="checkPassword('loginPwd')" />
+            <button onclick="togglePass(0)" id="toggleBtn1" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
+              type="button" width="50px">
+              <img src="../res/glyphicons-eye-open.svg" width="50%" class="eye" />
+              &nbsp;</button><span></span>
+          </div>
 
-      <label id="profile-pass" class="profile edit password">
-        <input id="loginPwd" type="password" placeholder="password" class="passEdit" name="pass1" oninput="checkPassword('loginPwd')" />
-        <button onclick="togglePass(0)" id="toggleBtn1" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
-          type="button" width="50px">
-          <img src="../res/glyphicons-eye-open.svg" width="50%" />
-          &nbsp;</button><span></span>
-      </label></p>
-      <label id="profile-repeat" class="profile edit password">
-        <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" oninput="checkPassword('loginPwd2')" />
-        <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
-        <button onclick="togglePass(1)" id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
-          type="button" width="50px">
-          <img src="../res/glyphicons-eye-open.svg" width="50%" />
-          &nbsp;</button><span></span>
-      </label>
-      </p>
 
-      <button type="submit" class="button" formaction="../actions/action_updatePass.php" formmethod="post">Change
-        Password</button>
-    </form>
+        </label></p>
+        <label id="profile-repeat" class="profile edit password">
+          <div class="buttonInside">
+            <input id="loginPwd2" type="password" placeholder="password" class="passEdit" name="pass2" oninput="checkPassword('loginPwd2')" />
+            <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>" />
+            <button onclick="togglePass(1)" id="toggleBtn2" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
+              type="button" width="50px">
+              <img src="../res/glyphicons-eye-open.svg" width="50%" class="eye" />
+              &nbsp;</button><span></span>
+          </div>
+        </label>
+        </p>
+
+        <button type="submit" class="button" formaction="../actions/action_updatePass.php" formmethod="post" value="change password"><span>Change
+            Password</span></button>
+      </form>
+    </div>
+    <button onclick="toggleEdit(2)" class="btnEdit" id="pwdEdit"><img src="../res/editPencil.gif" height="20px" width="20px">change
+      password</button>
+
+
+    <!-- Change Avatar Form -->
+    <div class="profile avatar hide">
+    <div class="profile edit avatar hide" id="avatarEdit">
+      <form id="avatar-form" class="avatar form" action="../actions/action_upload.php" method="post" enctype="multipart/form-data">
+        <?php } ?>
+        
+          <input type="file" name="image" accept="image/jpg, image/jpeg">
+          <button type="submit" class="button" formaction="../actions/action_upload.php" formmethod="post" value="Upload">Upload</button>
+       
+      </form>
+      </div>
+    </div>
+    <button onclick="toggleEdit(0)" class="btnEdit" id="imgEdit" type="button"><img src="../res/editPencil.gif"
+          height="20px" width="20px" id="pencil"><span>change avatar</span></button>
+   
   </div>
-  <button onclick="toggleEdit(2)" class="btnEdit" id="pwdEdit"><img src="../res/editPencil.gif" height="20px" width="20px">change
-    password</button>
-  <?php 
-} ?>
-
-
+ 
 
 
   <!-- list of Posts-->
   <section id="posts">
-      <div class="profile posts">
+    <div class="profile posts">
 
       <?php $allPostsByUser = getAllPostsUSER($username) ;
-      if (count($allPostsByUser)) { ?> <h1>Posts:</h1> <?php 
+      if (count($allPostsByUser)) { ?>
+      <h1>Posts:</h1>
+      <?php 
       foreach ($allPostsByUser as $postByUser) { ?>
       <article class="postSearch">
         <div class="<?= $postByUser['title'] ?>">
           <a href="../pages/postView.php?postId=<?= $postByUser['idPost'] ?>">
-            <?= $postByUser['title'] ?> </a>• 
+            <?= $postByUser['title'] ?> </a>•
           <?= $postByUser['date'] ?>
           <!-- plus votes? -->
         </div>
       </article>
       <?php } } ?>
     </div>
-    </section>
+  </section>
 
 
-    <!-- list of Comments-->
-    <section id="comments">
-      
-      <div class="profile comments">
-        <?php $allCommentsByUser = getAllCommentsUSER($username); 
-        if (count($allCommentsByUser)) { ?> <h1>Comments:</h1> <?php 
+  <!-- list of Comments-->
+  <section id="comments">
+
+    <div class="profile comments">
+      <?php $allCommentsByUser = getAllCommentsUSER($username); 
+        if (count($allCommentsByUser)) { ?>
+      <h1>Comments:</h1>
+      <?php 
          foreach ($allCommentsByUser as $commentByUser) { ?>
-        <article class="commentSearch">
-          <div class="<?= $commentByUser['idComent']?>">
-            <a href="../pages/postView.php?postId=<?= $commentByUser['idPost'] ?>#<?= $commentByUser['idComent'] ?>">
-              <?=  substr($commentByUser['comentContent'], 0, 50) ?>                                                                                                                                                                                                                                      </a>• 
-            <?= $commentByUser['data']?>
-            <!-- plus owner of post? -->
-          </div>
-        </article>
-        <?php } } ?>
-      </div>
-    </section>
+      <article class="commentSearch">
+        <div class="<?= $commentByUser['idComent']?>">
+          <a href="../pages/postView.php?postId=<?= $commentByUser['idPost'] ?>#<?= $commentByUser['idComent'] ?>">
+            <?=  substr($commentByUser['comentContent'], 0, 50) ?> </a>•
+          <?= $commentByUser['data']?>
+          <!-- plus owner of post? -->
+        </div>
+      </article>
+      <?php } } ?>
+    </div>
+  </section>
 
 
 

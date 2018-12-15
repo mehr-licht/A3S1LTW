@@ -3,12 +3,10 @@
   include_once '../database/database.php';
   include_once '../templates/tpl_common.php';
   include_once '../templates/tpl_auth.php';
-  
+  include_once '../includes/session.php';
   // Verify if user is logged in
-  // Isset returns true if $_SESSION['username'] is true and not null
-  if (checkTimeout() || !isset($_SESSION['username'])){
-    die(header('Location: ../pages/login.php'));
-}
+  if (isset($_SESSION['username']))
+  die(header('Location: ../pages/list_stories.php'));
 
 regenerateSession();
 

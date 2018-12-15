@@ -127,25 +127,50 @@ function clearInputError(elem) {
 
 
 function checkPassword(pwd) {
-    var error;
+    var error = false;
+    var text;
     var el = document.getElementById(pwd);
     var re = /[0-9]+/;
     var re1 = /[a-zA-Z]+/;
     if ((el.value).length < 8) {
-        error = " Password too short!";
+        text = " Password too short!";
+        error = true;
     } else if (!re.test(String(el.value).toLowerCase())) {
-        error = " Password must include at least one number!";
+        text = " must include at least one number!";
+        error = true;
     } else if (!re1.test(String(el.value).toLowerCase())) {
-        error = " Password must include at least one letter!";
+        text = " must include at least one letter!";
+        error = true;
     }
-
-    el.style.borderColor = 'red';
-    el.style.borderStyle = 'solid';
-    el.style.borderWidth = '3px';
+    if (error) {
+        el.style.borderColor = 'red';
+        el.style.borderStyle = 'solid';
+        el.style.borderWidth = '3px';
+    } else {
+        el.style.borderColor = '';
+        el.style.borderStyle = '';
+        el.style.borderWidth = '';
+    }
     el = el.nextSibling;
-    el.textContent = error;
+    el.textContent = text;
+    return !error;
 }
 
+
+function matchingPasswords() {
+    if (document.getElementById("SignupRepeatPwd").value != document.getElementById("SignupPwd").value) {
+        document.getElementById("SignupRepeatPwd").style.borderColor = 'red';
+        document.getElementById("SignupRepeatPwd").style.borderStyle = 'solid';
+        document.getElementById("SignupRepeatPwd").style.borderWidth = '3px';
+        document.getElementById("SignupRepeatPwd").nextSibling.textContent = " Passwords don't match";
+        return false;
+    }
+    return true;
+}
+
+function validatePass() {
+    return (matchingPasswords() && checkPassword('loginPwd') && checkPassword('loginPwd2'));
+}
 
 /*
 function toggleInput() {
@@ -161,3 +186,12 @@ function toggleInput() {
 function editable() {
     alert(document.getElementById('profile-name').innerText);
 }*/
+
+function toggleSearch() {
+    var x = document.getElementById('openSearch');
+    x.style.visibility = ((x.style.visibility != 'hidden') ? 'hidden' : 'visible');
+
+    var y = document.getElementsByClassName('searchbar');
+    y[0].style.display = ((y[0].style.display != 'block') ? 'block' : 'none');
+
+}

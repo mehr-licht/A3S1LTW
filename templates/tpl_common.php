@@ -27,24 +27,52 @@ function draw_header($username)
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <script type="text/javascript" src="../js/eye.js"></script>
     <script type="text/javascript" src="../js/comment.js"></script>
+    <script type="text/javascript" src="../js/profile.js"></script> <!-- just for toggleSearch -->
 </head>
 
 <body>
     <header>
-
-        <nav class="navbar">
+        <nav class="navbar allheader">
             <div class="navbar left">
                 <a href="../pages/list_stories.php">
                     <span class="navbar title">Yet Another Site</span>
                 </a>
             </div>
-            <div class="navbar message">
+            <?php if ($username != null) { ?>
+                <div class="navbar right">
+                <img name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
+        "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="40px" class="avatar">
+                <a class="navbar user" href="../pages/profile.php">
+                    <?= $username ?></a>
+                <a class="navbar user" href="../pages/create_post.php">Create post</a>
+                <a class="navbar user" href="../actions/action_logout.php">Logout</a>
+                <button onclick="toggleSearch()" id="openSearch" type="button" class="navbar user"><i class="search-button"></i><img src="../res/magnifier.gif" height="20px" width="20px"></button>
+            </div>
+            <?php 
+        } ?>
+        </nav>
+        <?php  draw_message(); ?>
+        <?php if ($username != null)  draw_search(); ?>
+    </header>
+
+    <main>
+        <?php 
+    } ?>
+
+
+ <?php 
+        /**
+         * Draws the message bar.
+         */
+ function draw_message()
+        { ?>
+     <div class="navbar message">
                 <?php if (isset($_SESSION['messages'])) { ?>
                 <section id="messages">
 
                     <?php foreach ($_SESSION['messages'] as $message) { ?>
                     <div class="<?= $message['type'] ?>">
-                        <?= $message['content'] ?>
+                    <span class="navbar message"><?= $message['content'] ?></span>
                     </div>
 
                     <?php 
@@ -64,44 +92,32 @@ function draw_header($username)
                 } ?>
                 </section>
             </div>
-            <?php if ($username != null) { ?>
-                
-            
-                <div class="search-container">
-                    <form id="searchbox" action="/actions/action_search.php">
-                    
-                        <div class="dropdown">
+        <?php }  ?>
+
+
+  <?php 
+        /**
+         * Draws the searchbar.
+         */
+ function draw_search()
+        { ?>
+     <div class="searchbar">
+                    <form id="searchbox" action="/pages/search.php">
                             <select name="choice">
                                 <option value="any">Any</option>
                                 <option value="posts">Posts</option>
                                 <option value="comments">Comments</option>
                                 <option value="users">Users</option>
                             </select>
-                        </div>
-                        <div class="field">
                         <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
                         <input id="field" type="text" placeholder="Search.." name="search" >
-            </div>
-                        <button id="magnifier" type="submit"><i class="search-button"></i></button>
+                        <button id="magnifier" type="submit"><i class="search-button"></i><img src="../res/magnifier.gif" height="20px" width="20px"></button>
+                        <button onclick="toggleSearch()" id="close" type="button"><i class="close-button" class="navbar user"></i><img src="../res/close-browser.svg" height="20px" width="20px"></button>
                     </form>
                 </div>
-                <div class="navbar right">
-                <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
-        "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="40px" class="avatar">
-                <a class="navbar user" href="../pages/profile.php">
-                    <?= $username ?></a>
-                <a class="navbar user" href="../pages/create_post.php">Create post</a>
-                <a class="navbar user" href="../actions/action_logout.php">Logout</a>
-            </div>
+        <?php }  ?>
 
-            <?php 
-        } ?>
-        </nav>
-    </header>
 
-    <main>
-        <?php 
-    } ?>
 
         <?php 
         /**

@@ -16,7 +16,8 @@ if (!isset($_SESSION['username'])) {
   $_SESSION['messages'][] = array('type' => 'error', 'content' => 'you are not logged in!');
   die(header('Location: ../pages/login.php'));
 }
-
+?>
+<body><?php
 draw_header($_SESSION['username']);
 
 
@@ -141,4 +142,6 @@ if(count($allComments)) { ?> <h1>Comments</h1>
             }
 
 draw_footer();
+?>
+</body><?php
 ?>

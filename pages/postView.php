@@ -13,6 +13,7 @@
     regenerateSession();
       
     draw_header($_SESSION['username']);
+    
 
     if(isset($_GET['postId'])) {
         $post = getPostByID($_GET['postId']);

@@ -14,7 +14,7 @@
     regenerateSession();
  
     draw_header($_SESSION['username']);
-    
+  
 ?>  
 <script src="../js/post.js"></script>
 <link href="/css/post.css" type="text/css" rel="stylesheet">

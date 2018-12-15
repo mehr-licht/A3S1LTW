@@ -32,59 +32,36 @@ a:hover {
     color: var(--bg-primary-light);
 }
 
-header .navbar {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    height: auto;
-    display: grid;
-    grid-template-columns: 5fr 2fr;
-    grid-template-areas: "left left left right right" "messages messages search search search";
-    /*width: 60em;*/
-    /*  background-color: #EDEFF0;*/
+.searchbar {
+    display: none;
 }
 
-span.navbar.title {
-    grid-area: left;
-    width: 200px;
+.navbar.message {
+    display: none;
 }
 
-navbar .right {
-    grid-area: right;
+form#searchbox {
+    display: flex;
+    background-color: #007bff;
+    /*  --bg-primary-light: #0099ff;*/
 }
 
-navbar .message {
-    grid-area: messages;
+.navbar.message {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    display: flex;
+    background-color: #007bff;
+    align-items: center;
+    justify-content: center;
+    /*  --bg-primary-light: #0099ff;*/
 }
 
-#searchbox {
-    grid-area: search;
+#openSearch {
+    padding-top: 3px;
+    height: 38px;
+    width: 40px;
 }
 
-#searchbox {
-    display: grid;
-    grid-template-columns: 3fr;
-    grid-template-areas: "drop field magnifier";
-    /*width: 60em;*/
-    /*  background-color: #EDEFF0;*/
-}
-
-.dropdown {
-    grid-area: drop;
-}
-
-#field {
-    width: 300px;
-}
-
-.field {
-    grid-area: field;
-}
-
-#magnifier {
-    grid-area: magnifier;
-}
-
-.right #avatar {
-    align-content: right;
+img.avatar {
+    vertical-align: bottom;
 }

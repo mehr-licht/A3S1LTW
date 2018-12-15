@@ -12,6 +12,10 @@
     }
 }
 
+button>span {
+    vertical-align: top;
+}
+
 .btnEdit {
     width: 150px;
     position: relative;
@@ -34,6 +38,22 @@ input.editable {
     border-radius: 50%;
 }
 
+div.profile.show.avatar {
+    text-align: center;
+}
+
+div.profile {
+    max-width: 400px;
+    margin: auto;
+    background-color: var(--bg-light);
+    border-radius: 0.25rem;
+    padding: 4.5rem 2rem;
+}
+
+.profile.prof {
+    text-align: center;
+}
+
 #profile-email:before {
     content: " *";
     font-size: small;
@@ -46,4 +66,21 @@ input.editable {
 
 .profile.edit.password {
     display: inline-flex;
+}
+
+.avatar.form {
+    display: flex;
+}
+
+.profile.password.hide {
+    grid-area: pass;
+}
+
+.profile.avatar.hide {
+    grid-area: avatar;
+}
+
+.profile.hide.edit {
+    display: grid;
+    grid-template-areas: "pass avatar";
 }

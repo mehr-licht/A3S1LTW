@@ -22,12 +22,13 @@ function draw_login()
         <!-- password field -->
         <div class="form-group">
             <label>Password:
-           
+            <div class="buttonInside">
                 <input name="password" class="passEdit" type="password" placeholder="password" required="required" />
                 <button onclick="togglePass(0)" id="toggleBtn3" class="glyphicon glyphicons-eye-open toggler-ico" style="background-color:transparent; border-color:transparent;"
                     type="button" width="50px">
-                    <img src="../res/glyphicons-eye-open.svg" width="50%" />
-                    &nbsp;</button>
+                    <img src="../res/glyphicons-eye-open.svg" width="50%" class="eye"/>
+                   </button>
+</div>
             </label>
         </div>
         <!-- login button -->
@@ -114,7 +115,7 @@ function draw_login()
     /**
      * Draws the request section.
      */ ?>
-<div id="resquest">
+<div id="request">
 
     <form class="form" action="../actions/action_request.php" method="post">
         <!-- username field -->
