@@ -74,7 +74,7 @@ div.profile {
 
 .profile.hide.edit {
     display: grid;
-    grid-template-areas: "avatarEdit passEdit" "avatarShow passShow";
+    grid-template-areas: "passEdit avatarEdit" "passShow avatarShow";
 }
 
 #passEdit {

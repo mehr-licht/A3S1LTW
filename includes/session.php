@@ -18,6 +18,7 @@ function checkTimeout()
     // last request was more than 5 minutes ago
     session_unset(); // unset $_SESSION variable for the run-time
     session_destroy(); // destroy session data in storage
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session time-out. Please log in again!');
     //return true;
   }//else{
   $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
