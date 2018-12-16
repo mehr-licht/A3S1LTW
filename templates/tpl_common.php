@@ -141,14 +141,15 @@ function draw_header($username)
 }
 
 function sendEmail($emailAddress, $emailUser, $emailPass)
-{if ($emailAddress=="" || $emailUser =="" || $emailPass=="") {
-    throw new Exception("Failed to send email");
-}
+{
+    if ($emailAddress=="" || $emailUser =="" || $emailPass=="") {
+        throw new Exception("Failed to send email");
+    }
     $to = $emailAddress;
     $subject = "Yet Another Site: account information";
     $body = "your username is $emailUser\r\nand password is $emailPass";
     $headers = "From: webmaster@yetanothersite.com\r\nReply-To: no-reply@pubfish.com\r\n X-Mailer: PHP/" . phpversion();;
-    mail($to, $subject, $body, $headers);
+   
     if (!mail($to, $subject, $body, $headers)) {
         throw new Exception("Failed to send email");
     }

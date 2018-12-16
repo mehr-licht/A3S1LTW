@@ -32,7 +32,6 @@ try{
 if ($_POST['username']!="" && !$userExists) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username not in the database, please signup!');
     header('Location:../pages/signup.php');
-
 } else if ($_POST['email']!="" && !$emailExists ) {//nao encontra
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email not in the database!');
     header('Location:../pages/signup.php');
