@@ -5,26 +5,19 @@
  */
 session_start();
   
-  /*function generate_random_token() {
-    return bin2hex(openssl_random_pseudo_bytes(32));
-  }
-  if (!isset($_SESSION['csrf'])) {
-    $_SESSION['csrf'] = generate_random_token();
-  }*/
-
+/**
+ * checks if it has passed the number of seconds stored in timeout since the last session activity in the site
+ */
+const timeout = 300;
 function checkTimeout()
 {
-  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 300)) {
+  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > timeout)) {
     // last request was more than 5 minutes ago
     session_unset(); // unset $_SESSION variable for the run-time
     session_destroy(); // destroy session data in storage
-    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session time-out. Please log in again!');
-    //return true;
-  }//else{
-  $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-  //return false;}
+  }
+  $_SESSION['LAST_ACTIVITY'] = time(); // update last activity timestamp
 }
-
 
 
 /*
@@ -43,10 +36,6 @@ function regenerateSession($reload = false)
   if (!isset($_SESSION['userAgent']) || $reload)
     $_SESSION['userAgent'] = $_SERVER['HTTP_USER_AGENT'];
 
-  
-    // Set current session to expire in 1 minute
-    //$_SESSION['OBSOLETE'] = true;
-    //$_SESSION['EXPIRES'] = time() + 60;
 
     // Create new session without destroying the old one
   session_regenerate_id(false);
@@ -58,25 +47,16 @@ function regenerateSession($reload = false)
     // Set session ID to the new one, and start it back up again
   session_id($newSession);
 
-  
-
-
   session_start();
-
-    // Don't want this one to expire
-    //unset($_SESSION['OBSOLETE']);
-    //unset($_SESSION['EXPIRES']);
-
-
-    /**
-   * generate token_id and token_value
-   */
+   
+  //generate token_id and token_value
   generateToken();
 }
 
+
 /**
-   * generate token_id and token_value
-   */
+ * generate token_id and token_value
+ */
 function generateToken(){
   if (!isset($_SESSION['token_id'])) {
     $_SESSION['token_id'] = random(10);
@@ -100,7 +80,10 @@ function validateToken($id, $value)
   return false;
 }
 
-
+/**
+ * generate random strings using Mersenne Twister Random Number Generator
+ * with mt_srand seeding using time and microtime
+ */
 function random($len)
 {
         if (function_exists('openssl_random_pseudo_bytes')) {

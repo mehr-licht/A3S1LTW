@@ -1,5 +1,11 @@
 <?php 
-
+/**
+ * Draws the comment. 
+ * @param idComment id of the comment
+ * @param idUser username that commented
+ * @param commentTxt text of the comment
+ * @param commentDate date of the comment
+ */
 function draw_comment($idComment, $idUser, $commentTxt, $commentDate) { ?>
     <article class="comment" id="$idComment">
         <?php 
@@ -23,6 +29,13 @@ function draw_comment($idComment, $idUser, $commentTxt, $commentDate) { ?>
 <?php } ?>
 
 <?php 
+/**
+ * @param idComment
+ * @param idUser
+ * @param commentTxt
+ * @param commentDate
+ * @return html
+ */
 function get_comment_html($idComment, $idUser, $commentTxt, $commentDate) {
     $html = "<article class=\"comment\" id=\"$idComment\">";
     $imageName = sha1($idUser);

@@ -1,15 +1,11 @@
 <?php 
 
-
-
-
-
 /**
  * Draws the login section.
+ * form to log into the site submiting a username and password
  */
 function draw_login()
 { ?>
-
 <div id="login">
     <script type="text/javascript" src="../js/eye.js"></script>
     <form class="form" action="../actions/action_login.php" method="post">
@@ -50,11 +46,13 @@ function draw_login()
 <?php 
 } ?>
 
-<?php function draw_signup()
-{ 
-    /**
-     * Draws the signup section.
-     */ ?>
+<?php 
+/**
+* Draws the signup section.
+* form to create a new account submitting a username, password and email address
+*/
+function draw_signup()
+{ ?>
 <div id="signup">
     <script type="text/javascript" src="../js/eye.js"></script>
     <script type="text/javascript" src="../js/su.js"></script>
@@ -118,11 +116,13 @@ function draw_login()
 
 
 
-<?php function draw_request()
-{ 
+<?php
     /**
      * Draws the request section.
-     */ ?>
+     * form to request a new password by submitting a username or email address
+     */
+function draw_request()
+{  ?>
 <div id="request">
 
     <form class="form" action="../actions/action_request.php" method="post">
@@ -149,8 +149,6 @@ function draw_login()
             <span>If you still have no account please <a href="../pages/signup.php">register</a> first!</span>
         </div>
     </form>
-
-
 </div>
 <?php 
 } ?>

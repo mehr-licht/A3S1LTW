@@ -37,7 +37,7 @@ draw_header($thisuser);
 
 ?>
 
-<!-- PROFILE -->
+<!-- PROFILE (read only of certain attributes if not owner OR input form for all attributes if editable) -->
 <div class="profile">
   <script type="text/javascript" src="../js/eye.js"></script>
   <script type="text/javascript" src="../js/profile.js"></script>
@@ -51,9 +51,6 @@ draw_header($thisuser);
     <input type="image" name="avatar" src=<?=file_exists("../res/avatars/$imageName.jpg") ?
       "../res/avatars/$imageName.jpg" : "../res/default.gif" ?> width="150px" class="avatar">
   </div>
-
-
-
 
   <?php if ($editable) { ?>
   <form id="profile-form" class="profile form" action="../actions/action_update.php" method="post">

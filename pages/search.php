@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="../css/auth.css">
 <?php
 include_once '../includes/session.php';
 include_once '../database/db_user.php';
@@ -23,7 +24,6 @@ regenerateSession();
 ?>
 <body><?php
 draw_header($_SESSION['username']);
-
 
 switch ($_GET['choice']) {
     case 'users': ?>

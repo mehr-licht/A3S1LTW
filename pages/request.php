@@ -4,11 +4,12 @@
   include_once '../templates/tpl_common.php';
   include_once '../templates/tpl_auth.php';
   include_once '../includes/session.php';
+
   // Verify if user is logged in
   if (isset($_SESSION['username']))
   die(header('Location: ../pages/list_stories.php'));
 
-regenerateSession();
+  regenerateSession();
 
   draw_header(null);
   

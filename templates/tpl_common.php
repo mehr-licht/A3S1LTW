@@ -5,11 +5,12 @@
  * Draws the header for all pages. Receives an username
  * if the user is logged in in order to draw the logout
  * link.
+ * @param username: name of the user logged in
  */
 function draw_header($username)
-{  
-   $imageName=sha1($username);
-   ?>
+{
+    $imageName = sha1($username);
+    ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -52,8 +53,8 @@ function draw_header($username)
             <?php 
         } ?>
         </nav>
-        <?php  draw_message(); ?>
-        <?php if ($username != null)  draw_search(); ?>
+        <?php draw_message(); ?>
+        <?php if ($username != null) draw_search(); ?>
     </header>
 
     <main>
@@ -65,9 +66,10 @@ function draw_header($username)
         /**
          * Draws the message bar.
          */
- function draw_message()
+        function draw_message()
         { ?>
         <div class="navbar message">
+            <!-- display session messages, if any-->
             <?php if (isset($_SESSION['messages'])) { ?>
             <section id="messages">
 
@@ -78,30 +80,32 @@ function draw_header($username)
                 </div>
 
                 <?php 
-                }
-                unset($_SESSION['messages']);
+            }
+            unset($_SESSION['messages']);
+        } ?>
+            </section>
+            
+                <!-- display session error messages, if any-->
+                <?php if (isset($_SESSION['ERROR'])) { ?>
+                <section id="error">
+                    <div class="error">
+                        <?= $_SESSION['ERROR'] ?>
+                    </div>
+                    <?php unset($_SESSION['ERROR']);
             } ?>
-            </section>
-
-            <?php if (isset($_SESSION['ERROR'])) { ?>
-            <section id="error">
-
-
-                <div class="error">
-                    <?= $_SESSION['ERROR'] ?>
-                </div>
-                <?php unset($_SESSION['ERROR']);
-                } ?>
-            </section>
+                </section>
         </div>
-        <?php }  ?>
+        <?php 
+    } ?>
 
 
         <?php 
         /**
          * Draws the searchbar.
+         * allows searching in username, posts, comments or in everything
+         * exact searches of the entire pattern within words with no minimum pattern length
          */
- function draw_search()
+        function draw_search()
         { ?>
         <div class="searchbar">
             <form id="searchbox" action="/pages/search.php">
@@ -111,7 +115,7 @@ function draw_header($username)
                     <option value="comments">Comments</option>
                     <option value="users">Users</option>
                 </select>
-                <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>" />
+                <input type="hidden" name="<?= $_SESSION['token_id'] ?>" value="<?= $_SESSION['token_value'] ?>" />
                 <input id="field" type="text" placeholder="Search.." name="search">
                 <button id="magnifier" type="submit"><i class="search-button"></i><img src="../res/magnifier.gif"
                         height="20px" width="20px"></button>
@@ -119,9 +123,8 @@ function draw_header($username)
                         src="../res/close-browser.svg" height="20px" width="20px"></button>
             </form>
         </div>
-        <?php }  ?>
-
-
+        <?php 
+    } ?>
 
         <?php 
         /**
@@ -140,16 +143,22 @@ function draw_header($username)
 <?php 
 }
 
+/**
+ * sends email to user, using sendMail module, whenever a user signs up or asks for password/username recovery
+ * @param emailAddress: email address to send the message to
+ * @param emailUser: username of the user
+ * @param emailPass: new password to send
+ */
 function sendEmail($emailAddress, $emailUser, $emailPass)
 {
-    if ($emailAddress=="" || $emailUser =="" || $emailPass=="") {
+    if ($emailAddress == "" || $emailUser == "" || $emailPass == "") {
         throw new Exception("Failed to send email");
     }
     $to = $emailAddress;
     $subject = "Yet Another Site: account information";
     $body = "your username is $emailUser\r\nand password is $emailPass";
     $headers = "From: webmaster@yetanothersite.com\r\nReply-To: no-reply@pubfish.com\r\n X-Mailer: PHP/" . phpversion();;
-   
+
     if (!mail($to, $subject, $body, $headers)) {
         throw new Exception("Failed to send email");
     }
@@ -158,6 +167,7 @@ function sendEmail($emailAddress, $emailUser, $emailPass)
 
 
 /**
+ * Used to generate passwords when user forgets them
  * Generate a random string, using a cryptographically secure 
  * pseudorandom number generator (random_int)
  * 

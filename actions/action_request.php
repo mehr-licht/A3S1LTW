@@ -4,8 +4,6 @@ include_once '../database/db_user.php';
 include_once '../templates/tpl_common.php';
 
 
-
-
 try{
     $userExists = checkUsername($_POST['username']);
     $username=$_POST['username'];

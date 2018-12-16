@@ -21,7 +21,7 @@ $imageName = sha1($username);
   // Move the uploaded file to its final destination
   move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 
-  // Crete an image representation of the original image
+  // Create an image representation of the original image
   $original = imagecreatefromjpeg($originalFileName);
 
   $width = imagesx($original);     // width of the original image
