@@ -36,7 +36,7 @@ if ($imageMoved) {
     } catch (PDOException $e) {
         die($e->getMessage());
         $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to post the post!');
-        header('Location: ../pages/create_post.php');
+        die(header('Location: ../pages/create_post.php'));
     }
 } else {
     try {
@@ -46,7 +46,7 @@ if ($imageMoved) {
     } catch (PDOException $e) {
         die($e->getMessage());
         $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to post the post!');
-        header('Location: ../pages/create_post.php');
+        die(header('Location: ../pages/create_post.php'));
     }
 
 }

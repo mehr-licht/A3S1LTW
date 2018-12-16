@@ -182,7 +182,7 @@ draw_header($thisuser);
         </label>
         </p>
 
-        <button onclick="checkpassword()" type="submit" class="button" formaction="../actions/action_updatePass.php"
+        <button onclick="return validatePass();checkpassword()" type="submit" class="button" formaction="../actions/action_updatePass.php"
           formmethod="post" value="change password"><span>Save New
             Password</span></button>
       </form>
@@ -194,19 +194,18 @@ draw_header($thisuser);
     <!-- Change Avatar Form -->
     <div class="profile avatar hide" id="avatarEdit">
       <form id="avatar-form" class="avatar form" action="../actions/action_upload.php" method="post" enctype="multipart/form-data">
-        <?php } ?>
+       
         <div class="insideAvatarEdit">
           <input type="file" name="image" accept="image/jpg, image/jpeg" class="searchFile">
           <button type="submit" class="button" formaction="../actions/action_upload.php" formmethod="post" value="Upload">Upload</button>
         </div>
       </form>
-
     </div>
     <button onclick="toggleEdit(0)" class="btnEdit" id="imgEdit" type="button"><img src="../res/editPencil.gif" height="20px"
         width="20px" id="pencil"><span>change avatar</span></button>
 
   </div>
-
+  <?php } ?>
 
 
   <!-- list of Posts-->

@@ -10,7 +10,7 @@ try{
 } catch (Exception $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username not corresponding!');
-    header('Location: ../pages/signup.php');
+    die(header('Location: ../pages/signup.php'));
 }
 $emailExists =false;
 try{
@@ -24,15 +24,15 @@ try{
 } catch (Exception $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email not corresponding!');
-    header('Location: ../pages/signup.php');
+    die(header('Location: ../pages/signup.php'));
 }
 
 if ($_POST['username']!="" && !$userExists) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username not in the database, please signup!');
-    header('Location:../pages/signup.php');
+    die(header('Location:../pages/signup.php'));
 } else if ($_POST['email']!="" && !$emailExists ) {//nao encontra
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email not in the database!');
-    header('Location:../pages/signup.php');
+    die(header('Location:../pages/signup.php'));
 } else {
 
     $pass = random_str(10);

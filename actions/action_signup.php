@@ -15,7 +15,7 @@ try{
 } catch (PDOException $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'No email!');
-    header('Location: ../pages/login.php');
+    die(header('Location: ../pages/login.php'));
 }
 
 if ($userExists ) {

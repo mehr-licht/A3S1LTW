@@ -10,7 +10,7 @@ try{
   $isCorrected = checkUserPassword($username, $password);
 } catch (PDOException $e) {
   die($e->getMessage());
-  $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to comment the post!');
+  $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to log in!');
   header('Location: ../pages/login.php');
 }
 
@@ -21,7 +21,7 @@ try{
     header('Location: ../pages/list_stories.php');
   } else {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Login failed!');
-    header('Location: ../pages/signup.php');
+    die(header('Location: ../pages/signup.php'));
   }
 
 ?>
