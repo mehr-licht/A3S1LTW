@@ -4,6 +4,7 @@ include_once '../database/db_user.php';
 include_once '../database/dbPosts.php';
 include_once '../templates/tpl_common.php';
 
+
 if (!isset($_SESSION['token_id'])) {
   $idSession = $_SESSION['token_id'];
   if (!validateToken($idSession, $_POST[$idSession])) {
@@ -12,10 +13,13 @@ if (!isset($_SESSION['token_id'])) {
   }
 }
 
-if (!isset($_SESSION['username'])) {
-  $_SESSION['messages'][] = array('type' => 'error', 'content' => 'you are not logged in!');
+if (checkTimeout() || !isset($_SESSION['username'])){
+  $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session time-out. Please log in again!');
   die(header('Location: ../pages/login.php'));
 }
+
+regenerateSession();
+
 ?>
 <body><?php
 draw_header($_SESSION['username']);

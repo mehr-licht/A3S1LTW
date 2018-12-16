@@ -72,15 +72,27 @@ div.profile {
     display: flex;
 }
 
-.profile.password.hide {
-    grid-area: pass;
-}
-
-.profile.avatar.hide {
-    grid-area: avatar;
-}
-
 .profile.hide.edit {
     display: grid;
-    grid-template-areas: "pass avatar";
+    grid-template-areas: "avatarEdit passEdit" "avatarShow passShow";
+}
+
+#passEdit {
+    grid-area: passEdit;
+}
+
+#pwdEdit {
+    grid-area: passShow;
+}
+
+.insideAvatarEdit {
+    grid-area: avatarEdit;
+}
+
+#imgEdit {
+    grid-area: avatarShow;
+}
+
+input[type=file] {
+    text-align: left
 }
