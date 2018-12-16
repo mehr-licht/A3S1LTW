@@ -1,7 +1,7 @@
 <?php
 include_once '../includes/session.php';
 include_once '../database/db_user.php';
-
+include_once '../templates/tpl_common.php';
 
 try{
     $userExists = checkUsername($_POST['username']);
@@ -43,6 +43,7 @@ die(header('Location: ../pages/signup.php'));
 
     try {
         insertUser($_POST['username'], $_POST['password'], $_POST['email']);
+        sendEmail($_POST['email'],$_POST['username'], $_POST['password']);
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Signed up and logged in!');
         header('Location: ../pages/list_stories.php');

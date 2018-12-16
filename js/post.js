@@ -21,7 +21,7 @@ function upvoteClickHandler(articleNode) {
     let isDownVoted = (downvoteBtnClass.indexOf('active') == -1) ? false : true; // flag telling if user has voted down
 
     let newVote; // the new vote value to insert on the database
-    if(isDownVoted) {
+    if (isDownVoted) {
         /**
          * The user has downvoted previously, but it's upvoting now
          * The vote becomes +1 instead of -1
@@ -70,7 +70,7 @@ function downvoteClickHandler(articleNode) {
 
     let newVote; // the new vote value to insert on the database
 
-    if(isDownVoted) {
+    if (isDownVoted) {
         /* 
          * the user previously downvoted and pressed the down vote button
          * thus the user doesn't have any vote anymore
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listeners on all vote buttons
     let allArticles = document.querySelectorAll("#stories > article");
 
-    for(let articleNode of allArticles) {
+    for (let articleNode of allArticles) {
         articleNode.querySelector("aside > svg.upvote").addEventListener('click', function(ev) {
             upvoteClickHandler(articleNode);
         });
@@ -124,4 +124,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 }, false);
-

@@ -8,19 +8,26 @@ include_once '../templates/tpl_common.php';
 
 try{
     $userExists = checkUsername($_POST['username']);
+    $username=$_POST['username'];
 } catch (Exception $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username not corresponding!');
     header('Location: ../pages/signup.php');
 }
+$emailExists =false;
 try{
-    $emailExists = checkUserEmail($_POST['email']);
+    if(checkUserEmail($_POST['email'])){
+        $emailExists = true;
+        $email=$_POST['email'];
+        $username=getUserFromEmail($email);
+    }else{
+        $emailExists = false;
+    }
 } catch (Exception $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email not corresponding!');
     header('Location: ../pages/signup.php');
 }
-
 
 if ($_POST['username']!="" && !$userExists) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username not in the database, please signup!');
@@ -32,7 +39,7 @@ if ($_POST['username']!="" && !$userExists) {
 } else {
 
     $pass = random_str(10);
-
+    
     if (isset($_POST['username']) && $userExists) {
         try{    
             $user_array = getUserInformation($_POST['username']);
@@ -42,20 +49,9 @@ if ($_POST['username']!="" && !$userExists) {
             $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to get information!');
             header('Location: ../pages/request.php');
         }
-    } else {
-        if (isset($_POST['email']) && $emailExists ) {
-            try{
-                $email = getUserFromEmail($_POST['email']);
-            } catch (Exception $e) {
-                die($e->getMessage());
-                $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to retrieve email!');
-                header('Location: ../pages/request.php');
-            }
-        }
-    }
+    } 
     try {
-        sendEmail($email, $_POST['username'], $pass);
-      //  print_r($pass);
+        sendEmail($email, $username, $pass);
         $_SESSION['messages'][] = array('type' => 'success', 'content' => 'please check your mailbox for an email with your account information!');
     } catch (Exception $e) {
         die($e->getMessage());
@@ -64,7 +60,6 @@ if ($_POST['username']!="" && !$userExists) {
     }
 
     try {
-        //print_r($pass);
         updatePass($username, $pass);
         $_SESSION['messages'][] = array('type' => 'success', 'content' => 'password changed sucessfully!');
         header('Location: ../pages/login.php');

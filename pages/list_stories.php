@@ -18,25 +18,23 @@
 ?>  
 <script src="../js/post.js"></script>
 <link href="/css/post.css" type="text/css" rel="stylesheet">
+<body>
     <section id="stories">
     <div class="pill-nav">
-        <a class="active" href="/pages/list_stories.php?sort=mostRecent" id="mRecent">Most recent</a>
-        <a class="active" href="/pages/list_stories.php?sort=mostVoted" id="mVoted">Most Voted</a>
-        <a class="active" href="/pages/list_stories.php?sort=mostComent" id="mComent">Most commented</a>
-        <a class="active" href="#about">About</a>
+       
+        <a href="/pages/list_stories.php?sort=mostRecent" id="mRecent" class=<?= (!isset($_GET['sort']) || (isset($_GET['sort']) && $_GET['sort'] == 'mostRecent')) ? "order" : "active" ?>
+        >Most recent</a>
+        <a href="/pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?= (!isset($_GET['sort']) || (isset($_GET['sort']) && $_GET['sort'] == 'mostVoted')) ? "order" : "active" ?>>Most Voted</a>
+        <a href="/pages/list_stories.php?sort=mostComent" id="mComent" class=<?= (!isset($_GET['sort']) || (isset($_GET['sort']) && $_GET['sort'] == 'mostComent')) ? "order" : "active" ?>>Most commented</a>
     </div>
         <?php 
             if( !isset($_GET['sort']) ){
-                print_r($_GET['sort']);
                 $futureArray = getAllPostsOrderByDate();
             }elseif( $_GET['sort'] == 'mostRecent'   ){
-                print_r($_GET['sort']);
                 $futureArray = getAllPostsOrderByDate(); 
             }elseif(    $_GET['sort'] == 'mostVoted'    ){
-                print_r($_GET['sort']);
                 $futureArray =  getAllPostsOrderByMostVoted();
             }elseif(  $_GET['sort'] == 'mostComent'   ){
-                print_r($_GET['sort']);
                 $futureArray =  getAllPostsOrderByMostComent();
             }
             // ou podemos subsituir a funcao em baixo por getAllPostsUSER($_SESSION['username'] 
@@ -84,6 +82,7 @@
                 </article>
             <?php } ?>
     </section>
+                                </body>
 <?php
     draw_footer();
 ?>

@@ -53,10 +53,10 @@
     $stmt->execute(array($email, $name, $street, $zip, $birthday,$city, $country, $phone, $username));//avatar e passes à parte
   }
 
-  function updatePass($username,$pass1){
+  function updatePass($username,$pass){
     $db = Database::instance()->db();
     $stmt = $db->prepare("UPDATE User SET password = ? WHERE username = ?");
-    $stmt->execute(array(sha1($pass1), $username));
+    $stmt->execute(array(sha1($pass), $username));
   }
 
 /** --------------------------------------------------------------------------- USER
@@ -84,7 +84,7 @@ function getUserFromEmail($email){
   $stmt->execute(array(
       $email
   ));
-  return $stmt->fetch();
+  return $stmt->fetchColumn();
 }
 
 /**

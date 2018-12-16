@@ -81,6 +81,7 @@
     <h1>Comments:</h1>
     <section>
         <textarea id="comment_txt" placeholder="New comments go here"></textarea>
+        <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
         <button id="submit_comment_btn">Submit</button>
     </section>
     <?php

@@ -184,7 +184,7 @@ draw_header($thisuser);
         </label>
         </p>
 
-        <button type="submit" class="button" formaction="../actions/action_updatePass.php" formmethod="post" value="change password"><span>Change
+        <button onclick="checkpassword()" type="submit" class="button" formaction="../actions/action_updatePass.php" formmethod="post" value="change password"><span>Change
             Password</span></button>
       </form>
     </div>

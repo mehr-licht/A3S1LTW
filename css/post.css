@@ -148,6 +148,16 @@
     color: grey;
 }
 
+.order {
+    background-color: var(--bg-primary);
+}
+
+#mRecent,
+#mVoted,
+#mComent {
+    color: white;
+}
+
 
 /**
  * Responsiveness
