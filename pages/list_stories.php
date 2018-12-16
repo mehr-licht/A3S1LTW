@@ -24,8 +24,8 @@
        
         <a href="/pages/list_stories.php?sort=mostRecent" id="mRecent" class=<?= (!isset($_GET['sort']) || (isset($_GET['sort']) && $_GET['sort'] == 'mostRecent')) ? "order" : "active" ?>
         >Most recent</a>
-        <a href="/pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?= (!isset($_GET['sort']) || (isset($_GET['sort']) && $_GET['sort'] == 'mostVoted')) ? "order" : "active" ?>>Most Voted</a>
-        <a href="/pages/list_stories.php?sort=mostComent" id="mComent" class=<?= (!isset($_GET['sort']) || (isset($_GET['sort']) && $_GET['sort'] == 'mostComent')) ? "order" : "active" ?>>Most commented</a>
+        <a href="/pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?= (isset($_GET['sort']) && $_GET['sort'] == 'mostVoted') ? "order" : "active" ?>>Most Voted</a>
+        <a href="/pages/list_stories.php?sort=mostComent" id="mComent" class=<?= (isset($_GET['sort']) && $_GET['sort'] == 'mostComent') ? "order" : "active" ?>>Most commented</a>
     </div>
         <?php 
             if( !isset($_GET['sort']) ){
