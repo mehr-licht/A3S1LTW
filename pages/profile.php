@@ -85,7 +85,7 @@ draw_header($thisuser);
 
     <?php 
   } else {
-
+    
     if (isset($user_array[0]['birthday'])) {
       $fromdate = new DateTime($user_array[0]['birthday']);
       $today = new DateTime(date("Y/m/d"));
@@ -95,9 +95,12 @@ draw_header($thisuser);
     ?>
     <div contenteditable="false">
       <label id="profile-age" class="profile">age:
-        <?php if ($age !== null) {
+      <?php  if (isset( $age)){
+      if ($age !== null) {
           echo $age;
-        } ?></label></p>
+        } 
+      }?>
+      </label></p>
     </div>
     <?php 
   }
