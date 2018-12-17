@@ -5,8 +5,8 @@ include_once '../templates/tpl_common.php';
 
 
 try{
-    $userExists = checkUsername($_POST['username']);
-    $username=$_POST['username'];
+    $userExists = checkUsername(trimAndStripHtmlPHPtags($_POST['username']));
+    $username=trimAndStripHtmlPHPtags($_POST['username']);
 } catch (Exception $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username not corresponding!');
@@ -14,9 +14,9 @@ try{
 }
 $emailExists =false;
 try{
-    if(checkUserEmail($_POST['email'])){
+    if(checkUserEmail(trimAndStripHtmlPHPtags($_POST['email']))){
         $emailExists = true;
-        $email=$_POST['email'];
+        $email=trimAndStripHtmlPHPtags($_POST['email']);
         $username=getUserFromEmail($email);
     }else{
         $emailExists = false;
@@ -27,19 +27,19 @@ try{
     die(header('Location: ../pages/signup.php'));
 }
 
-if ($_POST['username']!="" && !$userExists) {
+if (trimAndStripHtmlPHPtags($_POST['username'])!="" && !$userExists) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username not in the database, please signup!');
     die(header('Location:../pages/signup.php'));
-} else if ($_POST['email']!="" && !$emailExists ) {//nao encontra
+} else if (trimAndStripHtmlPHPtags($_POST['email'])!="" && !$emailExists ) {//nao encontra
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Email not in the database!');
     die(header('Location:../pages/signup.php'));
 } else {
 
     $pass = random_str(10);
     
-    if (isset($_POST['username']) && $userExists) {
+    if (isset(trimAndStripHtmlPHPtags($_POST['username'])) && $userExists) {
         try{    
-            $user_array = getUserInformation($_POST['username']);
+            $user_array = getUserInformation(trimAndStripHtmlPHPtags($_POST['username']));
             $email = $user_array[0]['email'];
         } catch (Exception $e) {
             die($e->getMessage());

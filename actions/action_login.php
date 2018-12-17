@@ -1,10 +1,10 @@
 <?php
   include_once '../includes/session.php';
   include_once '../database/db_user.php';
-  
+  include_once '../database/dbPosts.php';
 
-  $username = $_POST['username'];
-  $password = $_POST['password'];
+  $username = trimAndStripHtmlPHPtags($_POST['username']);
+  $password = trimAndStripHtmlPHPtags($_POST['password']);
 
 try{
   $isCorrected = checkUserPassword($username, $password);

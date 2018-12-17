@@ -1,5 +1,5 @@
 <?php 
-
+include_once '../database/dbPosts.php';
 
 /**
  * Draws the header for all pages. Receives an username
@@ -84,16 +84,16 @@ function draw_header($username)
             unset($_SESSION['messages']);
         } ?>
             </section>
-            
-                <!-- display session error messages, if any-->
-                <?php if (isset($_SESSION['ERROR'])) { ?>
-                <section id="error">
-                    <div class="error">
-                        <?= $_SESSION['ERROR'] ?>
-                    </div>
-                    <?php unset($_SESSION['ERROR']);
+
+            <!-- display session error messages, if any-->
+            <?php if (isset($_SESSION['ERROR'])) { ?>
+            <section id="error">
+                <div class="error">
+                    <?= $_SESSION['ERROR'] ?>
+                </div>
+                <?php unset($_SESSION['ERROR']);
             } ?>
-                </section>
+            </section>
         </div>
         <?php 
     } ?>
@@ -142,6 +142,10 @@ function draw_header($username)
 </html>
 <?php 
 }
+
+
+
+
 
 /**
  * sends email to user, using sendMail module, whenever a user signs up or asks for password/username recovery
@@ -193,5 +197,7 @@ function random_str(
     }
     return $str;
 }
+
+
 
 ?>
