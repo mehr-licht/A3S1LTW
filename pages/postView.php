@@ -51,15 +51,21 @@
         <h1><?=$post['title']?></h1>
         <p> Published by
         <a href="/pages/profile.php?user=<?= $post['idUser']?>">
-            <span class="author"><?=$post['idUser']?></span></a>
-            <span class="rating">• <?= processingGetPoints($post['idUser'])?> points</span>
-            <span class="date">• <?=$post['date']?></span>
+            <span class="author"><?=$post['idUser']?></span>
+            <span class="rating">• </a><?= processingGetPoints($post['idUser'])?> points</span>
+            <span class="date">• 
+                        <?php 
+                          if(substr($post['date'], 0, strrpos($post['date'], ':') )){
+                          echo substr($post['date'], 0, strrpos($post['date'], ':') ); 
+                        }else{
+                            echo $post['date']  ;
+                          } ?></span>
         </p>
         <?php 
 
 $imageName = substr(strrchr($post['image'], "/"), 1);
 $imagePath = substr($post['image'], 0, strrpos($post['image'], '/') );
-$thumbsURL = $imagePath . '/medium_' . $imageName;
+$thumbsURL = $imagePath . '/thumb_' . $imageName;
 
         if(file_exists($post['image'])) { ?>
         <a href="<?=$post['image'] ?>"><img alt="Post thumbnail" src="<?= $thumbsURL ?>" height="200"></a>
@@ -87,7 +93,13 @@ $postComments[0]['idComent'];
     </section>
     <?php if(count( $postComments)){
     foreach(getCommentsByPost(trimAndStripHtmlPHPtags($_GET['postId'])) as $comment) {
-        draw_comment($comment['idComent'], $comment['idUser'], $comment['comentContent'], $comment['data']);
+     
+                          if(substr($post['date'], 0, strrpos($post['date'], ':') )){
+                          $dataecho= substr($post['date'], 0, strrpos($post['date'], ':') ); 
+                        }else{
+                            $dataecho= $post['date']  ;
+                          } 
+        draw_comment($comment['idComent'], $comment['idUser'], $comment['comentContent'], $dataecho);
     } } ?>
 </section>
 

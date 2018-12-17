@@ -70,11 +70,16 @@
                         <h1 title="<?=$post['title']?>"><?=$post['title']?></h1>
                         <div>
                             <span>
-                                <span class="author"><a href="/pages/profile.php?user=<?= $post['idUser']?>"><?=$post['idUser']?></a></span> 
+                                <span class="author"><a href="/pages/profile.php?user=<?= $post['idUser']?>"><?=$post['idUser']?></span> 
                                 
                                 <span class="rating">• <?= processingGetPoints($post['idUser'])?> points</span>
                             
-                                <span class="date">• <?=$post['date']?></span>
+                                <span class="date">• </a><?php 
+                          if(substr($post['date'], 0, strrpos($post['date'], ':') )){
+                          echo substr($post['date'], 0, strrpos($post['date'], ':') ); 
+                        }else{
+                            echo $post['date']  ;
+                          } ?></span>
                                 </span>
                             <p>
                                 <?php if(isset($post['image'])) { ?>

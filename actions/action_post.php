@@ -11,6 +11,8 @@ if (!isset($_SESSION['token_id'])) {
 }
 
 $today = date("Y-m-d", $timestamp = time());
+$datetime = $today . ':' . $timestamp;
+
 $tmpname=random(20);
 
 $nome = $_FILES['imageToUpload']['name'];
@@ -31,29 +33,6 @@ $titulo = trim(strip_tags($_POST['titulo']));
 
   // Move the uploaded file to its final destination
 $imageMoved = move_uploaded_file($_FILES['imageToUpload']['tmp_name'], $target_file);
-
-if ($imageMoved) {
-    try {
-        insertPost($_SESSION['username'], $today, $titulo, $conteudo, $target_file);
-        $_SESSION['post'][] = array('type' => 'success', 'content' => 'post published!');
-        header('Location: ../pages/list_stories.php');
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to post the post!');
-        die(header('Location: ../pages/create_post.php'));
-    }
-} else {
-    try {
-        insertPost($_SESSION['username'], $today, $titulo, $conteudo);
-        $_SESSION['post'][] = array('type' => 'success', 'content' => 'post published!');
-        header('Location: ../pages/list_stories.php');
-    } catch (PDOException $e) {
-        die($e->getMessage());
-        $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to post the post!');
-        die(header('Location: ../pages/create_post.php'));
-    }
-
-}
 
 
 
@@ -81,6 +60,33 @@ if ($mediumwidth > 400) {
 $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
 imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
 imagejpeg($medium, $mediumFileName);
+
+
+
+if ($imageMoved) {
+    try {
+        insertPost($_SESSION['username'], $datetime, $titulo, $conteudo, $target_file);
+        $_SESSION['post'][] = array('type' => 'success', 'content' => 'post published!');
+        header('Location: ../pages/list_stories.php');
+    } catch (PDOException $e) {
+        die($e->getMessage());
+        $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to post the post!');
+        die(header('Location: ../pages/create_post.php'));
+    }
+} else {
+    try {
+        insertPost($_SESSION['username'], $datetime, $titulo, $conteudo);
+        $_SESSION['post'][] = array('type' => 'success', 'content' => 'post published!');
+        header('Location: ../pages/list_stories.php');
+    } catch (PDOException $e) {
+        die($e->getMessage());
+        $_SESSION['post'][] = array('type' => 'error', 'content' => 'Failed to post the post!');
+        die(header('Location: ../pages/create_post.php'));
+    }
+
+}
+
+
 
 
 ?>

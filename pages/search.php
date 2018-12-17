@@ -1,4 +1,3 @@
-
 <?php
 include_once '../includes/session.php';
 include_once '../database/db_user.php';
@@ -33,127 +32,143 @@ draw_results(trimAndStripHtmlPHPtags($_GET['choice']),trimAndStripHtmlPHPtags($_
         function draw_results($choice,$search){
           switch ($choice) {
               case 'users': ?>
-          <!-- list of Users-->
-          <body>
-          <section id="users">
-              <div class="users">
-                  <?php $users = searchUser($search); 
+<!-- list of Users-->
+
+<body>
+    <section id="users">
+        <div class="users">
+            <?php $users = searchUser($search); 
               if (count($users)) { ?>
-                  <h1>Users</h1>
-                  <?php  foreach ($users as $user) { ?>
-                  <article class="userSearch">
-                      <div class="<?= $user['username'] ?>">
-                          <a href="../pages/profile.php?user=<?= $user['username'] ?>">
-                              <?= $user['username']; ?></a>
-                      </div>
-                  </article>
-                  <?php 
+            <h1>Users</h1>
+            <?php  foreach ($users as $user) { ?>
+            <article class="userSearch">
+                <div class="<?= $user['username'] ?>">
+                    <a href="../pages/profile.php?user=<?= $user['username'] ?>">
+                        <?= $user['username']; ?></a>
+                </div>
+            </article>
+            <?php 
             }  } ?>
-              </div>
-          </section>
-          <?php
+        </div>
+    </section>
+    <?php
                           break;
                       case 'comments': ?>
-          <!-- list of Comments-->
-          <section id="comments">
-              <div class="comments">
-                  <?php $allComments = searchComents($search); ?>
-                  <?php if(count($allComments)) { ?>
-                  <h1>Comments:</h1>
-                  <?php foreach ($allComments as $comment) { ?>
-                  <article class="commentSearch">
-                      <div class="<?= $comment['idComent'] ?>">
-                          <a href="../pages/postView.php?postId=<?= $comment['idPost'] ?>#<?= $comment['idComent'] ?>">
-                              <?= $comment['idComent']; ?> :
-                              <?= substr($comment['comentContent'], 0, 50) ?></a>•
-                          <?= $comment['data'] ?>
-                          <!-- plus owner of post? -->
-                      </div>
-                  </article>
-                  <?php 
+    <!-- list of Comments-->
+    <section id="comments">
+        <div class="comments">
+            <?php $allComments = searchComents($search); ?>
+            <?php if(count($allComments)) { ?>
+            <h1>Comments:</h1>
+            <?php foreach ($allComments as $comment) { ?>
+            <article class="commentSearch">
+                <div class="<?= $comment['idComent'] ?>">
+                    <a href="../pages/postView.php?postId=<?= $comment['idPost'] ?>#<?= $comment['idComent'] ?>">
+                        <?= $comment['idComent']; ?> :
+                        <?= substr($comment['comentContent'], 0, 50) ?> • </a>
+                        <?php 
+                          if(substr($comment['data'], 0, strrpos( $comment['data'], ':') )){
+                          echo substr($comment['data'], 0, strrpos( $comment['data'], ':') ); 
+                        }else{
+                            echo $comment['data']  ;
+                          } ?>
+                </div>
+            </article>
+            <?php 
              } } ?>
-              </div>
-          </section>
-          <?php
+        </div>
+    </section>
+    <?php
                           break;
                       case 'posts': ?>
-          <!-- list of Posts-->
-          <section id="posts">
-              <div class="posts">
-                  <?php $allPosts = searchPosts($search); 
+    <!-- list of Posts-->
+    <section id="posts">
+        <div class="posts">
+            <?php $allPosts = searchPosts($search); 
               if(count($allPosts)) { ?>
-                  <h1>Posts</h1>
-                  <?php foreach ($allPosts as $post) { ?>
-                  <article class="postSearch">
-                      <div class="<?= $post['title'] ?>">
-                          <a href="../pages/postView.php?postId=<?= $post['idPost'] ?>">
-                              <?= $post['title'] ?> </a>
-                          <?= $post['date'] ?>
-                          <!-- plus votes? -->
-                      </div>
-                  </article>
-                  <?php 
+            <h1>Posts</h1>
+            <?php foreach ($allPosts as $post) { ?>
+            <article class="postSearch">
+                <div class="<?= $post['title'] ?>">
+                    <a href="../pages/postView.php?postId=<?= $post['idPost'] ?>">
+                        <?= $post['title'] ?> </a>
+                    <?= substr($post['date'], 0, strrpos( $post['date'], ':') ) ?>
+                    <!-- plus votes? -->
+                </div>
+            </article>
+            <?php 
                     }  } ?>
-              </div>
-          </section>
-          <?php
+        </div>
+    </section>
+    <?php
                                   break;
                               case 'any': ?>
-          <section id="users">
-              <div class="users">
-                  <?php $users = searchUser($search); 
+    <section id="users">
+        <div class="users">
+            <?php $users = searchUser($search); 
                         if(count($users)) { ?>
-                  <h1>Users</h1>
-                  <?php foreach ($users as $user) { ?>
-                  <article class="userSearch">
-                      <div class="<?= $user['username'] ?>">
-                          <a href="../pages/profile.php?user=<?= $user['username'] ?>">
-                              <?= $user['username']; ?></a>
-                      </div>
-                  </article>
-                  <?php 
+            <h1>
+                <?=count($users)?> Users</h1>
+            <?php foreach ($users as $user) { ?>
+            <article class="userSearch">
+                <div class="<?= $user['username'] ?>">
+                    <a href="../pages/profile.php?user=<?= $user['username'] ?>">
+                        <?= $user['username']; ?></a>
+                </div>
+            </article>
+            <?php 
                     }  } ?>
-              </div>
-          </section>
-          <section id="comments">
-              <div class="comments">
-                  <?php $allComments = searchComments($search); 
+        </div>
+    </section>
+    <section id="comments">
+        <div class="comments">
+            <?php $allComments = searchComments($search); 
           if(count($allComments)) { ?>
-                  <h1>Comments</h1>
-                  <?php foreach ($allComments as $comment) { ?>
-                  <article class="commentSearch">
-                      <div class="<?= $comment['idComent'] ?>">
-                          <a href="../pages/postView.php?postId=<?= $comment['idPost'] ?>#<?= $comment['idComent'] ?>">
-                              <?= substr($comment['comentContent'], 0, 50) ?></a>
-                          <?= $comment['data'] ?>
-                          <!-- plus owner of post? -->
-                      </div>
-                  </article>
-                  <?php 
+            <h1>
+                <?=count($allComments)?> Comments</h1>
+            <?php foreach ($allComments as $comment) { ?>
+            <article class="commentSearch">
+                <div class="<?= $comment['idComent'] ?>">
+                    <a href="../pages/postView.php?postId=<?= $comment['idPost'] ?>#<?= $comment['idComent'] ?>">
+                        <?= substr($comment['comentContent'], 0, 50) ?></a>
+                    <?php 
+                          if(substr($comment['data'], 0, strrpos( $comment['data'], ':') )){
+                          echo substr($comment['data'], 0, strrpos( $comment['data'], ':') ); 
+                        }else{
+                            echo $comment['data']  ;
+                          } ?>
+                </div>
+            </article>
+            <?php 
               } } ?>
-              </div>
-          </section>
-          <!-- list of Posts-->
-          <section id="posts">
-              <div class="posts">
-                  <?php $allPosts = searchPosts($search); 
+        </div>
+    </section>
+    <!-- list of Posts-->
+    <section id="posts">
+        <div class="posts">
+            <?php $allPosts = searchPosts($search); 
               if(count($allPosts)) { ?>
-                  <h1>Posts</h1>
-                  <?php foreach ($allPosts as $post) { ?>
-                  <article class="postSearch">
-                      <div class="<?= $post['title'] ?>">
-                          <a href="../pages/postView.php?postId=<?= $post['idPost'] ?>">
-                              <?= $post['title'] ?> </a>
-                          <?= $post['date'] ?>
-                          <!-- plus votes? -->
-                      </div>
-                  </article>
-                  <?php 
+            <h1>
+                <?=count($allPosts)?> Posts</h1>
+            <?php foreach ($allPosts as $post) { ?>
+            <article class="postSearch">
+                <div class="<?= $post['title'] ?>">
+                    <a href="../pages/postView.php?postId=<?= $post['idPost'] ?>">
+                        <?= $post['title'] ?>• </a>
+                        <?php 
+                          if(substr($post['date'], 0, strrpos($post['date'], ':') )){
+                          echo substr($post['date'], 0, strrpos($post['date'], ':') ); 
+                        }else{
+                            echo $post['date']  ;
+                          } ?>
+                </div>
+            </article>
+            <?php 
                   } } ?>
-              </div>
-          </section>
-                </body>
-          <?php
+        </div>
+    </section>
+</body>
+<?php
                               break;
                           default:
                               break;
