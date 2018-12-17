@@ -218,14 +218,14 @@ draw_header($thisuser);
     <div class="profile posts">
 
       <?php $allPostsByUser = getAllPostsUSER($username) ;
-      if (count($allPostsByUser)) { ?>
-      <h1>Posts:</h1>
+      if (count($allPostsByUser)) {  ?>
+      <h1><?=count($allPostsByUser)?> Posts:</h1>
       <?php 
       foreach ($allPostsByUser as $postByUser) { ?>
       <article class="postSearch">
         <div class="<?= $postByUser['title'] ?>">
           <a href="../pages/postView.php?postId=<?= $postByUser['idPost'] ?>">
-            <?= $postByUser['title'] ?> </a>•
+            <?= $postByUser['title'] ?> • </a>
           <?= $postByUser['date'] ?>
           <!-- plus votes? -->
         </div>
@@ -241,13 +241,13 @@ draw_header($thisuser);
     <div class="profile comments">
       <?php $allCommentsByUser = getAllCommentsUSER($username); 
         if (count($allCommentsByUser)) { ?>
-      <h1>Comments:</h1>
+      <h1><?=count($allCommentsByUser)?> Comments:</h1>
       <?php 
          foreach ($allCommentsByUser as $commentByUser) { ?>
       <article class="commentSearch">
         <div class="<?= $commentByUser['idComent']?>">
           <a href="../pages/postView.php?postId=<?= $commentByUser['idPost'] ?>#<?= $commentByUser['idComent'] ?>">
-            <?=  substr($commentByUser['comentContent'], 0, 50) ?> </a>•
+            <?=  substr($commentByUser['comentContent'], 0, 50) ?> • </a>
           <?= $commentByUser['data']?>
           <!-- plus owner of post? -->
         </div>

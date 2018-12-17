@@ -108,7 +108,7 @@ function getUserPost($username, $idPost){
 */
 function getAllPostsUSER($username){
   $db = Database::instance()->db();
-  $stmt = $db->prepare('SELECT distinct Post.idPost, Post.idUser, date, title, content, vote image FROM Post join PostVote on (PostVote.idUser = Post.idUser) WHERE Post.iduser =  ?');
+  $stmt = $db->prepare('SELECT distinct Post.idPost, Post.idUser, date, title, content, image FROM Post WHERE Post.iduser =  ?');
   $stmt->execute(array(
       $username
   ));

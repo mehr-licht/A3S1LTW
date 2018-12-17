@@ -56,8 +56,13 @@
             <span class="date">• <?=$post['date']?></span>
         </p>
         <?php 
+
+$imageName = substr(strrchr($post['image'], "/"), 1);
+$imagePath = substr($post['image'], 0, strrpos($post['image'], '/') );
+$thumbsURL = $imagePath . '/medium_' . $imageName;
+
         if(file_exists($post['image'])) { ?>
-        <a href="<?=$post['image'] ?>"><img alt="Post thumbnail" src="<?=$post['image'] ?>" height="200"></a>
+        <a href="<?=$post['image'] ?>"><img alt="Post thumbnail" src="<?= $thumbsURL ?>" height="200"></a>
         <?php } ?> 
         <p><?=$post['content']?></p>
     </article>
