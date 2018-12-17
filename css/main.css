@@ -61,6 +61,12 @@ nav.navbar {
     transition: background-color, 0.5s;
 }
 
+.navbar > .avatar {
+    width: 1.5rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .navbar.user:hover {
     background-color: #0099ff;
 }
