@@ -1,5 +1,5 @@
 <?php 
-
+include_once '../database/dbPosts.php';
 
 /**
  * Draws the header for all pages. Receives an username

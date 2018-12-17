@@ -5,7 +5,7 @@
  
   if (!isset($_SESSION['token_id'])) {
     $idSession = $_SESSION['token_id'];
-    if (!validateToken($idSession, $_POST[$idSession])) {
+    if (!validateToken($idSession, trimAndStripHtmlPHPtags($_POST[$idSession]))) {
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'invalid session token!');
         die(header('Location: ../pages/login.php'));
     }
@@ -21,7 +21,7 @@ $username = $_SESSION['username'];
  * Allow only one user per email
  */
 try{
-  $emailExists = checkUserEmail($_POST['email']);
+  $emailExists = checkUserEmail(trimAndStripHtmlPHPtags($_POST['email']));
 } catch (PDOException $e) {
   die($e->getMessage("error updating database"));
   $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to check data!');
@@ -36,7 +36,7 @@ try{
 }
 
 
- if( $emailExists && $isSameEmail != $_POST['email'] ){
+ if( $emailExists && $isSameEmail != trimAndStripHtmlPHPtags($_POST['email'])){
     $_SESSION['ERROR'] = 'Email already in use';
     die(header('Location: '.$_SERVER['HTTP_REFERER']));
   }
