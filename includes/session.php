@@ -37,7 +37,7 @@ function regenerateSession($reload = false)
     $_SESSION['userAgent'] = $_SERVER['HTTP_USER_AGENT'];
 
 
-    // Create new session without destroying the old one
+  // Create new session without destroying the old one
   session_regenerate_id(false);
 
     // Grab current session ID and close both sessions to allow other scripts to use them
