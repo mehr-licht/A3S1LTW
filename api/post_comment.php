@@ -28,6 +28,9 @@
 	// get the comment content (trimmed and without tags)
 	$comment = trimAndStripHtmlPHPtags($requestBody['comment']);
 
+	// get the comment id, in case this is a reply to some comment
+	$replyTo = trimAndStripHtmlPHPtags($requestBody['reply_to']);
+
 	// ensure required parameters are set (idPost and comment)
 	if(is_null($idPost) or is_null($comment)) {
 		header("HTTP/1.1 400");
@@ -40,7 +43,10 @@
 
 	// perform changes in the database
 	try {
-		$new_id = insertComment($idPost, $username, $comment);
+		if(isset($replyTo))
+			$new_id = replyToComment($idPost, $username, $comment, $replyTo);
+		else
+			$new_id = insertComment($idPost, $username, $comment);
 		$commentRow = getCommentById($new_id);
 		header("HTTP/1.1 200");
 		echo json_encode(array(

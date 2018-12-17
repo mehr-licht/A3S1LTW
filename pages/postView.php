@@ -64,7 +64,7 @@
 
 <!-- post comments -->
 <?php 
-    $postComments = getCommentsByPost($_GET['postId'])
+    $postComments = getCommentsByPost($_GET['postId']);
 ?>
 <section id="comments" --data-last-comment="<?=$postComments[0]['idComent']?>" --data-post-id="<?=$_GET['postId']?>">
     <h1>Comments:</h1>
@@ -74,9 +74,10 @@
         <button id="submit_comment_btn">Submit</button>
     </section>
     <?php
-    foreach(getCommentsByPost($_GET['postId']) as $comment) {
-        draw_comment($comment['idComent'], $comment['idUser'], $comment['comentContent'], $comment['data']);
-    } ?>
+        foreach(getCommentsByPost($_GET['postId']) as $comment) {
+            draw_comment_with_replies($comment['idComent'], $comment['idUser'], $comment['comentContent'], $comment['data']);
+        }
+    ?>
 </section>
 <?php
 draw_footer();

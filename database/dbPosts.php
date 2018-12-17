@@ -199,21 +199,6 @@ function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
     ));
 }
 
-
-// function insertComment($idUser, $date, $commentCont, $idPost, $idParentComent){
-//     if(is_null($date))
-//         $date = date('Y-m-d');
-    
-//     $db = Database::instance()->db();
-//     $stmt = $db->prepare('INSERT INTO Coment(idUser, data, comentContent, idPost, idParentComent) VALUES(?, ?, ?, ?, ?)');
-//     $stmt->execute(array(
-//         $idUser,
-//         $date,
-//         $commentCont,
-//         $idPost,
-//         $idParentComent
-//     ));
-// }
 /**
  * Inserts a new Coment into a POST
  * @param iduser,    
@@ -241,23 +226,36 @@ function insertComment($idPost, $idUser, $comment, $date = NULL){
 }
 
 /**
- * Inserts a new Coment into a COMENT.
- * @param iduser,    
- * @param data,
- * @param comentConteudo,
- * @param idPost,
- * @param idParentComent
+ * Inserts a reply to comment
  */
-function insertComentIntoComent($iduser, $data, $comentConteudo, $idPost, $idParentComent){
+function replyToComment($idPost, $idUser, $comment, $idParentComment, $date = NULL){
+    if(is_null($date))
+        $date = date('Y-m-d');
+    
     $db = Database::instance()->db();
     $stmt = $db->prepare('INSERT INTO Coment VALUES(?, ?, ?, ?)');
     $stmt->execute(array(
-        $iduser,
-        $data,
-        $comentConteudo,
+        $idUser,
+        $date,
+        $comment,
         $idPost,
-        $idParentComent
+        $idParentComment
     ));
+
+    return $db->lastInsertId();
+}
+
+/**
+ * 
+ */
+function getCommentsReply($idComment) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * From Coment WHERE idParentComent = ?');
+    $stmt->execute(array(
+        $idComment
+    ));
+
+    return $stmt->fetchAll();
 }
 
 

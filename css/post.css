@@ -120,6 +120,10 @@
     flex-direction: row;
 }
 
+.comment .comment {
+    
+}
+
 .comment img {
     width: 48x;
     height: 48px;
