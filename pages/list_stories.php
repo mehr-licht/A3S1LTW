@@ -7,7 +7,7 @@
     
     
     //Verify if user is logged in
-    if (checkTimeout() || !isset($_SESSION['username'])){
+    if (checkTimeout() || !isset($_SESSION['username'])) {
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Session time-out. Please log in again!');
         die(header('Location: ../pages/login.php'));
     }
@@ -23,13 +23,13 @@
     <section id="stories">
     <div class="pill-nav">
        
-        <a href="/pages/list_stories.php?sort=mostRecent" id="mRecent" class=<?= (!isset(trimAndStripHtmlPHPtags($_GET['sort'])) || (isset(trimAndStripHtmlPHPtags($_GET['sort'])) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostRecent')) ? "order" : "active" ?>
+        <a href="/pages/list_stories.php?sort=mostRecent" id="mRecent" class=<?= (!isset($_GET['sort']) || (isset($_GET['sort']) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostRecent')) ? "order" : "active" ?>
         >Most recent</a>
-        <a href="/pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?= (isset(trimAndStripHtmlPHPtags($_GET['sort'])) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostVoted') ? "order" : "active" ?>>Most Voted</a>
-        <a href="/pages/list_stories.php?sort=mostComent" id="mComent" class=<?= (isset(trimAndStripHtmlPHPtags($_GET['sort'])) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostComent') ? "order" : "active" ?>>Most commented</a>
+        <a href="/pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?= (isset($_GET['sort']) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostVoted') ? "order" : "active" ?>>Most Voted</a>
+        <a href="/pages/list_stories.php?sort=mostComent" id="mComent" class=<?= (isset($_GET['sort']) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostComent') ? "order" : "active" ?>>Most commented</a>
     </div>
         <?php //get kind of sort chosen
-            if( !isset(trimAndStripHtmlPHPtags($_GET['sort'])) ){
+            if( !isset($_GET['sort']) ){
                 $futureArray = getAllPostsOrderByDate();
             }elseif(trimAndStripHtmlPHPtags( $_GET['sort'] )== 'mostRecent'   ){
                 $futureArray = getAllPostsOrderByDate(); 

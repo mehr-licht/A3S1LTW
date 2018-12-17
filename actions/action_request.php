@@ -1,6 +1,7 @@
 <?php
 include_once '../includes/session.php';
 include_once '../database/db_user.php';
+include_once '../database/dbPosts.php';
 include_once '../templates/tpl_common.php';
 
 
@@ -37,7 +38,7 @@ if (trimAndStripHtmlPHPtags($_POST['username'])!="" && !$userExists) {
 
     $pass = random_str(10);
     
-    if (isset(trimAndStripHtmlPHPtags($_POST['username'])) && $userExists) {
+    if (isset($_POST['username']) && $userExists) {
         try{    
             $user_array = getUserInformation(trimAndStripHtmlPHPtags($_POST['username']));
             $email = $user_array[0]['email'];

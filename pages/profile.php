@@ -18,7 +18,7 @@ regenerateSession();
 $editable = false;
 $thisuser = $_SESSION['username'];
 $username = $_SESSION['username'];
-if (isset(trimAndStripHtmlPHPtags($_GET['user']))) {
+if (isset($_GET['user'])) {
   $username = trimAndStripHtmlPHPtags($_GET['user']);
 }
 $imageName=sha1($username);

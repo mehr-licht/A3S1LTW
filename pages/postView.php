@@ -15,7 +15,7 @@
     draw_header($_SESSION['username']);
     
 
-    if(isset(trimAndStripHtmlPHPtags($_GET['postId']))) {
+    if(isset($_GET['postId'])) {
         $post = getPostByID(trimAndStripHtmlPHPtags($_GET['postId']));
     } else {
     }
@@ -70,7 +70,10 @@
   
 ?>
 
-<section id="comments" --data-last-comment="<?=$postComments[0]['idComent']?>" --data-post-id="<?=trimAndStripHtmlPHPtags($_GET['postId'])?>">
+<section id="comments"  --data-last-comment="<?php
+if(count( $postComments)){
+$postComments[0]['idComent'];
+} ?>" --data-post-id="<?=trimAndStripHtmlPHPtags($_GET['postId'])?>">
     <h1>Comments:</h1> 
     <section>
         <textarea id="comment_txt" placeholder="New comments go here" rows="auto"></textarea>
