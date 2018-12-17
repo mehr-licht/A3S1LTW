@@ -138,8 +138,8 @@ function votesOnPostView(postViewNode) {
 document.addEventListener('DOMContentLoaded', function() {
     // Add click event listeners on all vote buttons
     let allArticles = document.querySelectorAll("#stories > article");
-    if(allArticles.length) votesOnListPosts(allArticles);
+    if (allArticles.length) votesOnListPosts(allArticles);
 
     let postView = document.querySelector("#post_view");
-    if(postView != null) votesOnPostView(postView);
+    if (postView != null) votesOnPostView(postView);
 }, false);

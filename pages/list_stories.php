@@ -23,19 +23,19 @@
     <section id="stories">
     <div class="pill-nav">
        
-        <a href="/pages/list_stories.php?sort=mostRecent" id="mRecent" class=<?= (!isset($_GET['sort']) || (isset($_GET['sort']) && $_GET['sort'] == 'mostRecent')) ? "order" : "active" ?>
+        <a href="/pages/list_stories.php?sort=mostRecent" id="mRecent" class=<?= (!isset(trimAndStripHtmlPHPtags($_GET['sort'])) || (isset(trimAndStripHtmlPHPtags($_GET['sort'])) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostRecent')) ? "order" : "active" ?>
         >Most recent</a>
-        <a href="/pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?= (isset($_GET['sort']) && $_GET['sort'] == 'mostVoted') ? "order" : "active" ?>>Most Voted</a>
-        <a href="/pages/list_stories.php?sort=mostComent" id="mComent" class=<?= (isset($_GET['sort']) && $_GET['sort'] == 'mostComent') ? "order" : "active" ?>>Most commented</a>
+        <a href="/pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?= (isset(trimAndStripHtmlPHPtags($_GET['sort'])) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostVoted') ? "order" : "active" ?>>Most Voted</a>
+        <a href="/pages/list_stories.php?sort=mostComent" id="mComent" class=<?= (isset(trimAndStripHtmlPHPtags($_GET['sort'])) && trimAndStripHtmlPHPtags($_GET['sort']) == 'mostComent') ? "order" : "active" ?>>Most commented</a>
     </div>
         <?php //get kind of sort chosen
-            if( !isset($_GET['sort']) ){
+            if( !isset(trimAndStripHtmlPHPtags($_GET['sort'])) ){
                 $futureArray = getAllPostsOrderByDate();
-            }elseif( $_GET['sort'] == 'mostRecent'   ){
+            }elseif(trimAndStripHtmlPHPtags( $_GET['sort'] )== 'mostRecent'   ){
                 $futureArray = getAllPostsOrderByDate(); 
-            }elseif(    $_GET['sort'] == 'mostVoted'    ){
+            }elseif(  trimAndStripHtmlPHPtags(  $_GET['sort']) == 'mostVoted'    ){
                 $futureArray =  getAllPostsOrderByMostVoted();
-            }elseif(  $_GET['sort'] == 'mostComent'   ){
+            }elseif( trimAndStripHtmlPHPtags( $_GET['sort']) == 'mostComent'   ){
                 $futureArray =  getAllPostsOrderByMostComent();
             }
             

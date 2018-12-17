@@ -23,7 +23,7 @@ regenerateSession();
 
 draw_header($_SESSION['username']);
 
-draw_results($_GET['choice'],$_GET['search']);
+draw_results(trimAndStripHtmlPHPtags($_GET['choice']),trimAndStripHtmlPHPtags($_GET['search']));
 
  /**
          * Draws the results of the search query.
