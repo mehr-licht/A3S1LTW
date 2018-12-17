@@ -33,7 +33,7 @@ function draw_header($username)
 
 <body>
     <header>
-        <nav class="navbar allheader">
+        <nav class="navbar">
             <div class="navbar left">
                 <a href="../pages/list_stories.php">
                     <span class="navbar title">Yet Another Site</span>
