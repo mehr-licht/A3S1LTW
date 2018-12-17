@@ -65,8 +65,11 @@
 
 <!-- post comments -->
 <?php 
-    $postComments = getCommentsByPost($_GET['postId'])
+    $postComments = getCommentsByPost($_GET['postId']);
+
+    if(count( $postComments)){
 ?>
+
 <section id="comments" --data-last-comment="<?=$postComments[0]['idComent']?>" --data-post-id="<?=$_GET['postId']?>">
     <h1>Comments:</h1>
     <section>
@@ -79,6 +82,7 @@
         draw_comment($comment['idComent'], $comment['idUser'], $comment['comentContent'], $comment['data']);
     } ?>
 </section>
-<?php
+
+    <?php }
 draw_footer();
 ?>
