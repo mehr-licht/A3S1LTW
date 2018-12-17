@@ -109,10 +109,11 @@ function downvoteClickHandler(articleNode) {
     api_user_voted_post(postId, newVote);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click event listeners on all vote buttons
-    let allArticles = document.querySelectorAll("#stories > article");
-
+/**
+ * Adds event listeners on each post entry (list_stories.php)
+ * @param {NodeList} allArticles 
+ */
+function votesOnListPosts(allArticles) {
     for (let articleNode of allArticles) {
         articleNode.querySelector("aside > svg.upvote").addEventListener('click', function(ev) {
             upvoteClickHandler(articleNode);
@@ -122,5 +123,23 @@ document.addEventListener('DOMContentLoaded', function() {
             downvoteClickHandler(articleNode);
         });
     }
+}
 
+function votesOnPostView(postViewNode) {
+    postViewNode.querySelector("aside > svg.upvote").addEventListener('click', function(ev) {
+        upvoteClickHandler(postViewNode);
+    });
+
+    postViewNode.querySelector("aside > svg.downvote").addEventListener('click', function(ev) {
+        downvoteClickHandler(postViewNode);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click event listeners on all vote buttons
+    let allArticles = document.querySelectorAll("#stories > article");
+    if(allArticles.length) votesOnListPosts(allArticles);
+
+    let postView = document.querySelector("#post_view");
+    if(postView != null) votesOnPostView(postView);
 }, false);

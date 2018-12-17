@@ -22,8 +22,9 @@
    
     $vote = getPostVoteByUser($_GET['postId'], $_SESSION['username']);
 ?>
+<script src="../js/post.js"></script>
 <!-- the post content section -->
-<section id="post_view" class="post view">
+<section id="post_view" class="post view" --data-id-post="<?=$post['idPost']?>">
     <aside class="votes">
         <svg class="votes upvote <?= ($vote > 0) ? 'active' : '' ?>" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819">
             <g><!-- up arrow svg -->
@@ -51,6 +52,7 @@
         <p> Published by
         <a href="/pages/profile.php?user=<?= $post['idUser']?>">
             <span class="author"><?=$post['idUser']?></span></a>
+            <span class="rating">• <?= processingGetPoints($post['idUser'])?> points</span>
             <span class="date">• <?=$post['date']?></span>
         </p>
         <?php 
