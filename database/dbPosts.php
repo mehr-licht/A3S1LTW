@@ -199,21 +199,17 @@ function insertPost($iduser, $today, $titulo, $conteudo, $url=null){
     ));
 }
 
-
-// function insertComment($idUser, $date, $commentCont, $idPost, $idParentComent){
-//     if(is_null($date))
-//         $date = date('Y-m-d');
-    
-//     $db = Database::instance()->db();
-//     $stmt = $db->prepare('INSERT INTO Coment(idUser, data, comentContent, idPost, idParentComent) VALUES(?, ?, ?, ?, ?)');
-//     $stmt->execute(array(
-//         $idUser,
-//         $date,
-//         $commentCont,
-//         $idPost,
-//         $idParentComent
-//     ));
-// }
+/**
+ * Returns points by idUser
+ */
+function getPoints($idUser){
+     $db = Database::instance()->db();
+     $stmt = $db->prepare('SELECT COUNT(vote) as sum FROM PostVote WHERE idUser = ? group by idUser');
+     $stmt->execute(array(
+         $idUser,
+     ));
+     return $stmt->fetch();
+ }
 /**
  * Inserts a new Coment into a POST
  * @param iduser,    
@@ -308,4 +304,9 @@ function trimAndStripHtmlPHPtags($words){
     return trim(strip_tags($words)); 
 }
 
+function processingGetPoints($idUser){
+    $arrayPoints = getPoints($idUser);
+    $totalPoints = $arrayPoints['sum'] * 5;
+    return $totalPoints;
+}
 ?>

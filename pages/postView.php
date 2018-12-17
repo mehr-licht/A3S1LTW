@@ -52,6 +52,7 @@
         <p> Published by
         <a href="/pages/profile.php?user=<?= $post['idUser']?>">
             <span class="author"><?=$post['idUser']?></span></a>
+            <span class="rating">• <?= processingGetPoints($post['idUser'])?> points</span>
             <span class="date">• <?=$post['date']?></span>
         </p>
         <?php 

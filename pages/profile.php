@@ -3,6 +3,7 @@ include_once '../includes/session.php';
 include_once '../templates/tpl_common.php';
 include_once '../database/db_user.php';//for checkusername  
 include_once '../templates/tpl_auth.php';
+include_once '../database/dbPosts.php';
 
 
 if (checkTimeout() || !isset($_SESSION['username'])){
@@ -60,6 +61,7 @@ draw_header($thisuser);
       <div contenteditable="false">
         <h1>
           <?= $user_array[0]['username'] ?>
+          <span class="rating">• <?= processingGetPoints($user_array[0]['username'])?> points •</span>
         </h1>
       </div>
     </label></p>

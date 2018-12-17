@@ -18,6 +18,7 @@ function draw_comment($idComment, $idUser, $commentTxt, $commentDate) { ?>
         <div>
             <h1 class="header">
                 <span class="author"><a href="/pages/profile.php?user=<?=$idUser?>"> <?=$idUser?></a></span>
+                <span class="rating">• <?= processingGetPoints($idUser)?> points</span>
                 said
                 <span class="date"> • <?=$commentDate?></span>
             </h1>
