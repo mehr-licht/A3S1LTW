@@ -17,18 +17,18 @@
   
 ?>
 <script src="../js/post.js"></script>
-<link href="/css/post.css" type="text/css" rel="stylesheet">
+<link href="../css/post.css" type="text/css" rel="stylesheet">
 
 <body>
     <section id="stories">
         <div class="pill-nav">
 
-            <a href="/pages/list_stories.php?sort=mostRecent" id="mRecent" class=<?=(!isset($_GET['sort']) ||
+            <a href="../pages/list_stories.php?sort=mostRecent" id="mRecent" class=<?=(!isset($_GET['sort']) ||
                 (isset($_GET['sort']) && trimAndStripHtmlPHPtags($_GET['sort'])=='mostRecent' )) ? "order" : "active" ?>
                 >Most recent</a>
-            <a href="/pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?=(isset($_GET['sort']) &&
+            <a href="../pages/list_stories.php?sort=mostVoted" id="mVoted" class=<?=(isset($_GET['sort']) &&
                 trimAndStripHtmlPHPtags($_GET['sort'])=='mostVoted' ) ? "order" : "active" ?>>Most Voted</a>
-            <a href="/pages/list_stories.php?sort=mostComent" id="mComent" class=<?=(isset($_GET['sort']) &&
+            <a href="../pages/list_stories.php?sort=mostComent" id="mComent" class=<?=(isset($_GET['sort']) &&
                 trimAndStripHtmlPHPtags($_GET['sort'])=='mostComent' ) ? "order" : "active" ?>>Most commented</a>
         </div>
         <?php //get kind of sort chosen
@@ -80,7 +80,7 @@
                 </h1>
                 <div>
                     <span>
-                        <span class="author"><a href="/pages/profile.php?user=<?= $post['idUser']?>">
+                        <span class="author"><a href="../pages/profile.php?user=<?= $post['idUser']?>">
                                 <?=$post['idUser']?></span>
 
                         <span class="rating">•
@@ -115,7 +115,7 @@ $thumbsURL = $imagePath . '/thumb_' . $imageName;
                                     
         ?>></a>
                         <?php } else { ?>
-                        <img class="thumb" src="/res/default-thumb.png">
+                        <img class="thumb" src="../res/default-thumb.png">
                         <?php } ?>
                         <span>
                             <?=$post['content']?></span>
