@@ -108,7 +108,7 @@ function draw_header($username)
 		function draw_search()
 		{ ?>
 		<div class="searchbar">
-			<form id="searchbox" action="/pages/search.php">
+			<form id="searchbox" action="../pages/search.php">
 				<select name="choice">
 					<option value="any">Any</option>
 					<option value="posts">Posts</option>
