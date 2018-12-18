@@ -3,7 +3,7 @@
 ## Overall
 
 YetAnotherSite's project has implemented ALL the minimum requirements.  
-From the 9 extra requirements, YetAnotherSite's has implemented SEVEN requirements, ending with a 90% racio of all
+From the 9 extra requirements, YetAnotherSite's has implemented SEVEN requirements, ending with a 85% racio of all
 requirements defined.
 
 ### Minimum expected requirements:
@@ -36,22 +36,23 @@ All users should be able to:
 
         Session Fixation prevention (Session Regeneration, Session Time-out and verification)
 
-        SQL injection prevention (prepared php queries)
-
         CSRF prevention (random token-id and hashed token_values with salt)
 
         XSS prevention (Escape Scripts on all inputs and gets. Images stored with hash)
 
+        Use of Prepared Statements and use of Stored Procedures to make queries to the database
+        
+        All inputs are filtred in regex expressionas, php fuctions or java fuctions to deleted the scripts caracteres. For example, in php we use trim() and strip_tags(). 
+
 ### Extra requirements
 
-[DONE] __Multilevel Comments__: Comments can be replies to other comments (2 levels or infinite levels).
 
 [DONE] __Sorting__: Stories can be sorted in many different ways. The sorting is acessible after the loggin 
 on YetAnotherSite. The default view will be the most recent stories added to database, sorted by date. On top the bar with 3 options, it's possible to change between 3 different values _More Recent_, _Most Voted_ (sorted by the total number of votes received) and _More Commented_ (sorted by the the total number of comments with story received).
 
 [DONE] __Profiles__: User profiles have a list of all stories and comments posted by them and some of their info. If you are seeeing your own profile, you can edit all your information. Other users cannot see all of your information.
 
-[DONE] __Points__: Each story can be voted in the up and down arrows on the left side of the screen. Each arrow has two stages, Clicked and noClicked , meaning the voting implementation has four stages in total. Only allows one click in one of the arrows per user on one post, in another words it allows only one vote per user per story.    
+[DONE] __Points__: Each user will received a number of points in according to the story posted and the votes received. Good stories with more votes and more comments will give more points. Stories with negative votes will decrease the points received.       
 
 [DONE] __Search__: Users can search for stories and comments and users. When used, it performs an exact search of the written term, within the contents searched upon, in four options: search in stories, search in comments, search in users and search in everything.
 
@@ -68,9 +69,9 @@ We have tested a few times and received the confirmation emails. For this featur
 All inputs have javascript validation for immediate user awareness. Security is implemented by php on the server side.
 
 Another module we had to add was for images: sudo apt-get install php7.2-gd.
-For both modules to work we also had to make some chnages on php.ini file (uncomment).
+For both modules to work we also had to make some changes on php.ini file (uncomment).
 
-
+[NOT_IMPLEMENTED] Multilevel Comments: Comments can be replies to other comments (2 levels or infinite levels).
 
 [NOT_IMPLEMENTED] Channels: The site is divided into channels. Stories can be posted in a specific channel. Users can create and subscribe to channels. 
 Each channel should have a special place where users can see stories published on those channels. A special place where user can see stories belonging to channels they subscribed to should be available.
