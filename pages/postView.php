@@ -16,11 +16,11 @@
     
 
     if(isset($_GET['postId'])) {
-        $post = getPostByID($_GET['postId']);
+        $post = getPostByID(trimAndStripHtmlPHPtags($_GET['postId']));
     } else {
     }
    
-    $vote = getPostVoteByUser($_GET['postId'], $_SESSION['username']);
+    $vote = getPostVoteByUser(trimAndStripHtmlPHPtags($_GET['postId']), $_SESSION['username']);
 ?>
 <script src="../js/post.js"></script>
 <!-- the post content section -->
@@ -51,13 +51,24 @@
         <h1><?=$post['title']?></h1>
         <p> Published by
         <a href="/pages/profile.php?user=<?= $post['idUser']?>">
-            <span class="author"><?=$post['idUser']?></span></a>
-            <span class="rating">• <?= processingGetPoints($post['idUser'])?> points</span>
-            <span class="date">• <?=$post['date']?></span>
+            <span class="author"><?=$post['idUser']?></span>
+            <span class="rating">• </a><?= processingGetPoints($post['idUser'])?> points</span>
+            <span class="date">• 
+                        <?php 
+                          if(substr($post['date'], 0, strrpos($post['date'], ':') )){
+                          echo substr($post['date'], 0, strrpos($post['date'], ':') ); 
+                        }else{
+                            echo $post['date']  ;
+                          } ?></span>
         </p>
         <?php 
+
+$imageName = substr(strrchr($post['image'], "/"), 1);
+$imagePath = substr($post['image'], 0, strrpos($post['image'], '/') );
+$thumbsURL = $imagePath . '/thumb_' . $imageName;
+
         if(file_exists($post['image'])) { ?>
-        <a href="<?=$post['image'] ?>"><img alt="Post thumbnail" src="<?=$post['image'] ?>" height="200"></a>
+        <a href="<?=$post['image'] ?>"><img alt="Post thumbnail" src="<?= $thumbsURL ?>" height="200"></a>
         <?php } ?> 
         <p><?=$post['content']?></p>
     </article>
@@ -65,24 +76,33 @@
 
 <!-- post comments -->
 <?php 
-    $postComments = getCommentsByPost($_GET['postId']);
+    $postComments = getCommentsByPost(trimAndStripHtmlPHPtags($_GET['postId']));
 
-    if(count( $postComments)){
+  
 ?>
 
-<section id="comments" --data-last-comment="<?=$postComments[0]['idComent']?>" --data-post-id="<?=$_GET['postId']?>">
-    <h1>Comments:</h1>
+<section id="comments"  --data-last-comment="<?php
+if(count( $postComments)){
+$postComments[0]['idComent'];
+} ?>" --data-post-id="<?=trimAndStripHtmlPHPtags($_GET['postId'])?>">
+    <h1>Comments:</h1> 
     <section>
         <textarea id="comment_txt" placeholder="New comments go here" rows="auto"></textarea>
         <input type="hidden" name="<?=$_SESSION['token_id']?>" value="<?=$_SESSION['token_value']?>"/>
         <button id="submit_comment_btn">Submit</button>
     </section>
-    <?php
-    foreach(getCommentsByPost($_GET['postId']) as $comment) {
-        draw_comment($comment['idComent'], $comment['idUser'], $comment['comentContent'], $comment['data']);
-    } ?>
+    <?php if(count( $postComments)){
+    foreach(getCommentsByPost(trimAndStripHtmlPHPtags($_GET['postId'])) as $comment) {
+     
+                          if(substr($post['date'], 0, strrpos($post['date'], ':') )){
+                          $dataecho= substr($post['date'], 0, strrpos($post['date'], ':') ); 
+                        }else{
+                            $dataecho= $post['date']  ;
+                          } 
+        draw_comment($comment['idComent'], $comment['idUser'], $comment['comentContent'], $dataecho);
+    } } ?>
 </section>
 
-    <?php }
+    <?php 
 draw_footer();
 ?>

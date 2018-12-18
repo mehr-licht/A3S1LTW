@@ -19,7 +19,7 @@ $editable = false;
 $thisuser = $_SESSION['username'];
 $username = $_SESSION['username'];
 if (isset($_GET['user'])) {
-  $username = $_GET['user'];
+  $username = trimAndStripHtmlPHPtags($_GET['user']);
 }
 $imageName=sha1($username);
 
@@ -61,7 +61,8 @@ draw_header($thisuser);
       <div contenteditable="false">
         <h1>
           <?= $user_array[0]['username'] ?>
-          <span class="rating">• <?= processingGetPoints($user_array[0]['username'])?> points •</span>
+          <span class="rating">•
+            <?= processingGetPoints($user_array[0]['username'])?> points •</span>
         </h1>
       </div>
     </label></p>
@@ -97,7 +98,7 @@ draw_header($thisuser);
     ?>
     <div contenteditable="false">
       <label id="profile-age" class="profile">age:
-      <?php  if (isset( $age)){
+        <?php  if (isset( $age)){
       if ($age !== null) {
           echo $age;
         } 
@@ -199,7 +200,7 @@ draw_header($thisuser);
     <!-- Change Avatar Form -->
     <div class="profile avatar hide" id="avatarEdit">
       <form id="avatar-form" class="avatar form" action="../actions/action_upload.php" method="post" enctype="multipart/form-data">
-       
+
         <div class="insideAvatarEdit">
           <input type="file" name="image" accept="image/jpg, image/jpeg" class="searchFile">
           <button type="submit" class="button" formaction="../actions/action_upload.php" formmethod="post" value="Upload">Upload</button>
@@ -218,16 +219,21 @@ draw_header($thisuser);
     <div class="profile posts">
 
       <?php $allPostsByUser = getAllPostsUSER($username) ;
-      if (count($allPostsByUser)) { ?>
-      <h1>Posts:</h1>
+      if (count($allPostsByUser)) {  ?>
+      <h1>
+        <?=count($allPostsByUser)?> Posts:</h1>
       <?php 
       foreach ($allPostsByUser as $postByUser) { ?>
       <article class="postSearch">
         <div class="<?= $postByUser['title'] ?>">
           <a href="../pages/postView.php?postId=<?= $postByUser['idPost'] ?>">
-            <?= $postByUser['title'] ?> </a>•
-          <?= $postByUser['date'] ?>
-          <!-- plus votes? -->
+            <?= $postByUser['title'] ?> • </a>
+                        <?php 
+                          if(substr($postByUser['date'], 0, strrpos($postByUser['date'], ':') )){
+                          echo substr($postByUser['date'], 0, strrpos($postByUser['date'], ':') ); 
+                        }else{
+                            echo $postByUser['date']  ;
+                          } ?>
         </div>
       </article>
       <?php } } ?>
@@ -241,14 +247,20 @@ draw_header($thisuser);
     <div class="profile comments">
       <?php $allCommentsByUser = getAllCommentsUSER($username); 
         if (count($allCommentsByUser)) { ?>
-      <h1>Comments:</h1>
+      <h1>
+        <?=count($allCommentsByUser)?> Comments:</h1>
       <?php 
          foreach ($allCommentsByUser as $commentByUser) { ?>
       <article class="commentSearch">
         <div class="<?= $commentByUser['idComent']?>">
           <a href="../pages/postView.php?postId=<?= $commentByUser['idPost'] ?>#<?= $commentByUser['idComent'] ?>">
-            <?=  substr($commentByUser['comentContent'], 0, 50) ?> </a>•
-          <?= $commentByUser['data']?>
+            <?=  substr($commentByUser['comentContent'], 0, 50) ?> • </a>
+          <?php 
+                          if(substr($commentByUser['data'], 0, strrpos( $commentByUser['data'], ':') )){
+                         echo substr($commentByUser['data'], 0, strrpos( $commentByUser['data'], ':') ); 
+                        }else{
+                            echo $commentByUser['data']  ;
+                          } ?>
           <!-- plus owner of post? -->
         </div>
       </article>

@@ -1,7 +1,7 @@
 <?php
   include_once '../includes/session.php';
   include_once '../database/db_user.php';
-  
+  include_once '../database/dbPosts.php';
  
   if (!isset($_SESSION['token_id'])) {
     $idSession = $_SESSION['token_id'];
