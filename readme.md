@@ -3,7 +3,7 @@
 ## Overall
 
 YetAnotherSite's project has implemented ALL the minimum requirements.  
-From the 9 extra requirements, YetAnotherSite's has implemented SEVEN requirements, ending with a 85% racio of all
+From the 9 extra requirements, YetAnotherSite's has implemented SIX requirements, ending with a 85% racio of all
 requirements defined.
 
 ### Minimum expected requirements:
@@ -26,7 +26,7 @@ All users should be able to:
   
   [DONE] __View a story in detail with all comments__.
   
-  [DONE] __Vote on a story__ Each story can be voted in the up and down arrows on the left side of the screen. Each arrow has two stages, Clicked and noClicked , meaning the voting implementation has four stages in total. Only allows one click in one of the arrows per user on one post, in another words it allows only one vote per user per story.
+  [DONE] __Vote on a story__ Each story can be voted in the up and down arrows on the left side of the screen. Each arrow has two stages, Clicked and NoClicked , meaning the voting implementation has four stages in total. Only allows one click in one of the arrows per user on one post, in another words it allows only one vote per user per story.
  
   [DONE] __Technologies__: HTML, CSS, PHP, Javascript, Ajax/JSON, PDO/SQL (using sqlite).
 
@@ -42,7 +42,7 @@ All users should be able to:
 
         Use of Prepared Statements and use of Stored Procedures to make queries to the database
         
-        All inputs are filtred in regex expressionas, php fuctions or java fuctions to deleted the scripts caracteres. For example, in php we use trim() and strip_tags(). 
+        All inputs are filtred in regex expressionas, php fuctions or java fuctions to delete the scripts caracteres. For example, in php we use trim() and strip_tags(). 
 
 ### Extra requirements
 
