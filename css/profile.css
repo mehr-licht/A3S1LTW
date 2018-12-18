@@ -3,6 +3,17 @@
     animation: fadeIn 1s;
 }
 
+#profile-data {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+/* #posts, #comments {
+    margin-left: auto;
+    margin-right: 1.5rem;
+} */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -38,19 +49,18 @@ input.editable {
     border-radius: 50%;
 }
 
-div.profile.show.avatar {
+.profile .show.avatar {
     text-align: center;
 }
 
 div.profile {
     max-width: 400px;
-    margin: auto;
     background-color: var(--bg-light);
     border-radius: 0.25rem;
     padding: 4.5rem 2rem;
 }
 
-.profile.prof {
+.profile .prof {
     text-align: center;
 }
 
