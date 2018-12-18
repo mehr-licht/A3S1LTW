@@ -67,10 +67,17 @@ $imageName = substr(strrchr($post['image'], "/"), 1);
 $imagePath = substr($post['image'], 0, strrpos($post['image'], '/') );
 $thumbsURL = $imagePath . '/thumb_' . $imageName;
 
-        if(file_exists($post['image'])) { ?>
-        <a href="<?=$post['image'] ?>"><img alt="Post thumbnail" src="<?= $thumbsURL ?>" height="200"></a>
+        if(file_exists($post['image'])) { ?><p>
+        <a href="<?=$post['image'] ?>"><img alt="Post thumbnail" <?php
+        if(file_exists($thumbsURL)) {
+           ?> src="<?=$thumbsURL?>"<?php
+        }else{
+            ?> src="<?=$post['image']?>"<?php
+        }
+               
+        ?> height="200"></a>
         <?php } ?> 
-        <p><?=$post['content']?></p>
+        <?=$post['content']?></p>
     </article>
 </section id="postReply">
 
