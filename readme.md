@@ -45,7 +45,7 @@ All users should be able to:
   - [x] CSRF prevention (random token-id and hashed token_values with salt)
   - [x] XSS prevention (Escape Scripts on all inputs and gets. Images stored with hash)
   - [x] Use of Prepared Statements and use of Stored Procedures to make queries to the database
-  - [x] All inputs are filtred in regex expressionas, php fuctions or java fuctions to deleted the scripts caracteres. For example, in php we use trim() and strip_tags(). 
+  - [x] All inputs are filtered in regex expressions within php functions to delete the scripts characteres. For example, in php we use trim() and strip_tags(). 
 
 ### Extra requirements
 
@@ -55,6 +55,7 @@ on YetAnotherSite. The default view will be the most recent stories added to dat
 - [x] __Points__: Each user will received a number of points in according to the story posted and the votes received. Good stories with more votes and more comments will give more points. Stories with negative votes will decrease the points received. 
 - [x] __Search__: Users can search for stories and comments and users. When used, it performs an exact search of the written term, within the contents searched upon, in four options: search in stories, search in comments, search in users and search in everything.
 - [x] __API__: A REST API that allows bots or other apps to use the website.
+<br><br>
 - [x] __AnythingYouCanThingOf__:
 
 On SignUp section we implement the ability to send a confirmation email. 
@@ -68,12 +69,14 @@ All inputs have javascript validation for immediate user awareness. Security is 
 Another module we had to add was for images: sudo apt-get install php7.2-gd.
 For both modules to work we also had to make some changes on php.ini file (uncomment).
 
-The following are implemented:
+<br><br>
+The following were not implemented:
 - [ ] **Multilevel Comments**: Comments can be replies to other comments (2 levels or infinite levels).
 - [ ] **Channels**: The site is divided into channels. Stories can be posted in a specific channel. Users can create and subscribe to channels. 
 Each channel should have a special place where users can see stories published on those channels. A special place where user can see stories belonging to channels they subscribed to should be available.
 - [ ] **References**: Stories and comments can refer to users and channels using some special notation. These should automatically become links 
 to the referred user profile or channel.
 
+<br><br>
 Web Technologies And Languages - MIEIC FEUP
 Projects done in colaboration with [TejInaco](https://github.com/TejInaco) and [Fabiodrg666](https://github.com/Fabiodrg666)
