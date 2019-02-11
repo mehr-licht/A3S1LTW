@@ -1,5 +1,5 @@
-## *SUPERMERCADO* ##
-
+## *Yet Another Site* ##
+A simple news/post site
 project developed in the Languages and Web Technologies course unit
 
 
